@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { GameContext } from '../App'
 import { jsx } from '@emotion/react'
 import './Board.scss'
