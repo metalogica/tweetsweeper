@@ -1,21 +1,10 @@
 import { useState, useContext, useEffect } from 'react'
 import { useGameState, Difficulty } from '../contexts'
-import { GameContext } from '../App'
 
 function Toolbar(props: any) {
   const { difficulty, setDifficulty } = useGameState()
 
-  let { opponent, theme, options, setOptions } = useContext(GameContext)
-
   const [revealed, setRevealed] = useState<boolean>(false)
-
-  const optionHandler = (event: any) => {
-    setDifficulty(Difficulty.Hard)
-  }
-
-  let gameOptions = Object.values(options).map((option, i) => (
-    <option key={i} value={option}>{option}</option>
-  ))
 
   return (
     <div className='toolbar-container'>
@@ -27,8 +16,7 @@ function Toolbar(props: any) {
             <li>Two</li>  
             <li>Three</li>
             <h1>Options</h1>
-            <select name="" id="" onChange={(event) => optionHandler(event)}>
-              {gameOptions}
+            <select name="" id="" onChange={(event) => {}}>
             </select>
             <hr/>
             <h1>NEW CONTEXT</h1>
