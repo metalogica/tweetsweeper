@@ -9,7 +9,7 @@ function Board() {
   const { difficulty, opponent, theme } = useContext(GameOptionsContext)
 
   return (
-    <div>
+    <div className='board-container'>
       Hello from the board component!!!
       <p>Difficulty: {difficulty}</p>
       <p>opponent: {opponent}</p>

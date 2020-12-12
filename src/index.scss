@@ -13,24 +13,44 @@ code {
 }
 
 #root {
+  border: 5px solid green;
+
   width: 100vw;
   height: 100vh;
-  border: 5px solid green;
+  position: relative;
+}
+
+.board-container {
+  border: 1px solid blue;
+
+  width: 80%;
 }
 
 .toolbar-container {
-  border: 1px solid blue;
+  border: 1px solid orange;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20%;
+  height: 100%;
 
   .toolbar-icon {
+    border: 1px solid red;
+
+    position: absolute;
+    right: 0;
+    top:0;
     display: inline-block;
-    background-image: url('./images/gear.svg');
+    background-image: url('./images/gear-unfilled.svg');
     background-size: cover;
     width: 2rem;
     height: 2rem;
-    border: 1px solid red;
+    opacity: 0.75;
     transition: transform 0.25s ease-in;
-  
-    &:hover {
+    
+    &.revealed {
+      background-image: url('./images/gear-filled.svg');
+      transition: opacity 0.25s ease-out;
       transform: rotate(65deg);
       transition: transform 0.25s ease-in;
     }

@@ -4,8 +4,8 @@ function Toolbar(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)
 
   return (
-    <div className='toolbar-container' onClick={() => setRevealed(!revealed)}>
-      <span className='toolbar-icon'></span>
+    <div className='toolbar-container'>
+      <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} onClick={() => setRevealed(!revealed)}></span>
       {
         revealed && (
           <>
