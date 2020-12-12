@@ -3,25 +3,27 @@ import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import './App.scss';
 
-interface Game {
+interface GameOptions {
   difficulty: string;
   theme: string;
   opponent: string
 }
 
-const gameDefaultData: Game = {
+const gameOptionsDefaultData: GameOptions = {
   difficulty: 'easy',
   theme: 'retro',
   opponent: 'trump'
 }
 
-export const GameContext = React.createContext<Game>(gameDefaultData)
+export const GameOptionsContext = React.createContext<GameOptions>(gameOptionsDefaultData)
 
 function App() {
   return (
     <>
-      <Board/>
-      <Toolbar/>
+      <GameOptionsContext.Provider value={gameOptionsDefaultData}>
+        <Board/>
+        <Toolbar/>
+      </GameOptionsContext.Provider>
     </>
   )
 }
