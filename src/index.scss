@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  border: 5px solid green;
+}
+
+.toolbar-container {
+  border: 1px solid blue;
+
+  .toolbar-icon {
+    display: inline-block;
+    background-image: url('./images/gear.svg');
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid red;
+    transition: transform 0.25s ease-in;
+  
+    &:hover {
+      transform: rotate(65deg);
+      transition: transform 0.25s ease-in;
+    }
+  }
+}
+
