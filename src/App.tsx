@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { GameStateContext, Difficulty } from './contexts'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import './App.scss';
@@ -34,18 +35,18 @@ export const GameContext = React.createContext<Game>({
 })
 
 function App() {
-  const [difficulty, setDifficulty] = React.useState<string>(gameDefaultData.difficulty)
-
-  const updateGame = (difficulty: string) => {
-    setDifficulty(difficulty)
-  }
+  const [difficulty, setDifficulty] = React.useState(Difficulty.Easy)
 
   return (
     <>
-      <GameContext.Provider value={gameDefaultData}>
-        <Board/>
-        <Toolbar/>
-      </GameContext.Provider>
+      <GameStateContext.Provider value={{difficulty, setDifficulty}}>
+        <GameContext.Provider value={gameDefaultData}>
+          <h1>APP: </h1>
+          Difficulty: {difficulty}
+          <Board/>
+          <Toolbar/>
+        </GameContext.Provider>
+      </GameStateContext.Provider>
     </>
   )
 }

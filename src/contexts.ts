@@ -18,16 +18,12 @@ export enum Opponent {
 
 export type GameStateContextType = {
   difficulty: Difficulty;
-  theme: Theme,
-  opponent: Opponent,
-  setGameState: (Difficulty: Difficulty, Theme: Theme, Opponent: Opponent) => void
+  setDifficulty: (Difficulty: Difficulty) => void
 }
 
 export const GameStateContext = createContext<GameStateContextType>({
   difficulty: Difficulty.Easy,
-  theme: Theme.Retro,
-  opponent: Opponent.Trump,
-  setGameState: () => {console.log('enum context fire')}
+  setDifficulty: () => {console.log('enum context fire')}
 })
 
 export const useGameState = () => useContext(GameStateContext)
