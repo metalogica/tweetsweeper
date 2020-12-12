@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
 import React, { useContext } from 'react'
-import { GameOptionsContext } from '../App'
+import { GameContext } from '../App'
 import { jsx } from '@emotion/react'
 import './Board.scss'
 
 function Board() { 
-  const { difficulty, opponent, theme } = useContext(GameOptionsContext)
+  const { difficulty, opponent, theme, options } = useContext(GameContext)
 
   return (
     <div className='board-container'>
