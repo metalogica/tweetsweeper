@@ -12,18 +12,21 @@ function Toolbar(props: any) {
       {
         revealed && (
           <>
-            <li>One</li>
-            <li>Two</li>  
-            <li>Three</li>
-            <h1>Options</h1>
-            <select name="" id="" onChange={(event) => {}}>
-            </select>
+            <h4>Options</h4>
             <hr/>
-            <h1>NEW CONTEXT</h1>
+            <Toggle/>
           </>
         )
       }
     </div>
+  )
+}
+
+function Toggle() {
+  return (
+    <select name="" id="" onChange={(event) => {}}>
+
+    </select>
   )
 }
 
