@@ -6,8 +6,7 @@ function Toolbar(props: any) {
   
   const { setDifficulty, setTheme, setOpponent } = useSettings()
 
-  const handleChange = (option: any) => {
-    console.log(option)
+  const handleChange = (option: string) => {
     switch(option) {
       case 'easy':
         setDifficulty(Difficulty.Easy)
@@ -49,7 +48,7 @@ function Toolbar(props: any) {
             {
               GameOptions && Object.entries(GameOptions).map(([setting, options], i) => {
                 return(
-                  <div>
+                  <div key={`select-${i}`}>
                     <label>{setting}</label>
                     <select key={i} onChange={(event) => handleChange(event.target.value)}>
                       {
