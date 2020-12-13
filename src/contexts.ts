@@ -31,7 +31,7 @@ export const GameContext = createContext<GameContextType>({
   state: {
     difficulty: Difficulty.Easy,
     theme: Theme.Retro,
-    opponent: Opponent.Trump,
+    opponent: Opponent.Trump
   },
   setDifficulty: () => {console.log('enum context fire: difficulty')},
   setTheme: () => {console.log('enum context fire: theme')},

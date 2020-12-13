@@ -1,6 +1,6 @@
 import { BoardState, CellState } from '../globals'
 
-function Cell() {
+function Cell(props: any) {
   return(
     <div>
       CELL

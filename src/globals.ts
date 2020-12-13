@@ -7,5 +7,5 @@ export interface CellState {
 }
 
 export interface BoardState { 
-  table: [CellState[],CellState[]];
+  table?: [CellState[],CellState[]];
 }
