@@ -2,6 +2,7 @@
 // import { jsx } from '@emotion/react'
 import Cell from './Cell'
 import { useSettings } from '../contexts'
+import { BoardState, CellState } from '../globals'
 import './Board.scss'
 
 function Board() { 

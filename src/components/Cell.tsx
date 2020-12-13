@@ -1,10 +1,4 @@
-interface CellState {
-  location: [number, number];
-  clicked: boolean;
-  mine: boolean;
-  flagged: boolean;
-  neighbors?: number;
-}
+import { BoardState, CellState } from '../globals'
 
 function Cell() {
   return(
