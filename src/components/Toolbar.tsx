@@ -1,32 +1,39 @@
-import { useState, useContext, useEffect } from 'react'
-import { useGameState, Difficulty } from '../contexts'
+import { useState } from 'react'
+import { GameOptions, useSettings } from '../contexts'
 
 function Toolbar(props: any) {
-  const { difficulty, setDifficulty } = useGameState()
-
   const [revealed, setRevealed] = useState<boolean>(false)
+  
+  const { setDifficulty, setTheme, setOpponent } = useSettings()
 
   return (
     <div className='toolbar-container'>
-      <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} onClick={() => setRevealed(!revealed)}></span>
+      <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} 
+            onClick={() => setRevealed(!revealed)}
+      >
+      </span>
       {
         revealed && (
           <>
             <h4>Options</h4>
             <hr/>
-            <Toggle/>
+            {
+              GameOptions && Object.entries(GameOptions).map(([setting, options], i) => {
+                return(
+                  <select onChange={(event) => console.log(event.target.value)}>
+                    {
+                      options.map((option: any, index: number) => (
+                        <option key={index}>{option}</option>
+                      ))
+                    }
+                  </select>
+                )
+              })
+            }
           </>
         )
       }
     </div>
-  )
-}
-
-function Toggle() {
-  return (
-    <select name="" id="" onChange={(event) => {}}>
-
-    </select>
   )
 }
 
