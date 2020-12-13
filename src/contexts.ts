@@ -47,7 +47,11 @@ interface Options {
 }
 
 export const GameOptions: Options = {
-  difficulty: Object.values(Difficulty),
+  difficulty: [
+    Difficulty.Easy,
+    Difficulty.Regular,
+    Difficulty.Hard,
+  ],
   theme: Object.values(Theme),
   opponent: Object.values(Opponent),
 }
