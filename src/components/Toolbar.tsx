@@ -30,6 +30,7 @@ function Toolbar(props: any) {
 function Toggler({setting, options}: { setting: string, options: string[]}) {
   const { setDifficulty, setTheme, setOpponent } = useSettings()
 
+  // TODO: Refactor this logic to make it conform to typescript standards.
   const handleChange = (option: string) => {
     switch(option) {
       case 'easy':
