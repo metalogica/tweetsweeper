@@ -3,7 +3,31 @@ import { GameOptions, useSettings, Difficulty, Theme, Opponent } from '../contex
 
 function Toolbar(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)
-  
+
+  return (
+    <div className='toolbar-container'>
+      <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} 
+            onClick={() => setRevealed(!revealed)}
+      >
+      </span>
+      {
+        revealed && (
+          <>
+            <h4>Options</h4>
+            <hr/>
+            {
+              GameOptions && Object.entries(GameOptions).map(([setting, options], i) => (
+                <Toggler key={i} setting={setting} options={options} />
+              ))
+            }
+          </>
+        )
+      }
+    </div>
+  )
+}
+
+function Toggler({setting, options}: { setting: string, options: string[]}) {
   const { setDifficulty, setTheme, setOpponent } = useSettings()
 
   const handleChange = (option: string) => {
@@ -35,35 +59,15 @@ function Toolbar(props: any) {
   }
 
   return (
-    <div className='toolbar-container'>
-      <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} 
-            onClick={() => setRevealed(!revealed)}
-      >
-      </span>
-      {
-        revealed && (
-          <>
-            <h4>Options</h4>
-            <hr/>
-            {
-              GameOptions && Object.entries(GameOptions).map(([setting, options], i) => {
-                return(
-                  <div key={`select-${i}`}>
-                    <label>{setting}</label>
-                    <select key={i} onChange={(event) => handleChange(event.target.value)}>
-                      {
-                        options.map((option: any, index: number) => (
-                          <option key={index}>{option}</option>
-                        ))
-                      }
-                    </select>
-                  </div>
-                )
-              })
-            }
-          </>
-        )
-      }
+    <div key={setting} className={`${setting}-select-container`}>
+      <label>{setting}</label>
+      <select key={setting} onChange={(event) => handleChange(event.target.value)}>
+        {
+          options.map((option: any, index: number) => (
+            <option key={index}>{option}</option>
+          ))
+        }
+      </select>
     </div>
   )
 }
