@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GameOptions, useSettings, Difficulty } from '../contexts'
+import { GameOptions, useSettings, Difficulty, Theme, Opponent } from '../contexts'
 
 function Toolbar(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)
@@ -7,18 +7,28 @@ function Toolbar(props: any) {
   const { setDifficulty, setTheme, setOpponent } = useSettings()
 
   const handleChange = (option: any) => {
+    console.log(option)
     switch(option) {
-      case 'easy' || 'regular' || 'hard':
-        console.log(option)
-        setDifficulty(option)
+      case 'easy':
+        setDifficulty(Difficulty.Easy)
         break
-      case 'retro' || 'dusk':
-        console.log(option)
-        setTheme(option)
+      case 'regular':
+        setDifficulty(Difficulty.Regular)
         break
-      case 'biden' || 'trump':
-        console.log(option)
-        setOpponent(option)
+      case 'hard':
+        setDifficulty(Difficulty.Hard)
+        break
+      case 'retro':
+        setTheme(Theme.Retro)
+        break
+      case 'dusk':
+        setTheme(Theme.Dusk)
+        break
+      case 'biden':
+        setOpponent(Opponent.Biden)
+        break
+      case 'trump':
+        setOpponent(Opponent.Trump)
         break
       default:
         return
