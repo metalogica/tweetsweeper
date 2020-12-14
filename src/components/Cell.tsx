@@ -1,10 +1,8 @@
-import { BoardState, CellState } from '../globals'
+import { CellState } from '../globals'
 
-function Cell(props: any) {
-  // const { location, clicked, mine, flagged, neighbors }: { location: [number, number], clicked: boolean, mine: boolean, flagged: boolean, neighbors: number } = cellState
-
+function Cell(props: any, { location, clicked, mine, flagged, neighbors }: CellState) {
   return(
-    <div data-testid='cell'>
+    <div data-testid='cell' className={clicked ? 'clicked' : 'unclicked'}>
       CELL
     </div>
   )

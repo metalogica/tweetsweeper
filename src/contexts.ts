@@ -16,7 +16,7 @@ export enum Opponent {
   Biden = 'biden',
 }
 
-export type GameContextType = {
+export interface GameContextType {
   state: {
     difficulty: Difficulty;
     theme: Theme;
