@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
+import { defaultBoardState } from '../globals'
 import Board from './Board'
-import { GameContext } from '../contexts'
 
 test('it renders in the DOM', () => {
   render(<Board/>)
@@ -8,7 +8,14 @@ test('it renders in the DOM', () => {
 
 describe('buildBoard()', () => {
   it('should build a new board and store it in state if it is a new game', () => {
+    // initialize game state
+    // render Board
+    render(<Board {...defaultBoardState}/>)
 
+    // check the div structure of the board corresponds to 5x5 Cells
+    const renderedBoard = screen.getByTestId('board')
+
+    expect(renderedBoard.children.length).toEqual(25)
   })
 
   it('should not build a new board if a game is in progress', () => {
@@ -16,11 +23,7 @@ describe('buildBoard()', () => {
   })
 
   it('should build a 5x5 grid with 1 mine for an Easy game.', () => {
-    // initialize game state
-
-    // render Board
-
-    // check the div structure of the board corresponds to 5x5 Cells
+    
   })
 
   it('should build a 10x10 grid with 5 mines for an Regular game.', () => {

@@ -1,3 +1,4 @@
+// Cell Globals
 export interface CellState {
   location: [number, number];
   clicked: boolean;
@@ -6,10 +7,34 @@ export interface CellState {
   neighbors: number;
 }
 
-export interface BoardState { 
-  table?: [CellState[],CellState[]];
+// Board Globals
+export enum GameProgress {
+  NewGame = 'newGame',
+  InProgress = 'inProgress',
+  Won = 'won',
+  Lost = 'lost',
 }
 
-enum CellSkin {
+export enum BoardSize {
+  Easy = 5,
+  Regular = 10,
+  Hard = 20,
+}
 
+export enum NumberOfMines {
+  Easy = 1,
+  Regular = 5,
+  Hard = 10,
+}
+
+export interface BoardState {
+  gameProgress: GameProgress;
+  boardSize: BoardSize;
+  numberOfMines: NumberOfMines;
+}
+
+export const defaultBoardState: BoardState = {
+  gameProgress: GameProgress.NewGame,
+  boardSize: BoardSize.Easy,
+  numberOfMines: NumberOfMines.Easy,
 }

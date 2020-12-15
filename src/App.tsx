@@ -1,5 +1,6 @@
 import React from 'react';
 import { GameContext, Difficulty, Theme, Opponent} from './contexts'
+import { defaultBoardState } from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import './App.scss';
@@ -16,7 +17,7 @@ function App() {
         <p>Difficulty: {difficulty}</p>
         <p>Theme: {theme}</p>
         <p>Opponent: {opponent}</p>
-        <Board/>
+        <Board {...defaultBoardState}/>
         <Toolbar/>
       </GameContext.Provider>
     </>
