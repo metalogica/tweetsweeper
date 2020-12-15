@@ -17,6 +17,6 @@ describe('Cell State should determine the cell appearance', () => {
 
     const cell = screen.getByTestId('cell')
 
-    expect(cell).toHaveClass('unclicked')
+    expect(cell).toHaveStyle({ backgroundImage: `url(/images/retro/unopened.svg)`})
   })
 })

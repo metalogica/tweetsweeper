@@ -10,9 +10,25 @@ function Board() {
   const { state: { difficulty } } = useSettings();
   const [ newGame, setNewGame ] = useState<boolean>(true)
 
-  const cellState: CellState = {
+  const cellStateUnopened: CellState = {
     location: [0, 0],
     clicked: false,
+    mine: true,
+    flagged: false,
+    neighbors: 0,
+  } 
+
+  const cellStateFlagged: CellState = {
+    location: [0, 0],
+    clicked: false,
+    mine: true,
+    flagged: true,
+    neighbors: 0,
+  } 
+
+  const cellStateMine: CellState = {
+    location: [0, 0],
+    clicked: true,
     mine: true,
     flagged: false,
     neighbors: 0,
@@ -21,15 +37,9 @@ function Board() {
   return (
     <div className='board-container'>
       Hello from the board component!!!
-      {
-        difficulty === Difficulty.Easy && (<Cell {...cellState}></Cell>)
-      }
-      {
-        difficulty === Difficulty.Regular && (<Cell {...cellState}></Cell>)
-      }
-      {
-        difficulty === Difficulty.Hard && (<Cell {...cellState}></Cell>)
-      }
+      <Cell {...cellStateUnopened}></Cell>
+      <Cell {...cellStateFlagged}></Cell>
+      <Cell {...cellStateMine}></Cell>
     </div>
   )
 }
