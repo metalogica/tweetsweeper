@@ -1,13 +1,14 @@
-import { useState } from 'react'
 import './Board.scss'
 import { BoardState, CellState } from '../globals'
+import { useSettings } from '../contexts'
 import Cell from './Cell'
 
 function Board({gameProgress, boardSize, numberOfMines} : BoardState ) { 
   const grid = buildBoard(boardSize, numberOfMines)
+  const { state: { difficulty } } = useSettings()
 
   return (
-    <div data-testid='board' className='board-container'>
+    <div data-testid='board' className='board-container' id={difficulty}>
       { 
         grid.map((column: any) => {
           return (column.map((cellState: CellState, rowIndex: number) => {

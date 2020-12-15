@@ -2,18 +2,22 @@ import { CellState } from '../globals'
 import './Cell.scss'
 
 function Cell({ location, clicked, mine, flagged, neighbors }: CellState) {
+  const style: object = setStyle(location, clicked, mine, flagged, neighbors)
+
   return(
     <div  className='cell' 
           data-testid='cell' 
-          style={setSkin(clicked, mine, flagged, neighbors)}
-          data-location={`${location[0]}-${location[1]}`}
+          style={style}
     >
     </div>
   )
 }
 
-function setSkin(clicked: boolean, mine: boolean, flagged: boolean, neighbors: number) {
-  const skin = { backgroundImage: `url('/images/retro/unopened.svg')` }
+function setStyle(location: [number, number],clicked: boolean, mine: boolean, flagged: boolean, neighbors: number) {
+  const skin = { 
+    backgroundImage: `url('/images/retro/unopened.svg')`,
+    gridArea: `${location[0]}-${location[1]}`
+  }
 
   if (flagged) {
     skin.backgroundImage = `url('/images/retro/flag.svg')`

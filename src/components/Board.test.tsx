@@ -19,7 +19,6 @@ describe('buildBoard()', () => {
   })
 
   it('should not build a new board if a game is in progress', () => {
-
   })
 
   it('should build a 5x5 grid with 1 mine for an Easy game.', () => {
