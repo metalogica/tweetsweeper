@@ -22,13 +22,13 @@ function Board() {
     <div className='board-container'>
       Hello from the board component!!!
       {
-        difficulty === Difficulty.Easy && (<Cell state={cellState}></Cell>)
+        difficulty === Difficulty.Easy && (<Cell {...cellState}></Cell>)
       }
       {
-        difficulty === Difficulty.Regular && (<Cell state={cellState}></Cell>)
+        difficulty === Difficulty.Regular && (<Cell {...cellState}></Cell>)
       }
       {
-        difficulty === Difficulty.Hard && (<Cell state={cellState}></Cell>)
+        difficulty === Difficulty.Hard && (<Cell {...cellState}></Cell>)
       }
     </div>
   )

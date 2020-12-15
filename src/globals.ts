@@ -9,3 +9,7 @@ export interface CellState {
 export interface BoardState { 
   table?: [CellState[],CellState[]];
 }
+
+enum CellSkin {
+
+}

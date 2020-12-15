@@ -13,7 +13,7 @@ describe('Cell State should determine the cell appearance', () => {
       neighbors: 0,
     } 
   
-    render(<Cell state={cellState}/>)
+    render(<Cell {...cellState}/>)
 
     const cell = screen.getByTestId('cell')
 
