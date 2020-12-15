@@ -5,14 +5,13 @@ import Cell from './Cell'
 
 function Board({gameProgress, boardSize, numberOfMines} : BoardState ) { 
   const grid = buildBoard(boardSize, numberOfMines)
-  console.log(grid)
 
   return (
     <div data-testid='board' className='board-container'>
       { 
         grid.map((column: any) => {
           return (column.map((cellState: CellState, rowIndex: number) => {
-            return (<Cell key={rowIndex} data-location={cellState.location} {...cellState}/>)
+            return (<Cell key={rowIndex} {...cellState}/>)
           }))
         }) 
       }
