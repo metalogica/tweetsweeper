@@ -31,6 +31,7 @@ export interface BoardState {
   gameProgress: GameProgress;
   boardSize: BoardSize;
   numberOfMines: NumberOfMines;
+  grid?: [CellState[], CellState[]]
 }
 
 export const defaultBoardState: BoardState = {
