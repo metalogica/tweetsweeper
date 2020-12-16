@@ -25,6 +25,7 @@ export enum NumberOfMines {
   Easy = 1,
   Regular = 5,
   Hard = 10,
+  Impossible = 1000,
 }
 
 export interface BoardState {
@@ -50,4 +51,11 @@ export const hardBoardState: BoardState = {
   gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Hard,
   numberOfMines: NumberOfMines.Hard,
+}
+
+// used only in Board.test.tsx
+export const mineBoardState: BoardState = {
+  gameProgress: GameProgress.InProgress,
+  boardSize: BoardSize.Easy,
+  numberOfMines: NumberOfMines.Impossible,
 }
