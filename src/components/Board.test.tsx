@@ -43,9 +43,12 @@ describe('buildBoard()', () => {
   })
 })
 
-describe('drawBoard()', () => {
+describe('clickBoard()', () => {
   it('should render the entire revealed board when the game is over', () => {
-
+    // click on a cell
+    // cell is a mine
+    // flash a pop up window stating game is over
+    // reveal contents of all cells
   })
 
   it('should end the game if the user clicks on a mine', () => {
