@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { defaultBoardState } from '../globals'
+import { defaultBoardState, regularBoardState, hardBoardState } from '../globals'
 import Board from './Board'
 
 test('it renders in the DOM', () => {
@@ -8,11 +8,8 @@ test('it renders in the DOM', () => {
 
 describe('buildBoard()', () => {
   it('should build a new board and store it in state if it is a new game', () => {
-    // initialize game state
-    // render Board
     render(<Board {...defaultBoardState}/>)
 
-    // check the div structure of the board corresponds to 5x5 Cells
     const renderedBoard = screen.getByTestId('board')
 
     expect(renderedBoard.children.length).toEqual(25)
@@ -22,15 +19,27 @@ describe('buildBoard()', () => {
   })
 
   it('should build a 5x5 grid with 1 mine for an Easy game.', () => {
-    
+    render(<Board {...defaultBoardState}/>)
+
+    const renderedBoard = screen.getByTestId('board')
+
+    expect(renderedBoard.children.length).toEqual(25)
   })
 
   it('should build a 10x10 grid with 5 mines for an Regular game.', () => {
-    
+    render(<Board {...regularBoardState}/>)
+
+    const renderedBoard = screen.getByTestId('board')
+
+    expect(renderedBoard.children.length).toEqual(100)
   })
 
   it('should build a 20x20 grid with 10 mines for an Hard game.', () => {
-  
+    render(<Board {...hardBoardState}/>)
+
+    const renderedBoard = screen.getByTestId('board')
+
+    expect(renderedBoard.children.length).toEqual(400)
   })
 })
 

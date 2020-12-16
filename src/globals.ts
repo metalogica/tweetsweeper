@@ -39,3 +39,15 @@ export const defaultBoardState: BoardState = {
   boardSize: BoardSize.Easy,
   numberOfMines: NumberOfMines.Easy,
 }
+
+export const regularBoardState: BoardState = {
+  gameProgress: GameProgress.NewGame,
+  boardSize: BoardSize.Regular,
+  numberOfMines: NumberOfMines.Regular,
+}
+
+export const hardBoardState: BoardState = {
+  gameProgress: GameProgress.NewGame,
+  boardSize: BoardSize.Hard,
+  numberOfMines: NumberOfMines.Hard,
+}
