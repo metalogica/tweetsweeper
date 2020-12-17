@@ -52,7 +52,7 @@ function buildBoard(
       const cellState: CellState = {
         location: [j, i],
         clicked: false,
-        mine: randomMine(mineCount, numberOfMines),
+        // mine: randomMine(mineCount, numberOfMines),
         mine: false,
         flagged: false,
         neighbors: 0
