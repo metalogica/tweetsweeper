@@ -1,7 +1,7 @@
 import { CellState } from '../globals'
 import './Cell.scss'
 
-function Cell({ location, clicked, mine, flagged, neighbors }: CellState) {
+function Cell({ location, clicked, mine, flagged, neighbors }: CellState, test: string) {
   const style: object = setStyle(location, clicked, mine, flagged, neighbors)
 
   return(
