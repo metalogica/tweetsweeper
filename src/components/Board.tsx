@@ -5,7 +5,6 @@ import Cell from './Cell'
 
 function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) { 
   let grid = buildBoard({boardSize, numberOfMines, mineMap})
-  console.log({})
   const { state: { difficulty } } = useSettings()
 
   return (
