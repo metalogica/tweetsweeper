@@ -4,6 +4,7 @@ export enum Difficulty {
   Easy = 'easy',
   Regular = 'regular',
   Hard = 'hard',
+  Test = 'test'
 }
 
 export enum Theme {
@@ -51,6 +52,7 @@ export const GameOptions: Options = {
     Difficulty.Easy,
     Difficulty.Regular,
     Difficulty.Hard,
+    Difficulty.Test
   ],
   theme: Object.values(Theme),
   opponent: Object.values(Opponent),

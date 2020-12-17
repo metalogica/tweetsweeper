@@ -28,7 +28,6 @@ export enum NumberOfMines {
   Easy = 3,
   Regular = 12,
   Hard = 188,
-  Impossible = 1000,
 }
 
 export interface BoardState {

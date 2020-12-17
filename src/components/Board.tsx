@@ -6,13 +6,14 @@ import { useSettings } from '../contexts'
 import Cell from './Cell'
 
 function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) { 
+  const { state: { difficulty } } = useSettings()
+
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
   }, [boardSize, gameProgress, numberOfMines, mineMap])
   
-  const { state: { difficulty } } = useSettings()
   
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
@@ -28,6 +29,7 @@ function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) 
 
   return (
     <div data-testid='board' className='board-container' id={difficulty}>
+      {console.log(grid)}
       { 
         grid.map((column: any) => {
           return (column.map((cellState: CellState, rowIndex: number) => { 

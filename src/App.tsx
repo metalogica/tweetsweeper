@@ -1,6 +1,6 @@
 import React from 'react';
 import { GameContext, Difficulty, Theme, Opponent} from './contexts'
-import { defaultBoardState, regularBoardState, hardBoardState } from './globals'
+import { defaultBoardState, regularBoardState, hardBoardState, testBoardState } from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import './App.scss';
@@ -18,6 +18,8 @@ function App() {
         return regularBoardState
       case 'hard':
         return hardBoardState
+      case 'test':
+        return testBoardState
       default:
         throw new Error('Unable to draw board.')
     }

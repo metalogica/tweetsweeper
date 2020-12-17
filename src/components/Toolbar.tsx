@@ -42,6 +42,9 @@ function Toggler({setting, options}: { setting: string, options: string[]}) {
       case 'hard':
         setDifficulty(Difficulty.Hard)
         break
+      case 'test':
+        setDifficulty(Difficulty.Test)
+        break
       case 'retro':
         setTheme(Theme.Retro)
         break
