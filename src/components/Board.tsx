@@ -1,5 +1,6 @@
-import './Board.scss'
+import _ from 'lodash'
 import { useState, useEffect } from 'react'
+import './Board.scss'
 import { BoardState, CellState } from '../globals'
 import { useSettings } from '../contexts'
 import Cell from './Cell'
@@ -10,14 +11,25 @@ function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
   }, [boardSize, gameProgress, numberOfMines, mineMap])
-
+  
   const { state: { difficulty } } = useSettings()
+  
+  // TODO: get React ninja to code review this function... could probably be built better with useContext or useRef()
+  function updateBoard(j: number, i: number) {
+    const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
+
+    updatedGrid[j][i].clicked = true
+
+    setGrid(updatedGrid)
+  }
 
   return (
     <div data-testid='board' className='board-container' id={difficulty}>
       { 
         grid.map((column: any) => {
           return (column.map((cellState: CellState, rowIndex: number) => { 
+            // pass updateBoard() function to each child cell; on game boot up the grid is empty 
+            // and so this function is nil, that is why we assign it here. 
             cellState.setGrid = updateBoard
             return (<Cell key={rowIndex} {...cellState}/>)
           }))
@@ -85,10 +97,6 @@ function buildBoard(
   }
 
   return grid
-}
-
-function updateBoard(j: number, i: number) {
-  console.log(j, i)
 }
 
 export default Board

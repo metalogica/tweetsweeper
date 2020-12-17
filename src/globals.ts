@@ -25,9 +25,9 @@ export enum BoardSize {
 
 export enum NumberOfMines {
   Test = 0,
-  Easy = 1,
-  Regular = 5,
-  Hard = 10,
+  Easy = 3,
+  Regular = 12,
+  Hard = 188,
   Impossible = 1000,
 }
 
