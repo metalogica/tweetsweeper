@@ -1,14 +1,14 @@
 import { CellState } from '../globals'
 import './Cell.scss'
 
-function Cell({ location, clicked, mine, flagged, neighbors }: CellState, test: string) {
+function Cell({ location, clicked, mine, flagged, neighbors, setGrid }: CellState) {
   const style: object = setStyle(location, clicked, mine, flagged, neighbors)
 
   return(
     <div  className='cell' 
           data-testid={`${location[0]}-${location[1]}`} 
           style={style}
-          onClick={(event) => console.log(event.target)}
+          onClick={() => setGrid ? setGrid(location[0], location[1]) : console.error('unable to upate cell')}
     >
     </div>
   )

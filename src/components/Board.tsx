@@ -17,8 +17,11 @@ function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) 
     <div data-testid='board' className='board-container' id={difficulty}>
       { 
         grid.map((column: any) => {
-          return (column.map((cellState: CellState, rowIndex: number) => <Cell key={rowIndex} {...cellState}/> ))
-        }) 
+          return (column.map((cellState: CellState, rowIndex: number) => { 
+            cellState.setGrid = updateBoard
+            return (<Cell key={rowIndex} {...cellState}/>)
+          }))
+        })
       }
     </div>
   )
@@ -84,8 +87,8 @@ function buildBoard(
   return grid
 }
 
-function updateBoard() {
-
+function updateBoard(j: number, i: number) {
+  console.log(j, i)
 }
 
 export default Board

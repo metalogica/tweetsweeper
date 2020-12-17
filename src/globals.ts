@@ -5,6 +5,7 @@ export interface CellState {
   mine: boolean;
   flagged: boolean;
   neighbors: number;
+  setGrid?: (j: number, i:number) => void;
 }
 
 // Board Globals
