@@ -3,8 +3,9 @@ import { BoardState, CellState } from '../globals'
 import { useSettings } from '../contexts'
 import Cell from './Cell'
 
-function Board({gameProgress, boardSize, numberOfMines} : BoardState ) { 
-  const grid = buildBoard(boardSize, numberOfMines)
+function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) { 
+  let grid = buildBoard({boardSize, numberOfMines, mineMap})
+  console.log({})
   const { state: { difficulty } } = useSettings()
 
   return (
@@ -20,15 +21,25 @@ function Board({gameProgress, boardSize, numberOfMines} : BoardState ) {
   )
 }
 
-function buildBoard(boardSize: number, numberOfMines: number) {
-  const grid: [any[], any[]] = [[],[]]
-  const mineCount: number = 0
-
-  function buildMine(mineCount: number, maxMines: number) {
-    if (mineCount === maxMines) { return false }
-
-    return Math.random() > 0.5 ? true : false
+function buildBoard(
+  {
+    boardSize, 
+    numberOfMines,
+    mineMap
+  } : 
+  { 
+      boardSize: number, 
+      numberOfMines: number, 
+      mineMap: [number, number][]
   }
+) 
+{
+  if (numberOfMines > 0 && (mineMap[0][0] !== -1 || mineMap[0][1] !== -1 )) { 
+    throw new Error('Please EITHER set Random Mines via `numberOfMines` or use a `mineMap` to manually build mines on the grid')
+  }
+  
+  const grid: [any[], any[]] = [[],[]]
+  let mineCount: number = 0
 
   for (let j = 0; j < boardSize; j++) {
     // build new row
@@ -41,12 +52,24 @@ function buildBoard(boardSize: number, numberOfMines: number) {
       const cellState: CellState = {
         location: [j, i],
         clicked: false,
-        mine: buildMine(mineCount, numberOfMines),
+        mine: randomMine(mineCount, numberOfMines),
+        mine: false,
         flagged: false,
         neighbors: 0
       }
 
       grid[j][i] = cellState
+    }
+  }
+
+  while (mineCount < numberOfMines) {
+    let randomRow = Math.ceil(Math.random() * (grid.length - 1))
+    let randomCol = Math.ceil(Math.random() * (grid[0].length - 1))
+    let randomMine = grid[randomRow][randomCol]
+
+    if (!randomMine.mine) { 
+      randomMine.mine = true 
+      mineCount += 1
     }
   }
 

@@ -16,12 +16,14 @@ export enum GameProgress {
 }
 
 export enum BoardSize {
+  Test = 5,
   Easy = 5,
   Regular = 10,
   Hard = 20,
 }
 
 export enum NumberOfMines {
+  Test = 0,
   Easy = 1,
   Regular = 5,
   Hard = 10,
@@ -32,30 +34,46 @@ export interface BoardState {
   gameProgress: GameProgress;
   boardSize: BoardSize;
   numberOfMines: NumberOfMines;
-  grid?: [CellState[], CellState[]]
+  grid?: [CellState[], CellState[]];
+  mineMap: [number, number][];
 }
 
+// TODO: Consider refactoring these interface so you have one interface such that:
+// { 
+//   easy: {
+//      gameProgress: gameProgress.Easy,
+//      boardSize: boardSize.Easy,
+//      numberOfMines: NumberOfMines.Easy
+//   }
+// }
 export const defaultBoardState: BoardState = {
   gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Easy,
   numberOfMines: NumberOfMines.Easy,
+  mineMap: [[-1,-1]],
 }
 
 export const regularBoardState: BoardState = {
   gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Regular,
   numberOfMines: NumberOfMines.Regular,
+  mineMap: [[-1,-1]],
 }
 
 export const hardBoardState: BoardState = {
   gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Hard,
   numberOfMines: NumberOfMines.Hard,
+  mineMap: [[-1,-1]],
 }
 
 // used only in Board.test.tsx
-export const mineBoardState: BoardState = {
+export const testBoardState: BoardState = {
   gameProgress: GameProgress.InProgress,
-  boardSize: BoardSize.Easy,
-  numberOfMines: NumberOfMines.Impossible,
+  boardSize: BoardSize.Test,
+  numberOfMines: NumberOfMines.Test,
+  mineMap: [
+    [2,2],
+    [1,2]
+  ]
 }

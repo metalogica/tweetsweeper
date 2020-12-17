@@ -1,10 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { defaultBoardState, regularBoardState, hardBoardState, mineBoardState } from '../globals'
+import { defaultBoardState, regularBoardState, hardBoardState, testBoardState } from '../globals'
 import Board from './Board'
-
-test('it renders in the DOM', () => {
-  render(<Board/>)
-})
 
 describe('buildBoard()', () => {
   it('should build a new board and store it in state if it is a new game', () => {
@@ -45,10 +41,10 @@ describe('buildBoard()', () => {
 
 describe('clickBoard()', () => {
   it('should render the entire revealed board when the game is over', () => {
-    render(<Board {...mineBoardState}/>)
+    render(<Board {...testBoardState}/>)
 
-    const mineCell = screen.getByTestId('0-0')
-    const unclickedCell = screen.getByTestId('2-2')
+    const mineCell = screen.getByTestId('2-2')
+    const unclickedCell = screen.getByTestId('0-0')
 
     expect(mineCell).toHaveStyle({backgroundImage: `url('/images/retro/unopened.svg')`})
     expect(unclickedCell).toHaveStyle({backgroundImage: `url('/images/retro/unopened.svg')`})
