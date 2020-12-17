@@ -8,6 +8,7 @@ function Cell({ location, clicked, mine, flagged, neighbors }: CellState) {
     <div  className='cell' 
           data-testid={`${location[0]}-${location[1]}`} 
           style={style}
+          onClick={(event) => console.log(event.target)}
     >
     </div>
   )

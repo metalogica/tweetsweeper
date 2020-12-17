@@ -1,10 +1,16 @@
 import './Board.scss'
+import { useState, useEffect } from 'react'
 import { BoardState, CellState } from '../globals'
 import { useSettings } from '../contexts'
 import Cell from './Cell'
 
 function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) { 
-  let grid = buildBoard({boardSize, numberOfMines, mineMap})
+  const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
+
+  useEffect(() => {
+    setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
+  }, [boardSize, gameProgress, numberOfMines, mineMap])
+
   const { state: { difficulty } } = useSettings()
 
   return (
@@ -78,6 +84,10 @@ function buildBoard(
   }
 
   return grid
+}
+
+function updateBoard() {
+  
 }
 
 export default Board
