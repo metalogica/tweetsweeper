@@ -17,9 +17,9 @@ function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) 
   
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
+  // assumption was to 'optimize' React.render by doing in-place modification of `grid` rather than re-drawing the 
+  // entire board after each click. I guess I have to do the naive thing and re-render the board each time...
   function updateBoard(j: number, i: number) {
-    // assumption was to 'optimize' React.render by doing in-place modification of `grid` rather than re-drawing the 
-    // entire board after each click. I guess I have to do the naive thing and re-render the board each time...
     const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
 
     updatedGrid[j][i].clicked = true
@@ -29,7 +29,6 @@ function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) 
 
   return (
     <div data-testid='board' className='board-container' id={difficulty}>
-      {console.log(grid)}
       { 
         grid.map((column: any) => {
           return (column.map((cellState: CellState, rowIndex: number) => { 

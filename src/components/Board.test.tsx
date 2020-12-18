@@ -40,9 +40,19 @@ describe('buildBoard()', () => {
 })
 
 describe('clickBoard()', () => {
-  it('should render the entire revealed board when the game is over', () => {
+  beforeEach(() =>{
     render(<Board {...testBoardState}/>)
+  })
 
+  it('should recursively open all cells that are not mines or nieighbors of mines if a user clicks on a blank cell', () => {
+
+  })
+
+  it('should end the game if the user clicks on a mine', () => {
+
+  })
+
+  it('should render the entire revealed board when the game is over', () => {
     const mineCell = screen.getByTestId('2-2')
     const unclickedCell = screen.getByTestId('0-0')
 
@@ -55,15 +65,7 @@ describe('clickBoard()', () => {
     expect(unclickedCell).toHaveStyle({backgroundImage: `url('/images/retro/mine.svg')`})
   })
 
-  it('should end the game if the user clicks on a mine', () => {
-
-  })
-
   it('should end the game if the user flags all mines on the board', () => {
-
-  })
-
-  it('should recursively open all cells that are not mines or nieighbors of mines if a user clicks on a blank cell', () => {
 
   })
 })

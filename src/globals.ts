@@ -73,7 +73,7 @@ export const testBoardState: BoardState = {
   boardSize: BoardSize.Test,
   numberOfMines: NumberOfMines.Test,
   mineMap: [
-    [2,2],
-    [1,2]
+    [2,1],
+    [3,2]
   ]
 }
