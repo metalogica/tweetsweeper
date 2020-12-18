@@ -45,7 +45,11 @@ describe('clickBoard()', () => {
   })
 
   it('should recursively open all cells that are not mines or nieighbors of mines if a user clicks on a blank cell', () => {
+    // click on top left cell
 
+    // query select the board again
+
+    // expect the style of the board is correct
   })
 
   it('should end the game if the user clicks on a mine', () => {

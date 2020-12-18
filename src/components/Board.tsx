@@ -56,7 +56,10 @@ function buildBoard(
   }
 ) 
 {
-  if (numberOfMines > 0 && (mineMap[0][0] !== -1 || mineMap[0][1] !== -1 )) { 
+  const userDesiresRandomMineGeneration = numberOfMines > 0
+  const userDoesNotDesireRandomMineGeneration = mineMap[0][0] !== -1 || mineMap[0][1] !== -1 
+
+  if (userDesiresRandomMineGeneration && userDoesNotDesireRandomMineGeneration) { 
     throw new Error('Please EITHER set Random Mines via `numberOfMines` or use a `mineMap` to manually build mines on the grid.')
   }
   

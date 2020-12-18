@@ -24,10 +24,10 @@ function setStyle(location: [number, number],clicked: boolean, mine: boolean, fl
     skin.backgroundImage = `url('/images/retro/flag.svg')`
   } else if (clicked && mine) {
     skin.backgroundImage = `url('/images/retro/mine.png')`
-  } else if (clicked && !mine && neighbors === 0) {
+  } else if (clicked && !mine && !flagged && neighbors === 0) {
     skin.backgroundImage = `url('/images/retro/opened.svg')`
-  } else if (clicked && !mine && neighbors > 0) {
-    skin.backgroundImage = `url('/images/retro/${neighbors}.png')`
+  } else if (clicked && !mine && !flagged && neighbors > 0) {
+    skin.backgroundImage = `url('/images/retro/${neighbors}.svg')`
   }
 
   return skin;
