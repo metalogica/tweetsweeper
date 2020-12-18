@@ -1,6 +1,16 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { defaultBoardState, regularBoardState, hardBoardState, testBoardState } from '../globals'
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16'
 import Board from './Board'
+import { 
+  defaultBoardState,
+  regularBoardState, 
+  hardBoardState, 
+  testBoardState,
+  completedTestBoardState
+} from '../globals'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('buildBoard()', () => {
   it('should build a new board and store it in state if it is a new game', () => {
@@ -46,6 +56,9 @@ describe('clickBoard()', () => {
 
   it('should recursively open all cells that are not mines or nieighbors of mines if a user clicks on a blank cell', () => {
     // click on top left cell
+    const board = Enzyme.mount(<Board {...testBoardState}/>)
+
+    expect(board.state('grid')).toEqual(completedTestBoardState.grid)
 
     // query select the board again
 

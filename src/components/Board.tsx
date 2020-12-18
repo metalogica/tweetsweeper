@@ -103,6 +103,7 @@ function buildBoard(
     }
   }
 
+  // TODO: Build logic to set the correct number of neighbors
   return grid
 }
 
