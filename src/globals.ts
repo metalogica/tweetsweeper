@@ -21,6 +21,7 @@ export interface CellState {
   flagged: boolean;
   neighbors: number;
   cellSkin?: CellSkin;
+  setCellSkin?: (clicked: boolean, mine: boolean, flagged: boolean, neighbors: boolean) => void
   setGrid?: (j: number, i:number) => void;
 }
 
