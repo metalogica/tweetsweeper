@@ -1,16 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16'
 import Board from './Board'
 import { 
   defaultBoardState,
   regularBoardState, 
   hardBoardState, 
   testBoardState,
-  completedTestBoardState
+  completedTestBoardState,
+  CellState
 } from '../globals'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe('buildBoard()', () => {
   it('should build a new board and store it in state if it is a new game', () => {
@@ -55,14 +52,20 @@ describe('clickBoard()', () => {
   })
 
   it('should recursively open all cells that are not mines or nieighbors of mines if a user clicks on a blank cell', () => {
-    // click on top left cell
-    const board = Enzyme.mount(<Board {...testBoardState}/>)
+    const topLeftCell = screen.getByTestId('0-0')
+    fireEvent.click(topLeftCell)
 
-    expect(board.state('grid')).toEqual(completedTestBoardState.grid)
+    // loop through the expected end-of-game-grid
+    const gridLength = testBoardState.boardSize
 
-    // query select the board again
-
-    // expect the style of the board is correct
+    for (let row = 0; row < gridLength; row ++) {
+      for (let col = 0; col < gridLength; col ++) {
+        // expect the style of the actual grid matches the test spec grid
+        const actualCell = screen.getByTestId(`${row}-${col}`)
+        const expectedCell = completedTestBoardState.grid[row][col] 
+        
+      }
+    }
   })
 
   it('should end the game if the user clicks on a mine', () => {

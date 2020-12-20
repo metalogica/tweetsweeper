@@ -14,7 +14,7 @@ function Cell({ location, clicked, mine, flagged, neighbors, setGrid }: CellStat
   )
 }
 
-function setStyle(location: [number, number],clicked: boolean, mine: boolean, flagged: boolean, neighbors: number) {
+function setStyle(location: [number, number], clicked: boolean, mine: boolean, flagged: boolean, neighbors: number) {
   const skin = { 
     backgroundImage: `url('/images/retro/unopened.svg')`,
     gridArea: `${location[0]}-${location[1]}`

@@ -5,7 +5,7 @@ import { BoardState, CellState } from '../globals'
 import { useSettings } from '../contexts'
 import Cell from './Cell'
 
-function Board({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) { 
+const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) => { 
   const { state: { difficulty } } = useSettings()
 
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
