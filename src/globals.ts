@@ -84,15 +84,6 @@ export interface BoardState {
 //      numberOfMines: NumberOfMines.Easy
 //   }
 // }
-export const BoardContext = createContext<BoardState>({
-  gameProgress: GameProgress.NewGame,
-  boardSize: BoardSize.Easy,
-  numberOfMines: NumberOfMines.Easy,
-  mineMap: [[-1,-1]],
-})
-
-export const useBoardContext = () => useContext(BoardContext)
-
 
 export const easyBoardState: BoardState = {
   gameProgress: GameProgress.NewGame,
@@ -157,3 +148,13 @@ export const completedTestBoardState: BoardState = {
     [ setCell(openedCell, [4,0], 0), setCell(openedCell, [4,1], 1), setCell(openedCell, [4,2], 1), setCell(openedCell, [4,3], 1), setCell(openedCell, [4,4], 0) ]
   ]
 }
+
+// Board Context
+export const BoardContext = createContext<BoardState>({
+  gameProgress: GameProgress.NewGame,
+  boardSize: BoardSize.Easy,
+  numberOfMines: NumberOfMines.Easy,
+  mineMap: [[-1,-1]],
+})
+
+export const useBoardContext = () => useContext(BoardContext)

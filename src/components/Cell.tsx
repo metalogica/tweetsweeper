@@ -2,7 +2,7 @@ import { CellState } from '../globals'
 import './Cell.scss'
 
 function Cell({ location, clicked, mine, flagged, neighbors, updateBoard, style }: CellState) {
-  console.log(style)
+
   return(
     <div  className='cell' 
           data-testid={`${location[0]}-${location[1]}`} 
