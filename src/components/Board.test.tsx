@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Board from './Board'
 import { 
-  defaultBoardState,
+  easyBoardState,
   regularBoardState, 
   hardBoardState, 
   testBoardState,
@@ -11,7 +11,7 @@ import {
 
 describe('buildBoard()', () => {
   it('should build a new board and store it in state if it is a new game', () => {
-    render(<Board {...defaultBoardState}/>)
+    render(<Board {...easyBoardState}/>)
 
     const renderedBoard = screen.getByTestId('board')
 
@@ -22,7 +22,7 @@ describe('buildBoard()', () => {
   })
 
   it('should build a 5x5 grid with 1 mine for an Easy game.', () => {
-    render(<Board {...defaultBoardState}/>)
+    render(<Board {...easyBoardState}/>)
 
     const renderedBoard = screen.getByTestId('board')
 

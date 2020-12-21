@@ -1,3 +1,5 @@
+import { createContext, useContext } from 'react'
+
 // Cell Globals
 enum CellSkin {
   unclicked = '/images/retro/flag.svg',
@@ -82,7 +84,17 @@ export interface BoardState {
 //      numberOfMines: NumberOfMines.Easy
 //   }
 // }
-export const defaultBoardState: BoardState = {
+export const BoardContext = createContext<BoardState>({
+  gameProgress: GameProgress.NewGame,
+  boardSize: BoardSize.Easy,
+  numberOfMines: NumberOfMines.Easy,
+  mineMap: [[-1,-1]],
+})
+
+export const useBoardContext = () => useContext(BoardContext)
+
+
+export const easyBoardState: BoardState = {
   gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Easy,
   numberOfMines: NumberOfMines.Easy,
