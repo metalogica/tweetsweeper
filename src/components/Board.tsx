@@ -27,10 +27,47 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
   // entire board after each click. I guess I have to do the naive thing and re-render the board each time...
   function updateBoard(j: number, i: number) {
     const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
-
     const cell = updatedGrid[j][i]
-    cell.style = setCellStyle(cell)
-    cell.clicked = true
+
+    // cell is a mine
+    if (cell.mine) { 
+      alert('You Lost!')
+    }
+
+    // recursively open all blank cells
+    let stack: any = []
+    stack.push(cell)
+
+    while (stack.length > 0) {
+      const currentCell = stack.shift()
+
+      if (!currentCell.mine && !currentCell.clicked) {
+        currentCell.clicked = true
+        currentCell.style = setCellStyle(cell)
+      }
+
+      if (currentCell.neighbors === 0) {
+        const j = currentCell.location[0]
+        const i = currentCell.location[1]
+  
+        let neighborCell = updatedGrid[j-1] && updatedGrid[j-1][i-1] && !updatedGrid[j-1][i-1].mine && !updatedGrid[j-1][i-1].clicked //&& updatedGrid[j-1][i-1].neighbors === 0 // top left
+        if (neighborCell) stack.push(updatedGrid[j-1][i-1])
+        neighborCell = updatedGrid[j-1] && updatedGrid[j-1][i] && !updatedGrid[j-1][i].mine && !updatedGrid[j-1][i].clicked //&& updatedGrid[j-1][i].neighbors === 0 // top 
+        if (neighborCell) stack.push(updatedGrid[j-1][i])
+        neighborCell = updatedGrid[j-1] && updatedGrid[j-1][i+1] && !updatedGrid[j-1][i+1].mine && !updatedGrid[j-1][i+1].clicked //&& updatedGrid[j-1][i+1].neighbors === 0 // top right
+        if (neighborCell) stack.push(updatedGrid[j-1][i+1])
+        neighborCell = updatedGrid[j] && updatedGrid[j][i-1] && !updatedGrid[j][i-1].mine && !updatedGrid[j][i-1].clicked //&& updatedGrid[j][i-1].neighbors === 0 // left
+        if (neighborCell) stack.push(updatedGrid[j][i-1])
+        neighborCell = updatedGrid[j] && updatedGrid[j][i+1] && !updatedGrid[j][i+1].mine && !updatedGrid[j][i+1].clicked //&& updatedGrid[j][i+1].neighbors === 0 //right
+        if (neighborCell) stack.push(updatedGrid[j][i+1])
+        neighborCell = updatedGrid[j+1] && updatedGrid[j+1][i-1] && !updatedGrid[j+1][i-1].mine && !updatedGrid[j+1][i-1].clicked //&& updatedGrid[j+1][i-1].neighbors === 0 //bottom right
+        if (neighborCell) stack.push(updatedGrid[j+1][i-1])
+        neighborCell = updatedGrid[j+1] && updatedGrid[j+1][i] && !updatedGrid[j+1][i].mine && !updatedGrid[j+1][i].clicked //&& updatedGrid[j+1][i].neighbors === 0 // bottom
+        if (neighborCell) stack.push(updatedGrid[j+1][i])
+        neighborCell = updatedGrid[j+1] && updatedGrid[j+1][i+1] && !updatedGrid[j+1][i+1].mine && !updatedGrid[j+1][i+1].clicked //&& updatedGrid[j+1][i+1].neighbors === 0 // bottom right
+        if (neighborCell) stack.push(updatedGrid[j+1][i+1])
+      }
+    }
 
     setGrid(updatedGrid)
   }
@@ -117,7 +154,6 @@ function buildBoard(
   // build neighbors
   for (let j = 0; j < boardSize; j++) {
     for (let i = 0; i < boardSize; i ++) {
-      // get neighbor cells
       let neighbors = 0
 
       const topLeft = grid[j-1] && grid[j-1][i-1] && grid[j-1][i-1].mine // top left
@@ -141,7 +177,6 @@ function buildBoard(
     }
   }
 
-  // TODO Build logic to set the correct number of neighbors
   return grid
 }
 

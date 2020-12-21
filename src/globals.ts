@@ -125,9 +125,18 @@ const setCell = (cell: CellState, location: [number, number], neighbors : number
   return cell
 }
 
+// TODO: Refactor `openedCell`, `closedCell` and `completedTestBoardState`; these exist only for Board.test.tsx 
 const openedCell: CellState = {
   location: [0, 0],
   clicked: true,
+  mine: false,
+  flagged: false,
+  neighbors: 0,
+}
+
+const closedCell: CellState = {
+  location: [0, 0],
+  clicked: false,
   mine: false,
   flagged: false,
   neighbors: 0,
@@ -144,9 +153,9 @@ export const completedTestBoardState: BoardState = {
   grid: [
     [ setCell(openedCell, [0,0], 0), setCell(openedCell, [0,1], 0), setCell(openedCell, [0,2], 0), setCell(openedCell, [0,3], 0), setCell(openedCell, [0,4], 0) ],
     [ setCell(openedCell, [1,0], 1), setCell(openedCell, [1,1], 1), setCell(openedCell, [1,2], 1), setCell(openedCell, [1,3], 0), setCell(openedCell, [1,4], 0) ],
-    [ setCell(openedCell, [2,0], 1), setCell(openedCell, [2,1], 1, true), setCell(openedCell, [2,2], 2), setCell(openedCell, [2,3], 1), setCell(openedCell, [2,4], 0) ],
-    [ setCell(openedCell, [3,0], 1), setCell(openedCell, [3,1], 2), setCell(openedCell, [3,2], 1, true), setCell(openedCell, [3,3], 1), setCell(openedCell, [3,4], 0) ],
-    [ setCell(openedCell, [4,0], 0), setCell(openedCell, [4,1], 1), setCell(openedCell, [4,2], 1), setCell(openedCell, [4,3], 1), setCell(openedCell, [4,4], 0) ]
+    [ setCell(closedCell, [2,0], 1), setCell(closedCell, [2,1], 1, true), setCell(openedCell, [2,2], 2), setCell(openedCell, [2,3], 1), setCell(openedCell, [2,4], 0) ],
+    [ setCell(closedCell, [3,0], 1), setCell(closedCell, [3,1], 2), setCell(closedCell, [3,2], 1, true), setCell(openedCell, [3,3], 1), setCell(openedCell, [3,4], 0) ],
+    [ setCell(closedCell, [4,0], 0), setCell(closedCell, [4,1], 1), setCell(closedCell, [4,2], 1), setCell(openedCell, [4,3], 1), setCell(openedCell, [4,4], 0) ]
   ]
 }
 

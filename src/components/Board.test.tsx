@@ -63,6 +63,7 @@ describe('clickBoard()', () => {
         const actualCell = screen.getByTestId(`${row}-${col}`)
         const expectedCell = completedTestBoardState.grid[row][col] 
 
+        console.log(actualCell.style, expectedCell)
         expect(actualCell.style.backgroundImage).toEqual(expectedCell.style.backgroundImage)
       }
     }
