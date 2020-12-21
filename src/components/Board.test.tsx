@@ -5,8 +5,7 @@ import {
   regularBoardState, 
   hardBoardState, 
   testBoardState,
-  completedTestBoardState,
-  CellState
+  completedTestBoardState
 } from '../globals'
 
 describe('buildBoard()', () => {

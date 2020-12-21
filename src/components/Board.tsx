@@ -35,8 +35,6 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
     setGrid(updatedGrid)
   }
 
-  console.log(grid)
-
   return (
     <div data-testid='board' className='board-container' id={difficulty}>
       { 
@@ -73,20 +71,35 @@ function buildBoard(
     throw new Error('Please EITHER set Random Mines via `numberOfMines` or use a `mineMap` to manually build mines on the grid.')
   }
   
-  // Build the grid and populate it with CellStates
+  // Build the empty grid
   const grid: [any[], any[]] = [[],[]]
+  for (let j = 0; j < boardSize; j++) {
+    if (grid[j] === undefined) grid.push([])
+    for (let i = 0; i < boardSize; i++) {
+      if (grid[j][i] === undefined) grid[j].push([])
+    }
+  }
+
+  // randomly select cells from grid to turn into mines;
+  // will only run if no `mineMap` has been provided
   let mineCount: number = 0
 
+  while (mineCount < numberOfMines) {
+    let randomRow = Math.ceil(Math.random() * (grid.length - 1))
+    let randomCol = Math.ceil(Math.random() * (grid[0].length - 1))
+    let cell = grid[randomRow][randomCol]
+
+    if (!cell.includes('mine')) { 
+      cell.push('mine')
+      mineCount += 1
+    }
+  }
+
+  // populate the grid with cells
   for (let j = 0; j < boardSize; j++) {
-    // build new row
-    if (grid[j] === undefined) grid.push([])
-
     for (let i = 0; i < boardSize; i++) {
-      // build new column
-      if (grid[j][i] === undefined) grid[j].push([])
-
-      // set mines according to user defined `MineMap`; used specifically in test case in Board.test.tsx
-      const mine = mineMap.find(cell => cell[0] === j && cell[1] === i)
+      // set mines according to user defined `MineMap`; used specifically in test case in Board.test.tsx OR set random mines
+      const mine = mineMap.find(cell => cell[0] === j && cell[1] === i) || grid[j][i][0] === 'mine'
 
       const cellState: CellState = {
         location: [j, i],
@@ -101,16 +114,30 @@ function buildBoard(
     }
   }
 
-  // randomly select cells from grid to turn into mines;
-  // will only run if no `mineMap` has been provided
-  while (mineCount < numberOfMines) {
-    let randomRow = Math.ceil(Math.random() * (grid.length - 1))
-    let randomCol = Math.ceil(Math.random() * (grid[0].length - 1))
-    let randomMine = grid[randomRow][randomCol]
+  // build neighbors
+  for (let j = 0; j < boardSize; j++) {
+    for (let i = 0; i < boardSize; i ++) {
+      // get neighbor cells
+      let neighbors = 0
 
-    if (!randomMine.mine) { 
-      randomMine.mine = true 
-      mineCount += 1
+      const topLeft = grid[j-1] && grid[j-1][i-1] && grid[j-1][i-1].mine // top left
+      if (topLeft) neighbors += 1
+      const top = grid[j-1] && grid[j-1][i] && grid[j-1][i].mine // top 
+      if (top) neighbors += 1
+      const topRight = grid[j-1] && grid[j-1][i+1] && grid[j-1][i+1].mine // top right
+      if (topRight) neighbors += 1
+      const left = grid[j] && grid[j][i-1] && grid[j][i-1].mine // left
+      if (left) neighbors += 1
+      const right = grid[j] && grid[j][i+1] && grid[j][i+1].mine //right
+      if (right) neighbors += 1
+      const bottomLeft = grid[j+1] && grid[j+1][i-1] && grid[j+1][i-1].mine //bottom right
+      if (bottomLeft) neighbors += 1
+      const bottom = grid[j+1] && grid[j+1][i] && grid[j+1][i].mine // bottom
+      if (bottom) neighbors += 1
+      const bottomRight = grid[j+1] && grid[j+1][i+1] && grid[j+1][i+1].mine // bottom right
+      if (bottomRight) neighbors += 1
+
+      grid[j][i].neighbors = neighbors
     }
   }
 

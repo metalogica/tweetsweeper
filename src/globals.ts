@@ -1,20 +1,20 @@
 import { createContext, useContext } from 'react'
 
 // Cell Globals
-enum CellSkin {
-  unclicked = '/images/retro/flag.svg',
-  mine = '/images/retro/mine.png',
-  flag = '/images/retro/flag.svg',
-  blank = '/images/retro/blank.svg',
-  one = '/images/retro/1.svg',
-  two = '/images/retro/2.svg',
-  three = '/images/retro/3.svg',
-  four = '/images/retro/4.svg',
-  five = '/images/retro/5.svg',
-  six = '/images/retro/6.svg',
-  seven = '/images/retro/7.svg',
-  eight = '/images/retro/8.svg',
-}
+// enum CellSkin {
+//   unclicked = '/images/retro/flag.svg',
+//   mine = '/images/retro/mine.png',
+//   flag = '/images/retro/flag.svg',
+//   blank = '/images/retro/blank.svg',
+//   one = '/images/retro/1.svg',
+//   two = '/images/retro/2.svg',
+//   three = '/images/retro/3.svg',
+//   four = '/images/retro/4.svg',
+//   five = '/images/retro/5.svg',
+//   six = '/images/retro/6.svg',
+//   seven = '/images/retro/7.svg',
+//   eight = '/images/retro/8.svg',
+// }
 
 export interface CellState {
   location: [number, number];
