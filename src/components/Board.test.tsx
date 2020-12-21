@@ -73,17 +73,17 @@ describe('clickBoard()', () => {
 
   })
 
-  it('should render the entire revealed board when the game is over', () => {
+  it('should render the entire revealed board when the user clicks on a mine', () => {
     const mineCell = screen.getByTestId('2-1')
     const unclickedCell = screen.getByTestId('0-0')
 
-    expect(mineCell).toHaveStyle({backgroundImage: `url('/images/retro/unopened.svg')`})
-    expect(unclickedCell).toHaveStyle({backgroundImage: `url('/images/retro/unopened.svg')`})
+    expect(mineCell).toHaveStyle({backgroundImage: `url(/images/retro/unopened.svg)`})
+    expect(unclickedCell).toHaveStyle({backgroundImage: `url(/images/retro/unopened.svg)`})
 
     fireEvent.click(mineCell)
 
-    expect(mineCell).toHaveStyle({backgroundImage: `url('/images/retro/mine.svg')`})
-    expect(unclickedCell).toHaveStyle({backgroundImage: `url('/images/retro/opened.svg')`})
+    expect(mineCell.style.backgroundImage).toEqual(`url(/images/retro/mine.png)`)
+    expect(unclickedCell.style.backgroundImage).toEqual(`url(/images/retro/opened.svg)`)
   })
 
   it('should end the game if the user flags all mines on the board', () => {

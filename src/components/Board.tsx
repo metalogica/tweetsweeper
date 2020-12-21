@@ -13,7 +13,6 @@ from '../globals'
 const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) => { 
   // TODO: Refactor this enum to remove redundant `state` key
   const { state: { difficulty } } = useSettings()
-
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
 
   useEffect(() => {
@@ -30,7 +29,13 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
 
     // cell is a mine
     if (cell.mine) { 
-      alert('You Lost!')
+      for (let row = 0; row < boardSize; row ++) {
+        for (let col = 0; col < boardSize; col ++) {
+          updatedGrid[row][col].clicked = true
+        }
+      }
+
+      setGrid(updatedGrid)
     }
 
     // recursively open all blank cells
