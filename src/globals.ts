@@ -20,9 +20,28 @@ export interface CellState {
   mine: boolean;
   flagged: boolean;
   neighbors: number;
-  cellSkin?: CellSkin;
-  setCellSkin?: (clicked: boolean, mine: boolean, flagged: boolean, neighbors: boolean) => void
-  setGrid?: (j: number, i:number) => void;
+  style?: object;
+  setStyle?: (cell: CellState) => object
+  updateBoard?: (j: number, i:number) => void;
+}
+
+export const setCellStyle = ({location, clicked, mine, flagged, neighbors} : CellState) => {
+  const style = { 
+    backgroundImage: `url('/images/retro/unopened.svg')`,
+    gridArea: `${location[0]}-${location[1]}`
+  }
+
+  if (flagged) {
+    style.backgroundImage = `url('/images/retro/flag.svg')`
+  } else if (clicked && mine) {
+    style.backgroundImage = `url('/images/retro/mine.png')`
+  } else if (clicked && !mine && !flagged && neighbors === 0) {
+    style.backgroundImage = `url('/images/retro/opened.svg')`
+  } else if (clicked && !mine && !flagged && neighbors > 0) {
+    style.backgroundImage = `url('/images/retro/${neighbors}.svg')`
+  }
+
+  return style;
 }
 
 // Board Globals

@@ -1,11 +1,17 @@
 import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
-import { BoardState, CellState } from '../globals'
-import { useSettings } from '../contexts'
 import Cell from './Cell'
+import { useSettings } from '../contexts'
+import { 
+  BoardState, 
+  CellState,
+  setCellStyle
+} 
+from '../globals'
 
 const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) => { 
+  // TODO: Refactor this enum to remove redundant `state` key
   const { state: { difficulty } } = useSettings()
 
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
@@ -22,7 +28,9 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
   function updateBoard(j: number, i: number) {
     const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
 
-    updatedGrid[j][i].clicked = true
+    const cell = updatedGrid[j][i]
+    cell.style = setCellStyle(cell)
+    cell.clicked = true
 
     setGrid(updatedGrid)
   }
@@ -34,7 +42,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
           return (column.map((cellState: CellState, rowIndex: number) => { 
             // pass updateBoard() function to each child cell; on game boot up the grid is empty 
             // and so this function is nil, that is why we assign it here. 
-            cellState.setGrid = updateBoard
+            cellState.updateBoard = updateBoard
             return (<Cell key={rowIndex} {...cellState}/>)
           }))
         })
@@ -86,6 +94,7 @@ function buildBoard(
         neighbors: 0
       }
 
+      cellState.style = setCellStyle(cellState)
       grid[j][i] = cellState
     }
   }
@@ -103,7 +112,7 @@ function buildBoard(
     }
   }
 
-  // TODO: Build logic to set the correct number of neighbors
+  // TODO Build logic to set the correct number of neighbors
   return grid
 }
 
