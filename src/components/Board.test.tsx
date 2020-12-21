@@ -57,13 +57,13 @@ describe('clickBoard()', () => {
     // loop through the expected end-of-game-grid
     const gridLength = testBoardState.boardSize
 
+
     for (let row = 0; row < gridLength; row ++) {
       for (let col = 0; col < gridLength; col ++) {
         // expect the style of the actual grid matches the test spec grid
-        const actualCell = screen.getByTestId(`${row}-${col}`)
-        const expectedCell = completedTestBoardState.grid[row][col] 
+        let actualCell = screen.getByTestId(`${row}-${col}`)
+        let expectedCell = completedTestBoardState.grid[row][col]
 
-        console.log(actualCell.style, expectedCell)
         expect(actualCell.style.backgroundImage).toEqual(expectedCell.style.backgroundImage)
       }
     }
@@ -74,7 +74,7 @@ describe('clickBoard()', () => {
   })
 
   it('should render the entire revealed board when the game is over', () => {
-    const mineCell = screen.getByTestId('2-2')
+    const mineCell = screen.getByTestId('2-1')
     const unclickedCell = screen.getByTestId('0-0')
 
     expect(mineCell).toHaveStyle({backgroundImage: `url('/images/retro/unopened.svg')`})
@@ -83,7 +83,7 @@ describe('clickBoard()', () => {
     fireEvent.click(mineCell)
 
     expect(mineCell).toHaveStyle({backgroundImage: `url('/images/retro/mine.svg')`})
-    expect(unclickedCell).toHaveStyle({backgroundImage: `url('/images/retro/mine.svg')`})
+    expect(unclickedCell).toHaveStyle({backgroundImage: `url('/images/retro/opened.svg')`})
   })
 
   it('should end the game if the user flags all mines on the board', () => {

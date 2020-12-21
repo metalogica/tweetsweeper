@@ -40,7 +40,7 @@ export const setCellStyle = ({location, clicked, mine, flagged, neighbors} : Cel
   } else if (clicked && !mine && !flagged && neighbors === 0) {
     style.backgroundImage = `url(/images/retro/opened.svg)`
   } else if (clicked && !mine && !flagged && neighbors > 0) {
-    style.backgroundImage = `url(/images/retro/${neighbors}.svg'`
+    style.backgroundImage = `url(/images/retro/${neighbors}.svg)`
   }
 
   return style;
@@ -117,7 +117,8 @@ export const testBoardState: BoardState = {
   ]
 }
 
-const setCell = (cell: CellState, location: [number, number], neighbors : number, mine?: boolean) => {
+// TODO: Refactor `setCell`, `openedCell`, `closedCell` and `completedTestBoardState`; these exist only in Board.test.tsx 
+export const setCell = (cell: CellState, location: [number, number], neighbors : number, mine?: boolean) => {
   cell.location = location
   cell.neighbors = neighbors
   cell.mine = mine ? true : false
@@ -125,8 +126,7 @@ const setCell = (cell: CellState, location: [number, number], neighbors : number
   return cell
 }
 
-// TODO: Refactor `openedCell`, `closedCell` and `completedTestBoardState`; these exist only for Board.test.tsx 
-const openedCell: CellState = {
+export const openedCell: CellState = {
   location: [0, 0],
   clicked: true,
   mine: false,
@@ -134,12 +134,34 @@ const openedCell: CellState = {
   neighbors: 0,
 }
 
-const closedCell: CellState = {
+export const closedCell: CellState = {
   location: [0, 0],
   clicked: false,
   mine: false,
   flagged: false,
   neighbors: 0,
+}
+
+class TestCell implements CellState {
+  location: [number, number];
+  clicked: boolean;
+  flagged: boolean;
+  mine: boolean;
+  neighbors: number;
+  style?: object;
+
+  constructor({location, clicked, mine, flagged, neighbors} : CellState) {
+    this.location = location;
+    this.clicked = clicked;
+    this.mine = mine;
+    this.flagged = flagged;
+    this.neighbors = neighbors;
+    this.style = this.setSkin()
+  }
+
+  setSkin() {
+    return setCellStyle(this)
+  }
 }
 
 export const completedTestBoardState: BoardState = {
@@ -151,11 +173,41 @@ export const completedTestBoardState: BoardState = {
     [3,2]
   ],
   grid: [
-    [ setCell(openedCell, [0,0], 0), setCell(openedCell, [0,1], 0), setCell(openedCell, [0,2], 0), setCell(openedCell, [0,3], 0), setCell(openedCell, [0,4], 0) ],
-    [ setCell(openedCell, [1,0], 1), setCell(openedCell, [1,1], 1), setCell(openedCell, [1,2], 1), setCell(openedCell, [1,3], 0), setCell(openedCell, [1,4], 0) ],
-    [ setCell(closedCell, [2,0], 1), setCell(closedCell, [2,1], 1, true), setCell(openedCell, [2,2], 2), setCell(openedCell, [2,3], 1), setCell(openedCell, [2,4], 0) ],
-    [ setCell(closedCell, [3,0], 1), setCell(closedCell, [3,1], 2), setCell(closedCell, [3,2], 1, true), setCell(openedCell, [3,3], 1), setCell(openedCell, [3,4], 0) ],
-    [ setCell(closedCell, [4,0], 0), setCell(closedCell, [4,1], 1), setCell(closedCell, [4,2], 1), setCell(openedCell, [4,3], 1), setCell(openedCell, [4,4], 0) ]
+    [ 
+      new TestCell({ location: [0,0], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,1], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,2], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,3], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [1,0], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [1,1], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [1,2], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [1,3], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [1,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [2,0], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,1], clicked: false, mine: true, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,2], clicked: true, mine: false, flagged: false, neighbors: 2}),
+      new TestCell({ location: [2,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [3,0], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,1], clicked: false, mine: true, flagged: false, neighbors: 2}),
+      new TestCell({ location: [3,2], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [4,0], clicked: false, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [4,1], clicked: false, mine: true, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,2], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ]
   ]
 }
 

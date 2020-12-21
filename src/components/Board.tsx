@@ -20,7 +20,6 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
   }, [boardSize, gameProgress, numberOfMines, mineMap])
   
-  
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
   // assumption was to 'optimize' React.render by doing in-place modification of `grid` rather than re-drawing the 
