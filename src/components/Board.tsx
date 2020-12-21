@@ -35,6 +35,8 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
     setGrid(updatedGrid)
   }
 
+  console.log(grid)
+
   return (
     <div data-testid='board' className='board-container' id={difficulty}>
       { 

@@ -29,18 +29,18 @@ export interface CellState {
 
 export const setCellStyle = ({location, clicked, mine, flagged, neighbors} : CellState) => {
   const style = { 
-    backgroundImage: `url('/images/retro/unopened.svg')`,
+    backgroundImage: `url(/images/retro/unopened.svg)`,
     gridArea: `${location[0]}-${location[1]}`
   }
 
   if (flagged) {
-    style.backgroundImage = `url('/images/retro/flag.svg')`
+    style.backgroundImage = `url(/images/retro/flag.svg)`
   } else if (clicked && mine) {
-    style.backgroundImage = `url('/images/retro/mine.png')`
+    style.backgroundImage = `url(/images/retro/mine.png)`
   } else if (clicked && !mine && !flagged && neighbors === 0) {
-    style.backgroundImage = `url('/images/retro/opened.svg')`
+    style.backgroundImage = `url(/images/retro/opened.svg)`
   } else if (clicked && !mine && !flagged && neighbors > 0) {
-    style.backgroundImage = `url('/images/retro/${neighbors}.svg')`
+    style.backgroundImage = `url(/images/retro/${neighbors}.svg'`
   }
 
   return style;
@@ -121,6 +121,7 @@ const setCell = (cell: CellState, location: [number, number], neighbors : number
   cell.location = location
   cell.neighbors = neighbors
   cell.mine = mine ? true : false
+  cell.style = setCellStyle(cell)
   return cell
 }
 

@@ -63,7 +63,8 @@ describe('clickBoard()', () => {
         // expect the style of the actual grid matches the test spec grid
         const actualCell = screen.getByTestId(`${row}-${col}`)
         const expectedCell = completedTestBoardState.grid[row][col] 
-        
+
+        expect(actualCell.style.backgroundImage).toEqual(expectedCell.style.backgroundImage)
       }
     }
   })
