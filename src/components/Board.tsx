@@ -23,9 +23,23 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
   // assumption was to 'optimize' React.render by doing in-place modification of `grid` rather than re-drawing the 
   // entire board after each click. I guess I have to do the naive thing and re-render the board each time...
-  function updateBoard(j: number, i: number) {
+  function updateBoard(j: number, i: number, rightClick?: boolean) {
     const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
     const cell = updatedGrid[j][i]
+
+    if (rightClick) {
+      if (cell.flagged === true) { 
+        cell.flagged = false
+        setGrid(updatedGrid)
+        return
+      }
+  
+      if (cell.flagged === false) { 
+        cell.flagged = true
+        setGrid(updatedGrid)
+        return
+      }
+    }
 
     // cell is a mine
     if (cell.mine) { 

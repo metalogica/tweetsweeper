@@ -25,7 +25,7 @@ export interface CellState {
   neighbors: number;
   style?: object;
   setStyle?: (cell: CellState) => object
-  updateBoard?: (j: number, i:number) => void;
+  updateBoard?: (j: number, i:number, rightClick?: boolean) => void;
 }
 
 export const setCellStyle = ({location, clicked, mine, flagged, neighbors} : CellState) => {

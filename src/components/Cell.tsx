@@ -1,13 +1,21 @@
+import { useState } from 'react'
 import { CellState } from '../globals'
 import './Cell.scss'
 
 function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: CellState) {
   const style: object = setStyle(location, clicked, mine, flagged, neighbors)
 
+  function rightClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>, row: number, col: number) {
+    event.preventDefault()
+    flagged = true
+    updateBoard && updateBoard(location[0], location[1], true)
+  }
+
   return(
     <div  className='cell' 
           data-testid={`${location[0]}-${location[1]}`} 
           style={style}
+          onContextMenu={(event) => rightClick(event, location[0], location[1])}
           onClick={() => updateBoard ? updateBoard(location[0], location[1]) : console.error('unable to upate cell')}
     >
     </div>
