@@ -1,5 +1,4 @@
 import { createContext, useContext } from 'react'
-import _ from 'lodash'
 
 // Cell Globals
 // enum CellSkin {
@@ -75,6 +74,9 @@ export interface BoardState {
   numberOfMines: NumberOfMines;
   grid?: CellState[][];
   mineMap: [number, number][];
+  flags: number;
+  maxFlags: NumberOfMines;
+  setFlags?: () => void;
 }
 
 // TODO: Consider refactoring these interface so you have one interface such that:
@@ -91,6 +93,8 @@ export const easyBoardState: BoardState = {
   boardSize: BoardSize.Easy,
   numberOfMines: NumberOfMines.Easy,
   mineMap: [[-1,-1]],
+  flags: 0,
+  maxFlags: NumberOfMines.Easy,
 }
 
 export const regularBoardState: BoardState = {
@@ -98,6 +102,8 @@ export const regularBoardState: BoardState = {
   boardSize: BoardSize.Regular,
   numberOfMines: NumberOfMines.Regular,
   mineMap: [[-1,-1]],
+  flags: 0,
+  maxFlags: NumberOfMines.Regular,
 }
 
 export const hardBoardState: BoardState = {
@@ -105,6 +111,8 @@ export const hardBoardState: BoardState = {
   boardSize: BoardSize.Hard,
   numberOfMines: NumberOfMines.Hard,
   mineMap: [[-1,-1]],
+  flags: 0,
+  maxFlags: NumberOfMines.Hard,
 }
 
 // used only in Board.test.tsx
@@ -115,7 +123,9 @@ export const testBoardState: BoardState = {
   mineMap: [
     [2,1],
     [3,2]
-  ]
+  ],
+  flags: 0,
+  maxFlags: NumberOfMines.Test,
 }
 
 // TODO: Refactor `setCell`, `openedCell`, `closedCell` and `completedTestBoardState`; these exist only in Board.test.tsx 
@@ -173,6 +183,8 @@ export const failedTestBoardState: BoardState = {
     [2,1],
     [3,2]
   ],
+  flags: 0,
+  maxFlags: NumberOfMines.Test,
   grid: [
     [ 
       new TestCell({ location: [0,0], clicked: true, mine: false, flagged: false, neighbors: 0}),
@@ -216,6 +228,8 @@ export const completedTestBoardState : BoardState = {
   gameProgress: GameProgress.Won,
   boardSize: BoardSize.Test,
   numberOfMines: NumberOfMines.Test,
+  flags: 0,
+  maxFlags: NumberOfMines.Test,
   mineMap: [
     [2,1],
     [3,2]
@@ -265,6 +279,8 @@ export const BoardContext = createContext<BoardState>({
   boardSize: BoardSize.Easy,
   numberOfMines: NumberOfMines.Easy,
   mineMap: [[-1,-1]],
+  flags: 0,
+  maxFlags: NumberOfMines.Easy,
 })
 
 export const useBoardContext = () => useContext(BoardContext)

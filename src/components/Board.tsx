@@ -10,10 +10,11 @@ import {
 } 
 from '../globals'
 
-const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap} : BoardState ) => { 
+const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap, flags, maxFlags} : BoardState ) => { 
   // TODO: Refactor this enum to remove redundant `state` key
   const { state: { difficulty } } = useSettings()
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
+  const [ currentFlags, setCurrentFlags ] = useState(flags)
 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
@@ -28,14 +29,17 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
     const cell = updatedGrid[j][i]
 
     if (rightClick) {
+      console.log(currentFlags, maxFlags)
       if (cell.flagged === true) { 
         cell.flagged = false
+        setCurrentFlags(currentFlags - 1)
         setGrid(updatedGrid)
         return
       }
   
-      if (cell.flagged === false) { 
+      if (cell.flagged === false && currentFlags < maxFlags) { 
         cell.flagged = true
+        setCurrentFlags(currentFlags + 1)
         setGrid(updatedGrid)
         return
       }
