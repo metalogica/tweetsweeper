@@ -5,8 +5,24 @@ import {
   regularBoardState, 
   hardBoardState, 
   testBoardState,
-  completedTestBoardState
+  failedTestBoardState,
+  completedTestBoardState,
+  BoardState
 } from '../globals'
+
+const assertTestBoardStateIsValid = function(board: BoardState) {
+  const gridLength = board.boardSize
+
+  for (let row = 0; row < gridLength; row ++) {
+    for (let col = 0; col < gridLength; col ++) {
+      // expect the style of the actual grid matches the test spec grid
+      let actualCell = screen.getByTestId(`${row}-${col}`)
+      let expectedCell = board.grid[row][col]
+
+      expect(actualCell.style.backgroundImage).toEqual(expectedCell.style.backgroundImage)
+    }
+  }
+}
 
 describe('buildBoard()', () => {
   it('should build a new board and store it in state if it is a new game', () => {
@@ -54,23 +70,7 @@ describe('clickBoard()', () => {
     const topLeftCell = screen.getByTestId('0-0')
     fireEvent.click(topLeftCell)
 
-    // loop through the expected end-of-game-grid
-    const gridLength = testBoardState.boardSize
-
-
-    for (let row = 0; row < gridLength; row ++) {
-      for (let col = 0; col < gridLength; col ++) {
-        // expect the style of the actual grid matches the test spec grid
-        let actualCell = screen.getByTestId(`${row}-${col}`)
-        let expectedCell = completedTestBoardState.grid[row][col]
-
-        expect(actualCell.style.backgroundImage).toEqual(expectedCell.style.backgroundImage)
-      }
-    }
-  })
-
-  it('should end the game if the user clicks on a mine', () => {
-
+    assertTestBoardStateIsValid(failedTestBoardState)
   })
 
   it('should render the entire revealed board when the user clicks on a mine', () => {
@@ -87,6 +87,25 @@ describe('clickBoard()', () => {
   })
 
   it('should end the game if the user flags all mines on the board', () => {
+    const mineCellOne = screen.getByTestId('2-1')
+    const mineCellTwo = screen.getByTestId('3-2')
 
+    // right click both mine cells
+    fireEvent.contextMenu(mineCellOne)
+    fireEvent.contextMenu(mineCellTwo)
+    
+    // the entire board should be revealed
+    assertTestBoardStateIsValid(completedTestBoardState)
+
+    // a button should appear that allows the user to restart the game
+    const gameCompleteButton = screen.getByRole('button')
+    expect(gameCompleteButton).toHaveTextContent(/Play again\?/i)
+  })
+
+  it('should end the game if the user clicks on a mine', () => {
+    // user clicks on mine
+    // the entire board should be revealed
+    // a button should appear that allows the user to restart the game
+    // the entire board should be unrevealed again
   })
 })

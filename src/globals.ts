@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react'
+import _ from 'lodash'
 
 // Cell Globals
 // enum CellSkin {
@@ -164,8 +165,8 @@ class TestCell implements CellState {
   }
 }
 
-export const completedTestBoardState: BoardState = {
-  gameProgress: GameProgress.InProgress,
+export const failedTestBoardState: BoardState = {
+  gameProgress: GameProgress.Lost,
   boardSize: BoardSize.Test,
   numberOfMines: NumberOfMines.Test,
   mineMap: [
@@ -204,6 +205,53 @@ export const completedTestBoardState: BoardState = {
     [ 
       new TestCell({ location: [4,0], clicked: false, mine: false, flagged: false, neighbors: 0}),
       new TestCell({ location: [4,1], clicked: false, mine: true, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,2], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ]
+  ]
+}
+
+export const completedTestBoardState : BoardState = {
+  gameProgress: GameProgress.Won,
+  boardSize: BoardSize.Test,
+  numberOfMines: NumberOfMines.Test,
+  mineMap: [
+    [2,1],
+    [3,2]
+  ],
+  grid: [
+    [ 
+      new TestCell({ location: [0,0], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,1], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,2], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,3], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [0,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [1,0], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [1,1], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [1,2], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [1,3], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [1,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [2,0], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,1], clicked: false, mine: true, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,2], clicked: true, mine: false, flagged: false, neighbors: 2}),
+      new TestCell({ location: [2,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [3,0], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,1], clicked: false, mine: true, flagged: true, neighbors: 2}),
+      new TestCell({ location: [3,2], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,4], clicked: true, mine: false, flagged: false, neighbors: 0})
+    ],
+    [ 
+      new TestCell({ location: [4,0], clicked: false, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [4,1], clicked: false, mine: true, flagged: true, neighbors: 1}),
       new TestCell({ location: [4,2], clicked: false, mine: false, flagged: false, neighbors: 1}),
       new TestCell({ location: [4,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
       new TestCell({ location: [4,4], clicked: true, mine: false, flagged: false, neighbors: 0})

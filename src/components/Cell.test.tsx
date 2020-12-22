@@ -68,9 +68,8 @@ describe('Cell State should determine the cell appearance', () => {
 
     expect(cell).toHaveStyle({ backgroundImage: `url(/images/retro/opened.svg)`})
   })
-  
 
-  test('should render neighbor skins', () => {
+  it('should render neighbor skins', () => {
     const randInt = _.random(1, 9)
 
     const cellState: CellState = {
