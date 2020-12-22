@@ -108,12 +108,18 @@ describe('Flagging functionality', () => {
   })
 
   it('should only allow the user to flag unopened cells', () => {
-    const cell = screen.getByTestId('0-0')
+    let cell = screen.getByTestId('0-0')
     
     fireEvent.click(cell)
     fireEvent.contextMenu(cell)
-
+    
+    // check you can't flag an opened cell
     expect(cell.style.backgroundImage).toEqual('url(/images/retro/opened.svg)')
+
+    // check you cant flag a neighbor cell
+    cell = screen.getByTestId('1-0')
+    fireEvent.contextMenu(cell)
+    expect(cell.style.backgroundImage).toEqual('url(/images/retro/1.svg)')
   })
 
   it('should allow a user to de-flag a currently flagged cell', () => {

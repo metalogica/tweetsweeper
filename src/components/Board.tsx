@@ -123,12 +123,12 @@ function buildBoard(
   }
 ) 
 {
-  const userDesiresRandomMineGeneration = numberOfMines > 0
-  const userDoesNotDesireRandomMineGeneration = mineMap[0][0] !== -1 || mineMap[0][1] !== -1 
+  // const userDesiresRandomMineGeneration = numberOfMines > 0
+  // const userDoesNotDesireRandomMineGeneration = mineMap[0][0] !== -1 || mineMap[0][1] !== -1 
 
-  if (userDesiresRandomMineGeneration && userDoesNotDesireRandomMineGeneration) { 
-    throw new Error('Please EITHER set Random Mines via `numberOfMines` or use a `mineMap` to manually build mines on the grid.')
-  }
+  // if (userDesiresRandomMineGeneration && userDoesNotDesireRandomMineGeneration) { 
+  //   throw new Error('Please EITHER set Random Mines via `numberOfMines` or use a `mineMap` to manually build mines on the grid.')
+  // }
   
   // Build the empty grid
   const grid: [any[], any[]] = [[],[]]
@@ -141,16 +141,19 @@ function buildBoard(
 
   // randomly select cells from grid to turn into mines;
   // will only run if no `mineMap` has been provided
-  let mineCount: number = 0
-
-  while (mineCount < numberOfMines) {
-    let randomRow = Math.ceil(Math.random() * (grid.length - 1))
-    let randomCol = Math.ceil(Math.random() * (grid[0].length - 1))
-    let cell = grid[randomRow][randomCol]
-
-    if (!cell.includes('mine')) { 
-      cell.push('mine')
-      mineCount += 1
+  const userDesiresRandomMineGeneration = (mineMap[0][0] === -1 && mineMap[0][1] === -1) || (mineMap === undefined)
+  if (userDesiresRandomMineGeneration) {
+    let mineCount: number = 0
+  
+    while (mineCount < numberOfMines) {
+      let randomRow = Math.ceil(Math.random() * (grid.length - 1))
+      let randomCol = Math.ceil(Math.random() * (grid[0].length - 1))
+      let cell = grid[randomRow][randomCol]
+  
+      if (!cell.includes('mine')) { 
+        cell.push('mine')
+        mineCount += 1
+      }
     }
   }
 
