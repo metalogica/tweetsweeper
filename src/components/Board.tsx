@@ -29,20 +29,23 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
     const cell = updatedGrid[j][i]
 
     if (rightClick) {
-      console.log(currentFlags, maxFlags)
-      if (cell.flagged === true) { 
+      const validCell = cell.style.backgroundImage === 'url(/images/retro/unopened.svg)' ||
+                        cell.style.backgroundImage === 'url(/images/retro/flag.svg)'
+
+      if (cell.flagged === true && validCell) { 
         cell.flagged = false
         setCurrentFlags(currentFlags - 1)
         setGrid(updatedGrid)
         return
       }
-  
-      if (cell.flagged === false && currentFlags < maxFlags) { 
+      
+      if (cell.flagged === false && validCell && currentFlags < maxFlags) { 
         cell.flagged = true
         setCurrentFlags(currentFlags + 1)
         setGrid(updatedGrid)
         return
       }
+      return
     }
 
     // cell is a mine
