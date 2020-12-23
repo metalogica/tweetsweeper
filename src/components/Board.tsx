@@ -19,6 +19,10 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
   }, [boardSize, gameProgress, numberOfMines, mineMap])
+
+  useEffect(() => {
+    setCurrentFlags(0)
+  }, [gameProgress, numberOfMines])
   
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/

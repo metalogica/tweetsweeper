@@ -153,6 +153,7 @@ export const closedCell: CellState = {
   neighbors: 0,
 }
 
+// TODO: Refactor this and plce it in a new /utils.tsx file
 class TestCell implements CellState {
   location: [number, number];
   clicked: boolean;
