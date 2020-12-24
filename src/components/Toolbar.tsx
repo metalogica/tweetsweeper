@@ -8,6 +8,7 @@ function Toolbar(props: any) {
     <div className='toolbar-container'>
       <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} 
             onClick={() => setRevealed(!revealed)}
+            data-testid='toolbar-toggler'
       >
       </span>
       {
@@ -64,11 +65,11 @@ function Toggler({setting, options}: { setting: string, options: string[]}) {
 
   return (
     <div key={setting} className={`${setting}-select-container`}>
-      <label>{setting}</label>
-      <select key={setting} onChange={(event) => handleChange(event.target.value)}>
+      <label htmlFor={setting}>{setting}</label>
+      <select id={setting} data-testid='toolbar' key={setting} onChange={(event) => handleChange(event.target.value)}>
         {
           options.map((option: any, index: number) => (
-            <option key={index}>{option}</option>
+            <option value={option} key={index}>{option}</option>
           ))
         }
       </select>

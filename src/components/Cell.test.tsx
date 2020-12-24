@@ -7,6 +7,18 @@ import {
 } from '../globals'
 import Cell from './Cell'
 import Board from './Board'
+import Toolbar from './Toolbar'
+
+function flagThreeCellsOnTestBoard() {
+  let cell = screen.getByTestId('0-0')
+  fireEvent.contextMenu(cell)
+
+  cell = screen.getByTestId('0-1')
+  fireEvent.contextMenu(cell)
+
+  cell = screen.getByTestId('0-2')
+  fireEvent.contextMenu(cell)
+}
 
 describe('Cell State should determine the cell appearance', () => {
   it('should render an unopened skin', () => {
@@ -133,18 +145,31 @@ describe('Flagging functionality', () => {
   })
 
   it('should not allow a user to flag a cell if the maximum number of flags has been reached', () => {
-    let cell = screen.getByTestId('0-0')
-    fireEvent.contextMenu(cell)
+    flagThreeCellsOnTestBoard()
 
-    cell = screen.getByTestId('0-1')
-    fireEvent.contextMenu(cell)
+    let fourthCell = screen.getByTestId('0-3')
+    fireEvent.contextMenu(fourthCell)
 
-    cell = screen.getByTestId('0-2')
-    fireEvent.contextMenu(cell)
+    expect(fourthCell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+  })
 
-    cell = screen.getByTestId('0-3')
-    fireEvent.contextMenu(cell)
+  it('should reset the current flag count if the game is resetted', () => {
+    // TODO: Complete this test.
+    flagThreeCellsOnTestBoard()
+    
+    let fourthCell = screen.getByTestId('0-3')
+    fireEvent.contextMenu(fourthCell)
+    
+    expect(fourthCell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    
+    render(<Toolbar/>)
 
-    expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    const toolbarToggler = screen.getByTestId('toolbar-toggler')
+    fireEvent.click(toolbarToggler)
+
+    const difficultySelect = screen.getByLabelText('difficulty')
+    console.log(difficultySelect.children)
+
+    expect(false).toEqual(true)
   })
 })
