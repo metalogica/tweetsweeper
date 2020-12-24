@@ -86,7 +86,7 @@ describe('clickBoard()', () => {
     expect(unclickedCell.style.backgroundImage).toEqual(`url(/images/retro/opened.svg)`)
   })
 
-  it('should end the game if the user flags all mines on the board', () => {
+  it('should render the entire revealed board when user flags all mines on the board', () => {
     const mineCellOne = screen.getByTestId('2-1')
     const mineCellTwo = screen.getByTestId('3-2')
 
@@ -99,12 +99,5 @@ describe('clickBoard()', () => {
     assertTestBoardStateIsValid(completedTestBoardState)
 
     // TODO: a button should appear that allows the user to restart the game
-  })
-
-  it('should end the game if the user clicks on a mine', () => {
-    // user clicks on mine
-    // the entire board should be revealed
-    // a button should appear that allows the user to restart the game
-    // the entire board should be unrevealed again
   })
 })
