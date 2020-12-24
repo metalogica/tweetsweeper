@@ -176,7 +176,7 @@ class TestCell implements CellState {
   }
 }
 
-export const failedTestBoardState: BoardState = {
+export const ongoingTestBoardState: BoardState = {
   gameProgress: GameProgress.Lost,
   boardSize: BoardSize.Test,
   numberOfMines: NumberOfMines.Test,
@@ -251,23 +251,23 @@ export const completedTestBoardState : BoardState = {
       new TestCell({ location: [1,4], clicked: true, mine: false, flagged: false, neighbors: 0})
     ],
     [ 
-      new TestCell({ location: [2,0], clicked: false, mine: false, flagged: false, neighbors: 1}),
-      new TestCell({ location: [2,1], clicked: false, mine: true, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,0], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [2,1], clicked: false, mine: true, flagged: true, neighbors: 1}), // mine
       new TestCell({ location: [2,2], clicked: true, mine: false, flagged: false, neighbors: 2}),
       new TestCell({ location: [2,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
       new TestCell({ location: [2,4], clicked: true, mine: false, flagged: false, neighbors: 0})
     ],
     [ 
-      new TestCell({ location: [3,0], clicked: false, mine: false, flagged: false, neighbors: 1}),
-      new TestCell({ location: [3,1], clicked: false, mine: true, flagged: true, neighbors: 2}),
-      new TestCell({ location: [3,2], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,0], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [3,1], clicked: true, mine: false, flagged: false, neighbors: 2}),
+      new TestCell({ location: [3,2], clicked: false, mine: true, flagged: true, neighbors: 1}), // mine
       new TestCell({ location: [3,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
       new TestCell({ location: [3,4], clicked: true, mine: false, flagged: false, neighbors: 0})
     ],
     [ 
-      new TestCell({ location: [4,0], clicked: false, mine: false, flagged: false, neighbors: 0}),
-      new TestCell({ location: [4,1], clicked: false, mine: true, flagged: true, neighbors: 1}),
-      new TestCell({ location: [4,2], clicked: false, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,0], clicked: true, mine: false, flagged: false, neighbors: 0}),
+      new TestCell({ location: [4,1], clicked: true, mine: false, flagged: false, neighbors: 1}),
+      new TestCell({ location: [4,2], clicked: true, mine: false, flagged: false, neighbors: 1}),
       new TestCell({ location: [4,3], clicked: true, mine: false, flagged: false, neighbors: 1}),
       new TestCell({ location: [4,4], clicked: true, mine: false, flagged: false, neighbors: 0})
     ]

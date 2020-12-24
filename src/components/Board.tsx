@@ -19,11 +19,27 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
-  }, [boardSize, gameProgress, numberOfMines, mineMap])
+  }, [boardSize, numberOfMines, mineMap])
 
   useEffect(() => {
+    // accounts for when you switch difficulty; resets to zero
     setCurrentFlags(0)
-  }, [gameProgress, numberOfMines])
+    setCorrectlyFlaggedCells(0)
+  }, [boardSize, gameProgress, numberOfMines])
+
+  useEffect(() => {
+    if (correctlyFlaggedCells === numberOfMines) {
+      const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
+
+      for (let row = 0; row < boardSize; row ++) {
+        for (let col = 0; col < boardSize; col ++) {
+          updatedGrid[row][col].clicked = true
+        }
+      }
+
+      setGrid(updatedGrid)
+    }
+  }, [correctlyFlaggedCells])
   
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
@@ -58,7 +74,6 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
           }
         }
       } 
-      console.log(correctlyFlaggedCells)
       setGrid(updatedGrid)
       return
     }
@@ -72,6 +87,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       }
 
       setGrid(updatedGrid)
+      return
     }
 
     // recursively open all blank cells

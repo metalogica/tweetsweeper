@@ -168,7 +168,6 @@ describe('Flagging functionality', () => {
     fireEvent.click(toolbarToggler)
 
     const difficultySelect = screen.getByLabelText('difficulty')
-    console.log(difficultySelect.children)
 
     expect(false).toEqual(true)
   })
