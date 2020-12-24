@@ -154,13 +154,10 @@ describe('Flagging functionality', () => {
   })
 
   it('should reset the current flag count if the game is resetted', () => {
-    // TODO: Complete this test.
     flagThreeCellsOnTestBoard()
-    
-    let fourthCell = screen.getByTestId('0-3')
-    fireEvent.contextMenu(fourthCell)
-    
-    expect(fourthCell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+
+    let firstCell = screen.getByTestId('0-0')
+    expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
     
     render(<Toolbar/>)
 
@@ -168,10 +165,14 @@ describe('Flagging functionality', () => {
     fireEvent.click(toolbarToggler)
 
     const difficultySelect = screen.getByLabelText('difficulty')
-
-    expect(false).toEqual(true)
+    fireEvent.click(difficultySelect, { name: 'regular'})
+    fireEvent.click(difficultySelect, { name: 'easy'})
+    
+    expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
   })
 
   // TO DO: you should not be able to normal click a flagged cell
-  // TODO: reset 'correctly flagged cells' when changing game difficulty
+  it('should not do a normal click on a cell when you reach the max flaggable cells limit and right-click a new cell', () => {
+
+  })
 })
