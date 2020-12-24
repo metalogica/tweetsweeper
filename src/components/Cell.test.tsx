@@ -172,4 +172,7 @@ describe('Flagging functionality', () => {
 
     expect(false).toEqual(true)
   })
+
+  // TO DO: you should not be able to normal click a flagged cell
+  // TODO: reset 'correctly flagged cells' when changing game difficulty
 })

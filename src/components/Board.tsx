@@ -15,6 +15,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
   const { state: { difficulty } } = useSettings()
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
   const [ currentFlags, setCurrentFlags ] = useState(flags)
+  const [ correctlyFlaggedCells, setCorrectlyFlaggedCells ] = useState(0)
 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
@@ -39,20 +40,30 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       if (cell.flagged === true && validCell) { 
         cell.flagged = false
         setCurrentFlags(currentFlags - 1)
-        setGrid(updatedGrid)
-        return
-      }
-      
-      if (cell.flagged === false && validCell && currentFlags < maxFlags) { 
+      } else if (cell.flagged === false && validCell && currentFlags < maxFlags) { 
         cell.flagged = true
         setCurrentFlags(currentFlags + 1)
-        setGrid(updatedGrid)
-        return
+        if (cell.mine) {
+          setCorrectlyFlaggedCells(correctlyFlaggedCells + 1)
+        }
       }
+
+      // TODO: refactor this duplicate logic
+      if (correctlyFlaggedCells === numberOfMines) {
+        // set game state to won
+        // reveal entire board
+        for (let row = 0; row < boardSize; row ++) {
+          for (let col = 0; col < boardSize; col ++) {
+            updatedGrid[row][col].clicked = true
+          }
+        }
+      } 
+      console.log(correctlyFlaggedCells)
+      setGrid(updatedGrid)
       return
     }
 
-    // cell is a mine
+    // cell is a mine reveal entire board
     if (cell.mine) { 
       for (let row = 0; row < boardSize; row ++) {
         for (let col = 0; col < boardSize; col ++) {
