@@ -163,7 +163,7 @@ describe('Flagging functionality', () => {
 
     const toolbarToggler = screen.getByTestId('toolbar-toggler')
     fireEvent.click(toolbarToggler)
-
+  
     const difficultySelect = screen.getByLabelText('difficulty')
     fireEvent.click(difficultySelect, { name: 'regular'})
     fireEvent.click(difficultySelect, { name: 'easy'})
