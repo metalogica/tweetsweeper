@@ -67,12 +67,25 @@ describe('Basic Functions', () => {
           expect(earlierTime).toBeLessThan(laterTime)
         }, 1500)
       })
+
+      it('should stop counting if the game ends', () => {
+        const mineCell = screen.getByTestId('3-2')
+        fireEvent.click(mineCell)
+
+        let earlierTime = Number(timer.textContent)
+
+        setTimeout(() => {
+          const laterTime = Number(timer.textContent)
+  
+          expect(earlierTime).toEqual(laterTime)
+        }, 1500)
+      })
     })
   })
 
   describe('Avatar', () => {
     it('clicking it restarts the game', () => {
-      
+
     })
   })
 
