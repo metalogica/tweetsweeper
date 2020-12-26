@@ -12,8 +12,18 @@ export default function TopPanel({gameProgress, boardSize, numberOfMines, mineMa
   return (
     <>
       <div data-testid='topPanel'>
+        <Avatar/>
         <div data-testid='timer' >Timer: {time}</div>
       </div>
+    </>
+  )
+}
+
+function Avatar() {
+  return(
+    <>
+      <p>Avatar</p>
+      <img src="" alt=""/>
     </>
   )
 }
