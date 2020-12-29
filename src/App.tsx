@@ -5,7 +5,8 @@ import {
   regularBoardState, 
   hardBoardState, 
   testBoardState,
-  BoardState
+  BoardState,
+  BoardContext
 } from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
@@ -44,14 +45,15 @@ function App() {
 
   return (
     <>
-      <GameContext.Provider value={{state: { difficulty, theme, opponent }, setDifficulty, setTheme, setOpponent}}>
+      <GameContext.Provider value={{difficulty, theme, opponent, setDifficulty, setTheme, setOpponent}}>
+        {/* <BoardContext.Provider> */}
         <h1>APP: </h1>
         <p>Difficulty: {difficulty}</p>
         <p>Theme: {theme}</p>
         <p>Opponent: {opponent}</p>
         <p>Current Flags: {currentFlags(drawBoard(difficulty))}</p>
         <p>Max Flags: {maxFlags(drawBoard(difficulty))}</p>
-        <TopPanel {...drawBoard(difficulty)}/>
+        {/* <TopPanel {...drawBoard(difficulty)}/> */}
         <Board {...drawBoard(difficulty)}/>
         <Toolbar />
       </GameContext.Provider>

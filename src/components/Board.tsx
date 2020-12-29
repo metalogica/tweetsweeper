@@ -13,7 +13,7 @@ from '../globals'
 
 const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap, flags, maxFlags} : BoardState ) => { 
   // TODO: Refactor this enum to remove redundant `state` key
-  const { state: { difficulty } } = useSettings()
+  const { difficulty } = useSettings()
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
   const [ currentFlags, setCurrentFlags ] = useState(flags)
   const [ correctlyFlaggedCells, setCorrectlyFlaggedCells ] = useState(0)
