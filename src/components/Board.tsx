@@ -6,7 +6,8 @@ import { useSettings } from '../contexts'
 import { 
   BoardState, 
   CellState,
-  setCellStyle
+  setCellStyle,
+  GameProgress
 } 
 from '../globals'
 
@@ -16,6 +17,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
   const [ currentFlags, setCurrentFlags ] = useState(flags)
   const [ correctlyFlaggedCells, setCorrectlyFlaggedCells ] = useState(0)
+  const [ currentGameProgress, setCurrentGameProgress ] = useState(gameProgress)
 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
@@ -38,6 +40,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       }
 
       setGrid(updatedGrid)
+      setCurrentGameProgress(GameProgress.Won)
     }
   }, [correctlyFlaggedCells])
   
@@ -86,6 +89,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
         }
       }
 
+      setCurrentGameProgress(GameProgress.Lost)
       setGrid(updatedGrid)
       return
     }
@@ -125,6 +129,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       }
     }
 
+    setCurrentGameProgress(GameProgress.InProgress)
     setGrid(updatedGrid)
   }
 
