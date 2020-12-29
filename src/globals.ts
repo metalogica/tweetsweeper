@@ -69,7 +69,6 @@ export enum NumberOfMines {
 }
 
 export interface BoardState {
-  gameProgress: GameProgress;
   boardSize: BoardSize;
   numberOfMines: NumberOfMines;
   grid?: CellState[][];
@@ -89,7 +88,6 @@ export interface BoardState {
 // }
 
 export const easyBoardState: BoardState = {
-  gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Easy,
   numberOfMines: NumberOfMines.Easy,
   mineMap: [[-1,-1]],
@@ -98,7 +96,6 @@ export const easyBoardState: BoardState = {
 }
 
 export const regularBoardState: BoardState = {
-  gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Regular,
   numberOfMines: NumberOfMines.Regular,
   mineMap: [[-1,-1]],
@@ -107,7 +104,6 @@ export const regularBoardState: BoardState = {
 }
 
 export const hardBoardState: BoardState = {
-  gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Hard,
   numberOfMines: NumberOfMines.Hard,
   mineMap: [[-1,-1]],
@@ -117,7 +113,6 @@ export const hardBoardState: BoardState = {
 
 // used only in Board.test.tsx
 export const testBoardState: BoardState = {
-  gameProgress: GameProgress.InProgress,
   boardSize: BoardSize.Test,
   numberOfMines: NumberOfMines.Test,
   mineMap: [
@@ -177,7 +172,6 @@ class TestCell implements CellState {
 }
 
 export const ongoingTestBoardState: BoardState = {
-  gameProgress: GameProgress.Lost,
   boardSize: BoardSize.Test,
   numberOfMines: NumberOfMines.Test,
   mineMap: [
@@ -226,7 +220,6 @@ export const ongoingTestBoardState: BoardState = {
 }
 
 export const completedTestBoardState : BoardState = {
-  gameProgress: GameProgress.Won,
   boardSize: BoardSize.Test,
   numberOfMines: NumberOfMines.Test,
   flags: 0,
@@ -276,7 +269,6 @@ export const completedTestBoardState : BoardState = {
 
 // Board Context
 export const BoardContext = createContext<BoardState>({
-  gameProgress: GameProgress.NewGame,
   boardSize: BoardSize.Easy,
   numberOfMines: NumberOfMines.Easy,
   mineMap: [[-1,-1]],
