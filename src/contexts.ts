@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react'
+import { GameProgress } from './globals'
 
 export enum Difficulty {
   Easy = 'easy',
@@ -21,21 +22,25 @@ export interface GameContextType {
   difficulty: Difficulty;
   theme: Theme;
   opponent: Opponent;
+  gameProgress: GameProgress;
   setDifficulty: (Difficulty: Difficulty) => void;
   setTheme: (Theme: Theme) => void;
   setOpponent: (Opponent: Opponent) => void;
+  setGameProgress: (GameProgress: GameProgress) => void;
 }
 
 export const GameContext = createContext<GameContextType>({
   difficulty: Difficulty.Easy,
   theme: Theme.Retro,
   opponent: Opponent.Trump,
-  setDifficulty: () => {console.log('enum context fire: difficulty')},
-  setTheme: () => {console.log('enum context fire: theme')},
-  setOpponent: () => {console.log('enum context fire: opponent')},
+  gameProgress: GameProgress.NewGame,
+  setDifficulty: () => {},
+  setTheme: () => {},
+  setOpponent: () => {},
+  setGameProgress: () => {},
 })
 
-export const useSettings = () => useContext(GameContext)
+export const useGameContext = () => useContext(GameContext)
 
 interface Options {
   difficulty: string[];

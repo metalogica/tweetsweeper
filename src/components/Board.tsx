@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
-import { useSettings } from '../contexts'
+import { useGameContext } from '../contexts'
 import { 
   BoardState, 
   CellState,
@@ -11,13 +11,13 @@ import {
 } 
 from '../globals'
 
-const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap, flags, maxFlags} : BoardState ) => { 
+const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, flags, maxFlags} : BoardState ) => { 
   // TODO: Refactor this enum to remove redundant `state` key
-  const { difficulty } = useSettings()
+  const { difficulty, gameProgress, setGameProgress } = useGameContext()
+
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
   const [ currentFlags, setCurrentFlags ] = useState(flags)
   const [ correctlyFlaggedCells, setCorrectlyFlaggedCells ] = useState(0)
-  const [ currentGameProgress, setCurrentGameProgress ] = useState(gameProgress)
 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
@@ -40,7 +40,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       }
 
       setGrid(updatedGrid)
-      setCurrentGameProgress(GameProgress.Won)
+      setGameProgress(GameProgress.Won)
     }
   }, [correctlyFlaggedCells])
   
@@ -89,7 +89,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
         }
       }
 
-      setCurrentGameProgress(GameProgress.Lost)
+      setGameProgress(GameProgress.Lost)
       setGrid(updatedGrid)
       return
     }
@@ -129,7 +129,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       }
     }
 
-    setCurrentGameProgress(GameProgress.InProgress)
+    setGameProgress(GameProgress.InProgress)
     setGrid(updatedGrid)
   }
 

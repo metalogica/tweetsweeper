@@ -6,11 +6,11 @@ import {
   hardBoardState, 
   testBoardState,
   BoardState,
-  BoardContext
+  GameProgress
 } from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
-import TopPanel from './components/TopPanel'
+// import TopPanel from './components/TopPanel'
 import './App.scss';
 
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
@@ -18,7 +18,7 @@ function App() {
   const [difficulty, setDifficulty] = React.useState(Difficulty.Easy)
   const [theme, setTheme] = React.useState(Theme.Retro)
   const [opponent, setOpponent] = React.useState(Opponent.Trump)
-  const [flags, setFlags] = React.useState(0)
+  const [gameProgress, setGameProgress] = React.useState(GameProgress.NewGame)
 
   function drawBoard(difficulty: string) {
     switch(difficulty) {
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <>
-      <GameContext.Provider value={{difficulty, theme, opponent, setDifficulty, setTheme, setOpponent}}>
+      <GameContext.Provider value={{difficulty, theme, opponent, gameProgress, setDifficulty, setTheme, setOpponent, setGameProgress}}>
         {/* <BoardContext.Provider> */}
         <h1>APP: </h1>
         <p>Difficulty: {difficulty}</p>
