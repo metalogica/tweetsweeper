@@ -45,7 +45,7 @@ function App() {
         <p>Difficulty: {difficulty}</p>
         <p>Theme: {theme}</p>
         <p>Opponent: {opponent}</p>
-        <p>Current Flags: {currentFlags(drawBoard(difficulty))}</p>
+        <p>Current Flags: {flags}</p>
         <p>Max Flags: {maxFlags(drawBoard(difficulty))}</p>
         <TopPanel/>
         <Board {...drawBoard(difficulty)}/>

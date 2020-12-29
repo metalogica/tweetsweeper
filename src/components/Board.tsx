@@ -26,7 +26,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, maxFlag
     // accounts for when you switch difficulty; resets to zero
     setFlags(0)
     setCorrectlyFlaggedCells(0)
-  }, [gameProgress])
+  }, [gameProgress, difficulty])
 
   useEffect(() => {
     console.log('fflags: ', flags, 'correct flags:', correctlyFlaggedCells)
