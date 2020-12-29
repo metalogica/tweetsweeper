@@ -11,12 +11,11 @@ import {
 } 
 from '../globals'
 
-const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, flags, maxFlags} : BoardState ) => { 
+const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, maxFlags} : BoardState ) => { 
   // TODO: Refactor this enum to remove redundant `state` key
-  const { difficulty, gameProgress, setGameProgress } = useGameContext()
+  const { difficulty, gameProgress, setGameProgress, flags, setFlags } = useGameContext()
 
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
-  const [ currentFlags, setCurrentFlags ] = useState(flags)
   const [ correctlyFlaggedCells, setCorrectlyFlaggedCells ] = useState(0)
 
   useEffect(() => {
@@ -25,11 +24,12 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, flags, 
 
   useEffect(() => {
     // accounts for when you switch difficulty; resets to zero
-    setCurrentFlags(0)
+    setFlags(0)
     setCorrectlyFlaggedCells(0)
-  }, [boardSize, gameProgress, numberOfMines])
+  }, [gameProgress])
 
   useEffect(() => {
+    console.log('fflags: ', flags, 'correct flags:', correctlyFlaggedCells)
     if (correctlyFlaggedCells === numberOfMines) {
       const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
 
@@ -42,7 +42,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, flags, 
       setGrid(updatedGrid)
       setGameProgress(GameProgress.Won)
     }
-  }, [correctlyFlaggedCells])
+  })
   
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
@@ -58,10 +58,10 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, flags, 
 
       if (cell.flagged === true && validCell) { 
         cell.flagged = false
-        setCurrentFlags(currentFlags - 1)
-      } else if (cell.flagged === false && validCell && currentFlags < maxFlags) { 
+        setFlags(flags - 1)
+      } else if (cell.flagged === false && validCell && flags < maxFlags) { 
         cell.flagged = true
-        setCurrentFlags(currentFlags + 1)
+        setFlags(flags + 1)
         if (cell.mine) {
           setCorrectlyFlaggedCells(correctlyFlaggedCells + 1)
         }
