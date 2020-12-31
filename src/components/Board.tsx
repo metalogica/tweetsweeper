@@ -25,11 +25,10 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, maxFlag
   useEffect(() => {
     // accounts for when you switch difficulty; resets to zero
     setFlags(0)
-    setCorrectlyFlaggedCells(0)
+    setCorrectlyFlaggedCells(0) 
   }, [gameProgress, difficulty])
 
   useEffect(() => {
-    console.log('fflags: ', flags, 'correct flags:', correctlyFlaggedCells)
     if (correctlyFlaggedCells === numberOfMines) {
       const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
 
