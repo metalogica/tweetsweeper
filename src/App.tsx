@@ -29,10 +29,6 @@ function App() {
     }
   }
 
-  function currentFlags(board: Global.BoardState) {
-    return board.flags
-  }
-
   function maxFlags(board: Global.BoardState) {
     return board.maxFlags
   }
