@@ -11,7 +11,7 @@ import {
 } 
 from '../globals'
 
-const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, maxFlags} : BoardState ) => { 
+const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : BoardState ) => { 
   // TODO: Refactor this enum to remove redundant `state` key
   const { difficulty, gameProgress, setGameProgress, flags, setFlags } = useGameContext()
 
@@ -58,7 +58,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap, maxFlag
       if (cell.flagged === true && validCell) { 
         cell.flagged = false
         setFlags(flags - 1)
-      } else if (cell.flagged === false && validCell && flags < maxFlags) { 
+      } else if (cell.flagged === false && validCell && flags < numberOfMines) { 
         cell.flagged = true
         setFlags(flags + 1)
         if (cell.mine) {
