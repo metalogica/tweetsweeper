@@ -1,12 +1,6 @@
 import React from 'react';
-import { GameContext, Difficulty, Theme, Opponent} from './contexts'
-import { 
-  easyBoardState, 
-  regularBoardState, 
-  hardBoardState, 
-  testBoardState,
-  BoardState
-} from './globals'
+import { GameContext, Difficulty, Theme, Opponent, Flags} from './contexts'
+import * as Global from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import TopPanel from './components/TopPanel'
@@ -17,41 +11,39 @@ function App() {
   const [difficulty, setDifficulty] = React.useState(Difficulty.Easy)
   const [theme, setTheme] = React.useState(Theme.Retro)
   const [opponent, setOpponent] = React.useState(Opponent.Trump)
-  const [flags, setFlags] = React.useState(0)
+  const [gameProgress, setGameProgress] = React.useState(Global.GameProgress.NewGame)
+  const [flags, setFlags] = React.useState(Flags.Easy)
 
   function drawBoard(difficulty: string) {
     switch(difficulty) {
       case 'easy':
-        return easyBoardState
+        return Global.easyBoardState
       case 'regular':
-        return regularBoardState
+        return Global.regularBoardState
       case 'hard':
-        return hardBoardState
+        return Global.hardBoardState
       case 'test':
-        return testBoardState
+        return Global.testBoardState
       default:
         throw new Error('Unable to draw board.')
     }
   }
 
-  function currentFlags(board: BoardState) {
-    return board.flags
-  }
-
-  function maxFlags(board: BoardState) {
+  function maxFlags(board: Global.BoardState) {
     return board.maxFlags
   }
 
   return (
     <>
-      <GameContext.Provider value={{state: { difficulty, theme, opponent }, setDifficulty, setTheme, setOpponent}}>
+      <GameContext.Provider value={{difficulty, theme, opponent, gameProgress, flags, setDifficulty, setTheme, setOpponent, setGameProgress, setFlags}}>
+        {/* <BoardContext.Provider> */}
         <h1>APP: </h1>
         <p>Difficulty: {difficulty}</p>
         <p>Theme: {theme}</p>
         <p>Opponent: {opponent}</p>
-        <p>Current Flags: {currentFlags(drawBoard(difficulty))}</p>
+        <p>Current Flags: {flags}</p>
         <p>Max Flags: {maxFlags(drawBoard(difficulty))}</p>
-        <TopPanel {...drawBoard(difficulty)}/>
+        <TopPanel/>
         <Board {...drawBoard(difficulty)}/>
         <Toolbar />
       </GameContext.Provider>

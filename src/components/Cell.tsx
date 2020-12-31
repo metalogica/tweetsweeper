@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { CellState } from '../globals'
 import './Cell.scss'
 

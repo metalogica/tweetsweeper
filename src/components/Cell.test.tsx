@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import _ from 'lodash'
 import { 
   CellState,
-  testBoardState 
+  ongoingTestBoardState 
 } from '../globals'
 import Cell from './Cell'
 import Board from './Board'
@@ -106,7 +106,7 @@ describe('Cell State should determine the cell appearance', () => {
 
 describe('Flagging functionality', () => {
   beforeEach(() =>{
-    render(<Board {...testBoardState}/>)
+    render(<Board {...ongoingTestBoardState}/>)
   })
 
   it('should allow a user to flag a cell', () => {

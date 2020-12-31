@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
-import { BoardState, GameProgress } from '../globals'
+import { GameProgress } from '../globals'
+import { useGameContext } from '../contexts'
 
-export default function TopPanel({gameProgress, boardSize, numberOfMines, mineMap, flags, maxFlags} : BoardState) {
+export default function TopPanel() {
+  const { gameProgress } = useGameContext()
   const [time, setTime] = React.useState(0)
 
   useEffect(() => {
-    console.log(gameProgress)
     if (gameProgress === GameProgress.InProgress) {
       const interval = setInterval(() => setTime(time + 1), 1000)
       return () => clearInterval(interval)
     }
-  }, [time])
+  }, [time, gameProgress])
   
   return (
     <>

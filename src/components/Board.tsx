@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
-import { useSettings } from '../contexts'
+import { useGameContext } from '../contexts'
 import { 
   BoardState, 
   CellState,
@@ -11,13 +11,12 @@ import {
 } 
 from '../globals'
 
-const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mineMap, flags, maxFlags} : BoardState ) => { 
+const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : BoardState ) => { 
   // TODO: Refactor this enum to remove redundant `state` key
-  const { state: { difficulty } } = useSettings()
+  const { difficulty, gameProgress, setGameProgress, flags, setFlags } = useGameContext()
+
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
-  const [ currentFlags, setCurrentFlags ] = useState(flags)
   const [ correctlyFlaggedCells, setCorrectlyFlaggedCells ] = useState(0)
-  const [ currentGameProgress, setCurrentGameProgress ] = useState(gameProgress)
 
   useEffect(() => {
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
@@ -25,9 +24,9 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
 
   useEffect(() => {
     // accounts for when you switch difficulty; resets to zero
-    setCurrentFlags(0)
-    setCorrectlyFlaggedCells(0)
-  }, [boardSize, gameProgress, numberOfMines])
+    setFlags(0)
+    setCorrectlyFlaggedCells(0) 
+  }, [gameProgress, difficulty])
 
   useEffect(() => {
     if (correctlyFlaggedCells === numberOfMines) {
@@ -40,9 +39,9 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       }
 
       setGrid(updatedGrid)
-      setCurrentGameProgress(GameProgress.Won)
+      setGameProgress(GameProgress.Won)
     }
-  }, [correctlyFlaggedCells])
+  })
   
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
@@ -58,10 +57,10 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
 
       if (cell.flagged === true && validCell) { 
         cell.flagged = false
-        setCurrentFlags(currentFlags - 1)
-      } else if (cell.flagged === false && validCell && currentFlags < maxFlags) { 
+        setFlags(flags - 1)
+      } else if (cell.flagged === false && validCell && flags < numberOfMines) { 
         cell.flagged = true
-        setCurrentFlags(currentFlags + 1)
+        setFlags(flags + 1)
         if (cell.mine) {
           setCorrectlyFlaggedCells(correctlyFlaggedCells + 1)
         }
@@ -89,7 +88,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
         }
       }
 
-      setCurrentGameProgress(GameProgress.Lost)
+      setGameProgress(GameProgress.Lost)
       setGrid(updatedGrid)
       return
     }
@@ -129,7 +128,7 @@ const Board: React.FC<BoardState> = ({gameProgress, boardSize, numberOfMines, mi
       }
     }
 
-    setCurrentGameProgress(GameProgress.InProgress)
+    setGameProgress(GameProgress.InProgress)
     setGrid(updatedGrid)
   }
 
