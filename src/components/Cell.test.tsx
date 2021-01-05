@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import '@testing-library/jest-dom/extend-expect'
 import _ from 'lodash'
 import { 
@@ -19,6 +19,7 @@ function flagThreeCellsOnTestBoard() {
   cell = screen.getByTestId('0-2')
   fireEvent.contextMenu(cell)
 }
+
 
 describe('Cell State should determine the cell appearance', () => {
   it('should render an unopened skin', () => {
@@ -109,15 +110,16 @@ describe('Flagging functionality', () => {
     render(<Board {...ongoingTestBoardState}/>)
   })
 
-  it('should allow a user to flag a cell', () => {
+  it('should allow a user to flag a cell', async () => {
     const cell = screen.getByTestId('0-0')
 
     expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
 
     fireEvent.contextMenu(cell)
 
-    expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    await waitFor(() => expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)'))
   })
+
 
   it('should only allow the user to flag unopened cells', () => {
     let cell = screen.getByTestId('0-0')
