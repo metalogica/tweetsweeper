@@ -9,7 +9,7 @@ import Cell from './Cell'
 import Board from './Board'
 import Toolbar from './Toolbar'
 
-function flagThreeCellsOnTestBoard() {
+async function flagThreeCellsOnTestBoard() {
   let cell = screen.getByTestId('0-0')
   fireEvent.contextMenu(cell)
 
@@ -117,7 +117,9 @@ describe('Flagging functionality', () => {
 
     fireEvent.contextMenu(cell)
 
-    await waitFor(() => expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)'))
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
   })
 
 
@@ -132,15 +134,21 @@ describe('Flagging functionality', () => {
 
     // check you cant flag a neighbor cell
     cell = screen.getByTestId('1-0')
+
     fireEvent.contextMenu(cell)
-    expect(cell.style.backgroundImage).toEqual('url(/images/retro/1.svg)')
+    
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/1.svg)')
+    }, 1000)
   })
 
   it('should allow a user to de-flag a currently flagged cell', () => {
     const cell = screen.getByTestId('0-0')
     
     fireEvent.contextMenu(cell)
-    expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
 
     fireEvent.contextMenu(cell)
     expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
@@ -152,14 +160,19 @@ describe('Flagging functionality', () => {
     let fourthCell = screen.getByTestId('0-3')
     fireEvent.contextMenu(fourthCell)
 
-    expect(fourthCell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    setTimeout(() => {
+      expect(fourthCell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    }, 1000)
   })
 
-  it('should reset the current flag count if the game is resetted', () => {
-    flagThreeCellsOnTestBoard()
+  it('should reset the current flag count if the game is resetted', async () => {
+    await waitFor(() => flagThreeCellsOnTestBoard())
 
     let firstCell = screen.getByTestId('0-0')
-    expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+
+    setTimeout(() => {
+      expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
     
     render(<Toolbar/>)
 
@@ -170,7 +183,9 @@ describe('Flagging functionality', () => {
     fireEvent.click(difficultySelect, { name: 'regular'})
     fireEvent.click(difficultySelect, { name: 'easy'})
     
-    expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    setTimeout(() => {
+      expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
   })
 
   // TO DO: you should not be able to normal click a flagged cell
