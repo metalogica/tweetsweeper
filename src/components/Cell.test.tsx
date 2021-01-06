@@ -190,6 +190,26 @@ describe('Flagging functionality', () => {
 
   // TO DO: you should not be able to normal click a flagged cell
   it('should not do a normal click on a cell when you reach the max flaggable cells limit and right-click a new cell', () => {
+    // flag 1/2
+    let cell = screen.getByTestId('0-0')
+    fireEvent.contextMenu(cell)
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
 
+    // flag 2/2
+    cell = screen.getByTestId('0-1')
+    fireEvent.contextMenu(cell)
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
+
+    // should not flag
+    cell = screen.getByTestId('0-2')
+    expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    fireEvent.contextMenu(cell)
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    }, 1000)
   })
 })
