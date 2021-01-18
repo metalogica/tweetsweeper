@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import '@testing-library/jest-dom/extend-expect'
 import _ from 'lodash'
 import { 
@@ -9,7 +9,7 @@ import Cell from './Cell'
 import Board from './Board'
 import Toolbar from './Toolbar'
 
-function flagThreeCellsOnTestBoard() {
+async function flagThreeCellsOnTestBoard() {
   let cell = screen.getByTestId('0-0')
   fireEvent.contextMenu(cell)
 
@@ -19,6 +19,7 @@ function flagThreeCellsOnTestBoard() {
   cell = screen.getByTestId('0-2')
   fireEvent.contextMenu(cell)
 }
+
 
 describe('Cell State should determine the cell appearance', () => {
   it('should render an unopened skin', () => {
@@ -109,15 +110,18 @@ describe('Flagging functionality', () => {
     render(<Board {...ongoingTestBoardState}/>)
   })
 
-  it('should allow a user to flag a cell', () => {
+  it('should allow a user to flag a cell', async () => {
     const cell = screen.getByTestId('0-0')
 
     expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
 
     fireEvent.contextMenu(cell)
 
-    expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
   })
+
 
   it('should only allow the user to flag unopened cells', () => {
     let cell = screen.getByTestId('0-0')
@@ -130,15 +134,21 @@ describe('Flagging functionality', () => {
 
     // check you cant flag a neighbor cell
     cell = screen.getByTestId('1-0')
+
     fireEvent.contextMenu(cell)
-    expect(cell.style.backgroundImage).toEqual('url(/images/retro/1.svg)')
+    
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/1.svg)')
+    }, 1000)
   })
 
   it('should allow a user to de-flag a currently flagged cell', () => {
     const cell = screen.getByTestId('0-0')
     
     fireEvent.contextMenu(cell)
-    expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
 
     fireEvent.contextMenu(cell)
     expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
@@ -150,14 +160,19 @@ describe('Flagging functionality', () => {
     let fourthCell = screen.getByTestId('0-3')
     fireEvent.contextMenu(fourthCell)
 
-    expect(fourthCell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    setTimeout(() => {
+      expect(fourthCell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    }, 1000)
   })
 
-  it('should reset the current flag count if the game is resetted', () => {
-    flagThreeCellsOnTestBoard()
+  it('should reset the current flag count if the game is resetted', async () => {
+    await waitFor(() => flagThreeCellsOnTestBoard())
 
     let firstCell = screen.getByTestId('0-0')
-    expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+
+    setTimeout(() => {
+      expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
     
     render(<Toolbar/>)
 
@@ -168,11 +183,33 @@ describe('Flagging functionality', () => {
     fireEvent.click(difficultySelect, { name: 'regular'})
     fireEvent.click(difficultySelect, { name: 'easy'})
     
-    expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    setTimeout(() => {
+      expect(firstCell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
   })
 
   // TO DO: you should not be able to normal click a flagged cell
   it('should not do a normal click on a cell when you reach the max flaggable cells limit and right-click a new cell', () => {
+    // flag 1/2
+    let cell = screen.getByTestId('0-0')
+    fireEvent.contextMenu(cell)
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
 
+    // flag 2/2
+    cell = screen.getByTestId('0-1')
+    fireEvent.contextMenu(cell)
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/flag.svg)')
+    }, 1000)
+
+    // should not flag
+    cell = screen.getByTestId('0-2')
+    expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    fireEvent.contextMenu(cell)
+    setTimeout(() => {
+      expect(cell.style.backgroundImage).toEqual('url(/images/retro/unopened.svg)')
+    }, 1000)
   })
 })
