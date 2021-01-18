@@ -17,7 +17,7 @@ export default function TopPanel() {
     <>
       <div data-testid='topPanel'>
         <Avatar/>
-        <div data-testid='timer' >Timer: {time}</div>
+        <div>Timer: <span data-testid='timer'>{time}</span></div>
       </div>
     </>
   )

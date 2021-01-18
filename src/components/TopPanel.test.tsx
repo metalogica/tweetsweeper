@@ -4,7 +4,6 @@ import TopPanel from './TopPanel'
 import Board from './Board'
 import Toolbar from './Toolbar'
 import { testBoardState } from '../globals'
-import { before } from 'lodash'
 
 // shared examples
 function toggleNewGameAndDifficulty(difficulty: string) {
@@ -16,7 +15,7 @@ function toggleNewGameAndDifficulty(difficulty: string) {
 }
 
 describe('Basic Functions', () => {
-  beforeAll(()=>{
+  beforeEach(()=>{
     render(<TopPanel/>)
     render(<Toolbar/>)
   })
@@ -25,66 +24,91 @@ describe('Basic Functions', () => {
     it('should report the time played during the game to the user', () => {
       const timer = screen.getByTestId('timer')
       expect(timer).toBeInTheDocument()
+    })
+    
+    it('should not start counting if the user has not clicked on a cell, or has not flagged a cell', () => {
+      const timer = screen.getByTestId('timer')
+      expect(timer).toBeInTheDocument()
+      let time =  Number(timer.textContent)
 
+      expect(time).toEqual(0)
+    })
+
+    it('should start counting if the user clicks on a blank cell', () => {
       render(<Board {...testBoardState}/>)
 
-      it('should not start counting if the user has not clicked on a cell, or has not flagged a cell', () => {
+      const timer = screen.getByTestId('timer')
+      expect(timer).toBeInTheDocument()
+      const cell = screen.getByTestId('0-0')
+      fireEvent.click(cell)
+
+      setTimeout(() => {
         let time = Number(timer.textContent)
-        expect(time).toEqual(0)
-      })
-
-      it('should start counting if the user clicks on a blank cell', () => {
-        const cell = screen.getByTestId('0-0')
-        fireEvent.click(cell)
-
-        setTimeout(() => {
-          let time = Number(timer.textContent)
-  
-          expect(time).toBeGreaterThan(0)
-        }, 1500)
-      })
-
-      it('should reset the counter if the game is restarted', () => {
-        // timer should be runnning from previous test scope
-        let time = Number(timer.textContent)
+        expect(true).toBe(false)
         expect(time).toBeGreaterThan(0)
+      }, 1500)
+    })
 
-        toggleNewGameAndDifficulty('regular')
+    it('should reset the counter if the game is restarted', () => {
+      render(<Board {...testBoardState}/>)
 
+      const timer = screen.getByTestId('timer')
+      expect(timer).toBeInTheDocument()
+
+      const cell = screen.getByTestId('0-0')
+      fireEvent.click(cell)
+
+      let time
+      setTimeout(()=>{
         time = Number(timer.textContent)
-        expect(time).toEqual(0)
-      })  
+        expect(time).toBeGreaterThan(0)
+      }, 1500)
 
-      it('should start counting if the user flags a cell', () => {
-        const earlierTime = Number(timer.textContent)
+      toggleNewGameAndDifficulty('regular')
 
-        const cell = screen.getByTestId('0-0')
-        fireEvent.contextMenu(cell)
-  
-        setTimeout(() => {
-          const laterTime = Number(timer.textContent)
-  
-          expect(earlierTime).toBeLessThan(laterTime)
-        }, 1500)
-      })
+      time = Number(timer.textContent)
+      expect(time).toEqual(0)
+    })  
 
-      it('should stop counting if the game ends', () => {
-        const mineCell = screen.getByTestId('3-2')
-        fireEvent.click(mineCell)
+    it('should start counting if the user flags a cell', () => {
+      render(<Board {...testBoardState}/>)
 
-        let earlierTime = Number(timer.textContent)
+      const timer = screen.getByTestId('timer')
+      expect(timer).toBeInTheDocument()
+      const earlierTime = Number(timer.textContent)
 
-        setTimeout(() => {
-          const laterTime = Number(timer.textContent)
-  
-          expect(earlierTime).toEqual(laterTime)
-        }, 1500)
-      })
+      const cell = screen.getByTestId('0-0')
+      fireEvent.contextMenu(cell)
+
+      setTimeout(() => {
+        const laterTime = Number(timer.textContent)
+
+        console.log(earlierTime, laterTime)
+        expect(earlierTime).toBeLessThan(laterTime)
+        expect(true).toEqual(false)
+      }, 1500)
+    })
+
+    it('should stop counting if the game ends', () => {
+      render(<Board {...testBoardState}/>)
+
+      const timer = screen.getByTestId('timer')
+      expect(timer).toBeInTheDocument()
+      const mineCell = screen.getByTestId('3-2')
+      fireEvent.click(mineCell)
+
+      let earlierTime = Number(timer.textContent)
+
+      setTimeout(() => {
+        const laterTime = Number(timer.textContent)
+
+        expect(earlierTime).toEqual(laterTime)
+      }, 1500)
     })
   })
 
   describe('Avatar', () => {
-    it('clicking it restarts the game', () => {
+    test('clicking it restarts the game', () => {
 
     })
   })
