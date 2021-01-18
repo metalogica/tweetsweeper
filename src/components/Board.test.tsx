@@ -92,12 +92,14 @@ describe('clickBoard()', () => {
 
     // right click both mine cells
     fireEvent.contextMenu(mineCellOne)
-    
     fireEvent.contextMenu(mineCellTwo)
-    
+    setTimeout(() => {
+      assertTestBoardStateIsValid(completedTestBoardState)
+    }, 800)
     // the entire board should be revealed
-    assertTestBoardStateIsValid(completedTestBoardState)
 
     // TODO: a button should appear that allows the user to restart the game
+    const completionModal = screen.getByTestId('completion-modal')
+    expect(completionModal).toBeTruthy()
   })
 })
