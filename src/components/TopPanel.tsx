@@ -3,15 +3,16 @@ import { GameProgress } from '../globals'
 import { useGameContext } from '../contexts'
 
 export default function TopPanel() {
-  const { gameProgress } = useGameContext()
+  const { gameProgress, difficulty } = useGameContext()
   const [time, setTime] = React.useState(0)
 
   useEffect(() => {
+    if (gameProgress === GameProgress.NewGame) setTime(0)
     if (gameProgress === GameProgress.InProgress) {
       const interval = setInterval(() => setTime(time + 1), 1000)
       return () => clearInterval(interval)
     }
-  }, [time, gameProgress])
+  })
   
   return (
     <>

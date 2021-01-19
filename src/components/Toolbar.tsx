@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { GameOptions, useGameContext, Difficulty, Theme, Opponent } from '../contexts'
+import { GameProgress } from '../globals'
 
 function Toolbar(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)
@@ -29,22 +30,26 @@ function Toolbar(props: any) {
 }
 
 function Toggler({setting, options}: { setting: string, options: string[]}) {
-  const { setDifficulty, setTheme, setOpponent } = useGameContext()
+  const { setDifficulty, setTheme, setOpponent, setGameProgress } = useGameContext()
 
   // TODO: Refactor this logic to make it conform to typescript standards.
   const handleChange = (option: string) => {
     switch(option) {
       case 'easy':
         setDifficulty(Difficulty.Easy)
+        setGameProgress(GameProgress.NewGame)
         break
       case 'regular':
         setDifficulty(Difficulty.Regular)
+        setGameProgress(GameProgress.NewGame)
         break
       case 'hard':
         setDifficulty(Difficulty.Hard)
+        setGameProgress(GameProgress.NewGame)
         break
       case 'test':
         setDifficulty(Difficulty.Test)
+        setGameProgress(GameProgress.NewGame)
         break
       case 'retro':
         setTheme(Theme.Retro)

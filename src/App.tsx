@@ -39,6 +39,7 @@ function App() {
         {/* <BoardContext.Provider> */}
         <h1>APP: </h1>
         <p>Difficulty: {difficulty}</p>
+        <p>Progress: {gameProgress}</p>
         <p>Theme: {theme}</p>
         <p>Opponent: {opponent}</p>
         <p>Current Flags: {flags}</p>

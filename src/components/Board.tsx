@@ -53,11 +53,14 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
 
     if (rightClick) {
       const validCell = cell.style.backgroundImage === 'url(/images/retro/unopened.svg)' ||
-                        cell.style.backgroundImage === 'url(/images/retro/flag.svg)'
-
+      cell.style.backgroundImage === 'url(/images/retro/flag.svg)'
+      
       if (cell.flagged === true && validCell) { 
         cell.flagged = false
         setFlags(flags - 1)
+        if (cell.mine) {
+          setCorrectlyFlaggedCells(correctlyFlaggedCells - 1)
+        }
       } else if (cell.flagged === false && validCell && flags < numberOfMines) { 
         cell.flagged = true
         setFlags(flags + 1)
@@ -69,6 +72,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
       // TODO: refactor this duplicate logic
       if (correctlyFlaggedCells === numberOfMines) {
         // set game state to won
+        // setGameProgress(GameProgress.Won)
         // reveal entire board
         for (let row = 0; row < boardSize; row ++) {
           for (let col = 0; col < boardSize; col ++) {

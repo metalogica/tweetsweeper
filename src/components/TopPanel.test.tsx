@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import TopPanel from './TopPanel'
 import Board from './Board'
 import Toolbar from './Toolbar'
+import App from '../App'
 import { testBoardState } from '../globals'
 
 // shared examples
@@ -44,7 +45,7 @@ describe('Basic Functions', () => {
 
       setTimeout(() => {
         let time = Number(timer.textContent)
-        expect(true).toBe(false)
+
         expect(time).toBeGreaterThan(0)
       }, 1500)
     })
