@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
-import { GameOptions, useGameContext } from '../contexts'
+import { useGameContext } from '../contexts'
 import { 
   BoardState, 
   CellState,
@@ -82,6 +82,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
           }
         }
       } 
+      setGameProgress(GameProgress.InProgress)
       setGrid(updatedGrid)
       return
     }
