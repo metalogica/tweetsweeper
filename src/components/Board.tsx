@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
-import { useGameContext } from '../contexts'
+import { GameOptions, useGameContext } from '../contexts'
 import { 
   BoardState, 
   CellState,
@@ -57,7 +57,9 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
       
       if (cell.flagged === true && validCell) { 
         cell.flagged = false
-        setFlags(flags - 1)
+        if (flags > 0) {
+          setFlags(flags - 1)
+        }
         if (cell.mine) {
           setCorrectlyFlaggedCells(correctlyFlaggedCells - 1)
         }
