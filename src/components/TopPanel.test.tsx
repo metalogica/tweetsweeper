@@ -15,8 +15,22 @@ function toggleNewGameAndDifficulty(difficulty: string) {
   fireEvent.click(difficultySelect, { name: difficulty})
 }
 
+function assertTimer(callback: any) {
+  const timer = screen.getByTestId('timer')
+  let time = Number(timer.textContent)
+  expect(timer).toBeInTheDocument()
+
+  setTimeout(() => {
+    callback && callback()
+  }, 1500)
+
+  return time
+}
+
 describe('Basic Functions', () => {
   beforeEach(()=>{
+    jest.useFakeTimers();
+
     render(<TopPanel/>)
     render(<Toolbar/>)
   })
@@ -28,6 +42,8 @@ describe('Basic Functions', () => {
     })
     
     it('should not start counting if the user has not clicked on a cell, or has not flagged a cell', () => {
+      render(<Board {...testBoardState}/>)
+      
       const timer = screen.getByTestId('timer')
       expect(timer).toBeInTheDocument()
       let time =  Number(timer.textContent)
@@ -38,16 +54,20 @@ describe('Basic Functions', () => {
     it('should start counting if the user clicks on a blank cell', () => {
       render(<Board {...testBoardState}/>)
 
-      const timer = screen.getByTestId('timer')
-      expect(timer).toBeInTheDocument()
+      const callback = jest.fn();
+      assertTimer(callback)
+      expect(callback).not.toBeCalled()
+
       const cell = screen.getByTestId('0-0')
       fireEvent.click(cell)
+      
+      jest.advanceTimersByTime(10000)
 
-      setTimeout(() => {
-        let time = Number(timer.textContent)
+      expect(callback).toBeCalled()
+      expect(callback).toHaveBeenCalledTimes(1)
+      const time = assertTimer(callback)
 
-        expect(time).toBeGreaterThan(0)
-      }, 1500)
+      expect(time).toBeGreaterThan(0)
     })
 
     it('should reset the counter if the game is restarted', () => {

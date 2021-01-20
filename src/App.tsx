@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameContext, Difficulty, Theme, Opponent, Flags} from './contexts'
+import { GameContext, Difficulty, Theme, Opponent, Flags, } from './contexts'
 import * as Global from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
@@ -13,6 +13,7 @@ function App() {
   const [opponent, setOpponent] = React.useState(Opponent.Trump)
   const [gameProgress, setGameProgress] = React.useState(Global.GameProgress.NewGame)
   const [flags, setFlags] = React.useState(Flags.Easy)
+  const [rightClickHeldDown, setRightClickHeldDown] = React.useState(false)
 
   function drawBoard(difficulty: string) {
     switch(difficulty) {
@@ -35,7 +36,20 @@ function App() {
 
   return (
     <>
-      <GameContext.Provider value={{difficulty, theme, opponent, gameProgress, flags, setDifficulty, setTheme, setOpponent, setGameProgress, setFlags}}>
+      <GameContext.Provider value={{
+          difficulty,
+          theme,
+          opponent,
+          gameProgress,
+          flags,
+          rightClickHeldDown,
+          setDifficulty,
+          setTheme,
+          setOpponent,
+          setGameProgress,
+          setFlags,
+          setRightClickHeldDown
+        }}>
         {/* <BoardContext.Provider> */}
         <h1>APP: </h1>
         <p>Difficulty: {difficulty}</p>

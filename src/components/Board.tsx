@@ -81,8 +81,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
             updatedGrid[row][col].clicked = true
           }
         }
-      } 
-      setGameProgress(GameProgress.InProgress)
+      }
       setGrid(updatedGrid)
       return
     }

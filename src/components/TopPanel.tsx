@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { GameProgress } from '../globals'
 import { useGameContext } from '../contexts'
+import './TopPanel.scss'
 
 export default function TopPanel() {
-  const { gameProgress, difficulty } = useGameContext()
+  const { gameProgress } = useGameContext()
   const [time, setTime] = React.useState(0)
 
   useEffect(() => {
@@ -17,18 +18,37 @@ export default function TopPanel() {
   return (
     <>
       <div data-testid='topPanel'>
-        <Avatar/>
+        <Avatar gameProgress={gameProgress}/>
         <div>Timer: <span data-testid='timer'>{time}</span></div>
       </div>
     </>
   )
 }
 
-function Avatar() {
+function Avatar({gameProgress} : { gameProgress: GameProgress}) {
+  let { rightClickHeldDown } = useGameContext()
+  let avatarUrl
+
+  if (rightClickHeldDown) {
+    avatarUrl = "/images/retro/avatar/wow.png"
+  } else {
+    switch(gameProgress) {
+      case GameProgress.Won:
+        avatarUrl = "/images/retro/avatar/happy.png"
+        break
+      case GameProgress.Lost:
+        avatarUrl = "/images/retro/avatar/sad.png"
+        break
+      default:
+        avatarUrl = "/images/retro/avatar/angry.png"
+        break
+    }
+  }
+
   return(
     <>
       <p>Avatar</p>
-      <img src="" alt=""/>
+      <img id="avatar" src={avatarUrl} alt=""/>
     </>
   )
 }

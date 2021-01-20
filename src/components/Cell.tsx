@@ -1,8 +1,10 @@
 import { CellState } from '../globals'
+import { useGameContext } from '../contexts'
 import './Cell.scss'
 
 function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: CellState) {
   const style: object = setStyle(location, clicked, mine, flagged, neighbors)
+  const { setRightClickHeldDown } = useGameContext()
 
   function rightClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>, row: number, col: number) {
     event.preventDefault()
@@ -16,6 +18,8 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: Cell
           style={style}
           onContextMenu={(event) => rightClick(event, location[0], location[1])}
           onClick={() => updateBoard ? updateBoard(location[0], location[1]) : console.error('unable to upate cell')}
+          onMouseDown={() => setRightClickHeldDown(true)}
+          onMouseUp={() => setRightClickHeldDown(false)}
     >
     </div>
   )
