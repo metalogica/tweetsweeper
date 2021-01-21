@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react'
-import { GameProgress } from './globals'
+import Board from './components/Board'
+import { GameProgress, BoardState, easyBoardState, NumberOfMines } from './globals'
 
 // contexts for App.tsx
 export enum Difficulty {
@@ -33,12 +34,15 @@ export interface GameContextType {
   gameProgress: GameProgress;
   flags: number;
   rightClickHeldDown?: boolean;
+  boardState?: BoardState;
+  numberOfMines?: NumberOfMines;
   setDifficulty: (Difficulty: Difficulty) => void;
   setTheme: (Theme: Theme) => void;
   setOpponent: (Opponent: Opponent) => void;
   setGameProgress: (GameProgress: GameProgress) => void;
   setFlags: (Flags: Flags) => void;
   setRightClickHeldDown?: any;
+  setNumberOfMines: (NumberOfMines: NumberOfMines) => void;
 }
 
 //default game context
@@ -47,14 +51,17 @@ export const GameContext = createContext<GameContextType>({
   theme: Theme.Retro,
   opponent: Opponent.Trump,
   gameProgress: GameProgress.NewGame,
+  boardState: easyBoardState,
   flags: Flags.Easy,
   rightClickHeldDown: false,
+  numberOfMines: NumberOfMines.Easy,
   setDifficulty: () => {},
   setTheme: () => {},
   setOpponent: () => {},
   setGameProgress: () => {},
   setFlags: () => {},
-  setRightClickHeldDown: () => {}
+  setRightClickHeldDown: () => {},
+  setNumberOfMines: () => {}
 })
 
 export const useGameContext = () => useContext(GameContext)

@@ -18,16 +18,18 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
   const [ grid, setGrid ] = useState(buildBoard({boardSize, numberOfMines, mineMap}))
   const [ correctlyFlaggedCells, setCorrectlyFlaggedCells ] = useState(0)
 
+  // Flag logic: accounts for when you switch difficulty; resets to zero
   useEffect(() => {
-    setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
-  }, [boardSize, numberOfMines, mineMap])
-
-  useEffect(() => {
-    // accounts for when you switch difficulty; resets to zero
     setFlags(0)
     setCorrectlyFlaggedCells(0) 
   }, [gameProgress, difficulty])
 
+  // redraw board after clicking on a cell
+  useEffect(() => {
+    setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
+  }, [boardSize, numberOfMines, mineMap])
+
+  // Completion: redraw board after victory
   useEffect(() => {
     if (correctlyFlaggedCells === numberOfMines) {
       const updatedGrid: [any[], any[]] = _.cloneDeep(grid)

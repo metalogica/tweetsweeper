@@ -14,6 +14,8 @@ function App() {
   const [gameProgress, setGameProgress] = React.useState(Global.GameProgress.NewGame)
   const [flags, setFlags] = React.useState(Flags.Easy)
   const [rightClickHeldDown, setRightClickHeldDown] = React.useState(false)
+  const [boardState] = React.useState(Global.easyBoardState)
+  const [numberOfMines, setNumberOfMines] = React.useState(Global.NumberOfMines.Easy)
 
   function drawBoard(difficulty: string) {
     switch(difficulty) {
@@ -43,12 +45,15 @@ function App() {
           gameProgress,
           flags,
           rightClickHeldDown,
+          boardState, //TO DO: boardState is redundant
+          numberOfMines,
           setDifficulty,
           setTheme,
           setOpponent,
           setGameProgress,
           setFlags,
-          setRightClickHeldDown
+          setRightClickHeldDown,
+          setNumberOfMines
         }}>
         {/* <BoardContext.Provider> */}
         <h1>APP: </h1>

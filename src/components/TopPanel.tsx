@@ -7,6 +7,7 @@ export default function TopPanel() {
   const { gameProgress } = useGameContext()
   const [time, setTime] = React.useState(0)
 
+  // countdown timer logic
   useEffect(() => {
     if (gameProgress === GameProgress.NewGame) setTime(0)
     if (gameProgress === GameProgress.InProgress) {
@@ -18,9 +19,20 @@ export default function TopPanel() {
   return (
     <>
       <div data-testid='topPanel'>
+        <FlagCounter/>
         <Avatar gameProgress={gameProgress}/>
         <div>Timer: <span data-testid='timer'>{time}</span></div>
       </div>
+    </>
+  )
+}
+
+function FlagCounter() {
+  const { flags, numberOfMines } = useGameContext()
+
+  return(
+    <>
+      { numberOfMines && <span data-testid="flag-counter">{numberOfMines - flags}</span> }
     </>
   )
 }
@@ -29,9 +41,11 @@ function Avatar({gameProgress} : { gameProgress: GameProgress}) {
   let { rightClickHeldDown } = useGameContext()
   let avatarUrl
 
+  // avatar changes if user holds down left mouse button
   if (rightClickHeldDown) {
     avatarUrl = "/images/retro/avatar/wow.png"
   } else {
+    // avatar changes according to game state
     switch(gameProgress) {
       case GameProgress.Won:
         avatarUrl = "/images/retro/avatar/happy.png"
