@@ -48,7 +48,7 @@ function Avatar({gameProgress} : { gameProgress: GameProgress}) {
   return(
     <>
       <p>Avatar</p>
-      <img id="avatar" src={avatarUrl} alt=""/>
+      <img data-testid="avatar" id="avatar" src={avatarUrl} alt=""/>
     </>
   )
 }
