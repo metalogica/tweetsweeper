@@ -43,14 +43,17 @@ function Toggler({setting, options}: { setting: string, options: string[]}) {
       case 'regular':
         setDifficulty(Difficulty.Regular)
         setGameProgress(GameProgress.NewGame)
+        setNumberOfMines(NumberOfMines.Regular)
         break
       case 'hard':
         setDifficulty(Difficulty.Hard)
         setGameProgress(GameProgress.NewGame)
+        setNumberOfMines(NumberOfMines.Hard)
         break
       case 'test':
         setDifficulty(Difficulty.Test)
         setGameProgress(GameProgress.NewGame)
+        setNumberOfMines(NumberOfMines.Test)
         break
       case 'retro':
         setTheme(Theme.Retro)
