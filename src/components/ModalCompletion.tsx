@@ -1,8 +1,10 @@
 import { useGameContext } from '../contexts'
 import { GameProgress } from '../globals'
 
-// end-game modal wrapper
-export default function ModalCompletion() {
+const ModalCompletion = () => <ModalWrapper/>
+export default ModalCompletion
+
+function ModalWrapper() {
   const { gameProgress } = useGameContext()
 
   return(
