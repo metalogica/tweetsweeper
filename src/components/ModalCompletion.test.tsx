@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import '@testing-library/jest-dom/extend-expect'
 import { BoardState, completedTestBoardState,  } from '../globals'
-import App from '../App'
+import ModalCompletion from "./ModalCompletion"
 
 async function failGame() {
   const cell = screen.getByTestId('2-1')
@@ -36,7 +36,7 @@ function validateBoardRender(board: BoardState) {
 }
 
 describe('ModalCompletion', () => {
-  beforeEach(() => render(<App/>))
+  beforeEach(() => render(<ModalCompletion/>))
 
   it('should not load the modal when a game is ongoing', () => {
     const modal = screen.queryByTestId("modal-completion")
@@ -70,7 +70,10 @@ describe('ModalCompletion', () => {
     expect(modal).toBeInTheDocument()
   })
 
-  it('should allow the user to restart the game', () => {
-
+  it('should allow the user to restart the game', async () => {
+    const restartButton = screen.getByTestId('restart-game-button')
+    fireEvent.click(restartButton)
+    const modal = screen.getByTestId("modal-completion")
+    expect(modal).toBeNull()
   })
 })
