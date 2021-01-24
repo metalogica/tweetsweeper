@@ -52,6 +52,7 @@ export enum GameProgress {
   InProgress = 'inProgress',
   Won = 'won',
   Lost = 'lost',
+  BeginNewGame = 'beginNewGame'
 }
 
 export enum BoardSize {

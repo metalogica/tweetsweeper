@@ -1,4 +1,4 @@
-import { useGameContext, Difficulty } from '../contexts'
+import { useGameContext, } from '../contexts'
 import { GameProgress } from '../globals'
 
 const ModalCompletion = () => <ModalWrapper/>
@@ -30,17 +30,12 @@ const FailureModal = () => (
 )
 
 const RestartButton = () => {
-  const { setGameProgress, setDifficulty } = useGameContext()
-
-  const handleNewGame = () => {
-    setGameProgress(GameProgress.NewGame)
-    setDifficulty(Difficulty.Easy)
-  }
+  const { setGameProgress } = useGameContext()
 
   return(
     <button 
       data-testid='restart-game-button' 
-      onClick={() => handleNewGame()}>
+      onClick={() => setGameProgress(GameProgress.BeginNewGame)}>
         Play Again?
     </button>
   )

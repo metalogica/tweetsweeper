@@ -29,6 +29,13 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
     setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
   }, [boardSize, numberOfMines, mineMap])
 
+  // redraw board after clicking on restart game modal
+  useEffect(() => {
+    if (gameProgress === GameProgress.BeginNewGame) { 
+      setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
+    }
+  }, [gameProgress])
+
   // Completion: redraw board after victory
   useEffect(() => {
     if (correctlyFlaggedCells === numberOfMines) {
