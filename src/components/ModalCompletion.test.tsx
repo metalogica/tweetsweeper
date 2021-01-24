@@ -3,6 +3,9 @@ import '@testing-library/jest-dom/extend-expect'
 import { BoardState, completedTestBoardState,  } from '../globals'
 import ModalCompletion from "./ModalCompletion"
 
+// TO DO: load the modal wrapper with contexts.
+// https://testing-library.com/docs/example-react-context/
+
 async function failGame() {
   const cell = screen.getByTestId('2-1')
   fireEvent.click(cell)
@@ -71,9 +74,9 @@ describe('ModalCompletion', () => {
   })
 
   it('should allow the user to restart the game', async () => {
-    const restartButton = screen.getByTestId('restart-game-button')
+    const restartButton = await screen.findByTestId('restart-game-button')
     fireEvent.click(restartButton)
-    const modal = screen.getByTestId("modal-completion")
+    const modal = await screen.findByTestId("modal-completion")
     expect(modal).toBeNull()
   })
 })
