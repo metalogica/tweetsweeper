@@ -8,7 +8,7 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: Cell
 
   function rightClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>, row: number, col: number) {
     event.preventDefault()
-    if (gameProgress !== GameProgress.Lost) {
+    if (gameProgress === GameProgress.InProgress || gameProgress === GameProgress.BeginNewGame || gameProgress === GameProgress.NewGame) {
       flagged = true
       updateBoard && updateBoard(location[0], location[1], true)
     }
@@ -17,7 +17,8 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: Cell
   function handleLeftClick() {
     const cellNotFlagged = !flagged
     const gameIsNotLost = gameProgress !== GameProgress.Lost
-    if (cellNotFlagged && gameIsNotLost) { 
+    const gameIsNotWon = gameProgress !== GameProgress.Won
+    if (cellNotFlagged && gameIsNotLost && gameIsNotWon) { 
       updateBoard ? updateBoard(location[0], location[1]) : console.error('unable to upate cell')
     }
   }
