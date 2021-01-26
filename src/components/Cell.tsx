@@ -14,9 +14,10 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: Cell
     }
   }
 
-  function leftClick() {
-    console.log('fired')
-    if (gameProgress !== GameProgress.Lost) {
+  function handleLeftClick() {
+    const cellNotFlagged = !flagged
+    const gameIsNotLost = gameProgress !== GameProgress.Lost
+    if (cellNotFlagged && gameIsNotLost) { 
       updateBoard ? updateBoard(location[0], location[1]) : console.error('unable to upate cell')
     }
   }
@@ -26,7 +27,7 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: Cell
           data-testid={`${location[0]}-${location[1]}`} 
           style={style}
           onContextMenu={(event) => rightClick(event, location[0], location[1])}
-          onClick={() =>leftClick() }
+          onClick={() => handleLeftClick() }
           onMouseDown={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(true)}
           onMouseUp={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(false)}
     >
