@@ -3,8 +3,8 @@ import { useGameContext } from '../contexts'
 import './Cell.scss'
 
 function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: CellState) {
-  const style: object = setStyle(location, clicked, mine, flagged, neighbors)
   const { setRightClickHeldDown, gameProgress } = useGameContext()
+  const style: object = setStyle(location, clicked, mine, flagged, neighbors, gameProgress)
 
   function rightClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>, row: number, col: number) {
     event.preventDefault()
@@ -36,7 +36,7 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: Cell
   )
 }
 
-function setStyle(location: [number, number], clicked: boolean, mine: boolean, flagged: boolean, neighbors: number) {
+function setStyle(location: [number, number], clicked: boolean, mine: boolean, flagged: boolean, neighbors: number, gameProgress: GameProgress) {
   const skin = { 
     backgroundImage: `url(/images/retro/unopened.svg)`,
     gridArea: `${location[0]}-${location[1]}`
@@ -50,6 +50,15 @@ function setStyle(location: [number, number], clicked: boolean, mine: boolean, f
     skin.backgroundImage = `url(/images/retro/opened.svg)`
   } else if (clicked && !mine && !flagged && neighbors > 0) {
     skin.backgroundImage = `url(/images/retro/${neighbors}.svg)`
+  }
+
+  // unset incorrect flags at end of game
+  if (gameProgress === GameProgress.Lost) {
+    if (flagged && !mine && neighbors > 0) {
+      skin.backgroundImage = `url(/images/retro/${neighbors}.svg)`
+    } else if (flagged && !mine && neighbors === 0) {
+      skin.backgroundImage = `url(/images/retro/opened.svg)`
+    }
   }
 
   return skin;
