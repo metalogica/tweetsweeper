@@ -9,7 +9,7 @@ export default function TopPanel() {
 
   // countdown timer logic
   useEffect(() => {
-    if (gameProgress === GameProgress.NewGame) setTime(0)
+    if (gameProgress === GameProgress.NewGame || gameProgress === GameProgress.Lost) setTime(0) 
     if (gameProgress === GameProgress.InProgress) {
       const interval = setInterval(() => setTime(time + 1), 1000)
       return () => clearInterval(interval)
