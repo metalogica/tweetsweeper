@@ -1,3 +1,4 @@
+// source: https://www.thetrumparchive.com/?results=1
 export const trumpTweets = [
   {
     id: 1,
