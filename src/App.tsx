@@ -5,6 +5,7 @@ import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import TopPanel from './components/TopPanel'
 import ModalCompletion from './components/ModalCompletion'
+import { trumpTweets } from './data/tweets'
 import './App.scss';
 
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753

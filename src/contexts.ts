@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 import Board from './components/Board'
-import { GameProgress, BoardState, easyBoardState, NumberOfMines } from './globals'
+import { GameProgress, BoardState, easyBoardState, NumberOfMines, CellState } from './globals'
 
 // contexts for App.tsx
 export enum Difficulty {
