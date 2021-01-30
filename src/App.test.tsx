@@ -1,9 +1,14 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Tweet Panel Functionality', () => {
   render(<App />);
-  // const linkElement = screen.getByText(/learn react/i);
-  // expect(linkElement).toBeInTheDocument();
+
+  // the tweet panel shows a tweet
+  const cell00 = screen.getByTestId('0-0')
+  const tweetPanel = screen.getByTestId('tweet')
+  fireEvent(cell00, new MouseEvent('hover'))
+
+  // the tweet changes when the user hovers over a different cell
 });

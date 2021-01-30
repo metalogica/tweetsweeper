@@ -5,6 +5,7 @@ import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import TopPanel from './components/TopPanel'
 import ModalCompletion from './components/ModalCompletion'
+import Tweet from './components/Tweet'
 import { trumpTweets } from './data/tweets'
 import './App.scss';
 
@@ -69,6 +70,7 @@ function App() {
         <Board {...drawBoard(difficulty)}/>
         <Toolbar />
         <ModalCompletion/>
+        <Tweet {...trumpTweets[0]}/>
       </GameContext.Provider>
     </>
   )
