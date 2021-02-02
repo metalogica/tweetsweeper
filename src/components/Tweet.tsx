@@ -12,9 +12,9 @@ export default function Tweet(
 {
   return(
     <>
-      <div data-testid='tweet'>
-        <p className='date'>{date}</p>
-        <p className='content'>{content}</p>  
+      <div data-testid='tweet-panel'>
+        <p data-testid='tweet-panel-date' className='date'>{date}</p>
+        <p data-testid='tweet-panel-content' className='content'>{content}</p>  
       </div>
     </>
   )
