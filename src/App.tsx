@@ -6,7 +6,7 @@ import Toolbar from './components/Toolbar'
 import TopPanel from './components/TopPanel'
 import ModalCompletion from './components/ModalCompletion'
 import Tweet from './components/Tweet'
-import { trumpTweets } from './data/tweets'
+import { trueTrumpTweets } from './data/tweets'
 import './App.scss';
 
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
@@ -48,7 +48,7 @@ function App() {
           gameProgress,
           flags,
           rightClickHeldDown,
-          boardState, //TO DO: boardState is redundant
+          boardState, //TO DO: remove boardState b/c it is is redundant
           numberOfMines,
           setDifficulty,
           setTheme,
@@ -70,7 +70,7 @@ function App() {
         <Board {...drawBoard(difficulty)}/>
         <Toolbar />
         <ModalCompletion/>
-        <Tweet {...trumpTweets[0]}/>
+        <Tweet {...trueTrumpTweets[0]}/>
       </GameContext.Provider>
     </>
   )

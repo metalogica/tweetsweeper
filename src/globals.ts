@@ -22,6 +22,7 @@ export interface CellState {
   mine: boolean;
   flagged: boolean;
   neighbors: number;
+  tweet?: object;
   style?: object;
   setStyle?: (cell: CellState) => object
   updateBoard?: (j: number, i:number, rightClick?: boolean) => void;

@@ -1,8 +1,9 @@
-import _ from 'lodash'
+import _, { sample } from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
 import { useGameContext } from '../contexts'
+import { trueTrumpTweets, falseTrumpTweets } from '../data/tweets'
 import { 
   BoardState, 
   CellState,
@@ -210,18 +211,29 @@ function buildBoard(
     }
   }
 
+  // shuffle input tweet data in preparation for insertion of random tweet state into cells
+  // do deep copy to prevent draining input data set if React does multiple re-render of board drawing
+  let trueTrumpTweetsCopy = _.cloneDeep(trueTrumpTweets)
+  let falseTrumpTweetsCopy = _.cloneDeep(falseTrumpTweets)
+  _.shuffle(trueTrumpTweetsCopy)
+  _.shuffle(falseTrumpTweetsCopy)
+
   // populate the grid with cells
   for (let j = 0; j < boardSize; j++) {
     for (let i = 0; i < boardSize; i++) {
       // set mines according to user defined `MineMap`; used specifically in test case in Board.test.tsx OR set random mines
       const mine = mineMap.find(cell => cell[0] === j && cell[1] === i) || grid[j][i][0] === 'mine'
 
+      // select random tweet: if its a mine, then it should be a false tweet
+      let tweet = mine ? falseTrumpTweetsCopy.pop() : trueTrumpTweetsCopy.pop()
+
       const cellState: CellState = {
         location: [j, i],
         clicked: false,
         mine: mine ? true : false,
         flagged: false,
-        neighbors: 0
+        neighbors: 0,
+        tweet: tweet
       }
 
       cellState.style = setCellStyle(cellState)

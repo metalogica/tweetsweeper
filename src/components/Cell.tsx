@@ -2,7 +2,7 @@ import { CellState, GameProgress } from '../globals'
 import { useGameContext } from '../contexts'
 import './Cell.scss'
 
-function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: CellState) {
+function Cell({ location, clicked, mine, flagged, neighbors, updateBoard, tweet }: CellState) {
   const { setRightClickHeldDown, gameProgress } = useGameContext()
   const style: object = setStyle(location, clicked, mine, flagged, neighbors, gameProgress)
 
@@ -31,6 +31,7 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard }: Cell
           onClick={() => handleLeftClick() }
           onMouseDown={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(true)}
           onMouseUp={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(false)}
+          onMouseEnter={() => console.log(tweet) }
     >
     </div>
   )
