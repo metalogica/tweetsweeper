@@ -34,7 +34,7 @@ export interface CellState {
   mine: boolean;
   flagged: boolean;
   neighbors: number;
-  tweet?: object | undefined;
+  tweet?: any | undefined;
   style?: object;
   setStyle?: (cell: CellState) => object
   updateBoard?: (j: number, i:number, rightClick?: boolean) => void;
@@ -155,21 +155,12 @@ export const openedCell: CellState = {
 }
 
 // default non-value cell to allow game to render; hovering on this cell should show no tweet
-const emptyTweet: Tweet = {
-  id: 999,
-  lie: false,
-  content: "emptyCell",
-  date: "",
-  source: ""
-}
-
 export const emptyCell: CellState = {
   location: [999, 999],
   clicked: false,
   mine: false,
   flagged: false,
-  neighbors: 0,
-  tweet: emptyTweet
+  neighbors: 0
 }
 
 export const closedCell: CellState = {

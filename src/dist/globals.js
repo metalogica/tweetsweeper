@@ -101,20 +101,12 @@ exports.openedCell = {
     neighbors: 0
 };
 // default non-value cell to allow game to render; hovering on this cell should show no tweet
-var emptyTweet = {
-    id: 999,
-    lie: false,
-    content: "emptyCell",
-    date: "",
-    source: ""
-};
 exports.emptyCell = {
     location: [999, 999],
     clicked: false,
     mine: false,
     flagged: false,
-    neighbors: 0,
-    tweet: emptyTweet
+    neighbors: 0
 };
 exports.closedCell = {
     location: [0, 0],

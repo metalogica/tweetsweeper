@@ -42,6 +42,7 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard, tweet 
           onMouseDown={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(true)}
           onMouseUp={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(false)}
           onMouseEnter={() => setCurrentCell(cell) }
+          onMouseLeave={() => setCurrentCell(false) }
     >
     </div>
   )

@@ -31,7 +31,7 @@ function Cell(_a) {
         neighbors: neighbors,
         tweet: tweet
     };
-    return (React.createElement("div", { className: 'cell', "data-testid": location[0] + "-" + location[1], style: style, onContextMenu: function (event) { return rightClick(event, location[0], location[1]); }, onClick: function () { return handleLeftClick(); }, onMouseDown: function () { return gameProgress !== globals_1.GameProgress.Lost && setRightClickHeldDown(true); }, onMouseUp: function () { return gameProgress !== globals_1.GameProgress.Lost && setRightClickHeldDown(false); }, onMouseEnter: function () { return setCurrentCell(cell); } }));
+    return (React.createElement("div", { className: 'cell', "data-testid": location[0] + "-" + location[1], style: style, onContextMenu: function (event) { return rightClick(event, location[0], location[1]); }, onClick: function () { return handleLeftClick(); }, onMouseDown: function () { return gameProgress !== globals_1.GameProgress.Lost && setRightClickHeldDown(true); }, onMouseUp: function () { return gameProgress !== globals_1.GameProgress.Lost && setRightClickHeldDown(false); }, onMouseEnter: function () { return setCurrentCell(cell); }, onMouseLeave: function () { return setCurrentCell(false); } }));
 }
 function setStyle(location, clicked, mine, flagged, neighbors, gameProgress) {
     var skin = {
