@@ -1,5 +1,17 @@
 import { createContext, useContext } from 'react'
 
+export interface Tweet {
+  id: number;
+  lie: boolean;
+  content: string;
+  date: string;
+  source: string;
+}
+
+export interface TweetArray {
+  [index: number]: Tweet
+}
+
 // Cell Globals
 // enum CellSkin {
 //   unclicked = '/images/retro/flag.svg',
@@ -22,7 +34,7 @@ export interface CellState {
   mine: boolean;
   flagged: boolean;
   neighbors: number;
-  tweet?: object;
+  tweet?: object | undefined;
   style?: object;
   setStyle?: (cell: CellState) => object
   updateBoard?: (j: number, i:number, rightClick?: boolean) => void;
@@ -139,7 +151,25 @@ export const openedCell: CellState = {
   clicked: true,
   mine: false,
   flagged: false,
+  neighbors: 0
+}
+
+// default non-value cell to allow game to render; hovering on this cell should show no tweet
+const emptyTweet: Tweet = {
+  id: 999,
+  lie: false,
+  content: "emptyCell",
+  date: "",
+  source: ""
+}
+
+export const emptyCell: CellState = {
+  location: [999, 999],
+  clicked: false,
+  mine: false,
+  flagged: false,
   neighbors: 0,
+  tweet: emptyTweet
 }
 
 export const closedCell: CellState = {

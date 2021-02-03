@@ -105,7 +105,6 @@ describe('Basic Functions', () => {
       setTimeout(() => {
         const laterTime = Number(timer.textContent)
 
-        console.log(earlierTime, laterTime)
         expect(earlierTime).toBeLessThan(laterTime)
         expect(true).toEqual(false)
       }, 1500)

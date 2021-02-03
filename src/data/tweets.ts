@@ -1,5 +1,9 @@
+import { TweetArray } from '../globals'
+
 // source: https://www.thetrumparchive.com/?results=1
-export const trueTrumpTweets = [
+
+// 1/2: raw data
+const trueTrumpTweetsRaw = [
   {
     id: 1,
     lie: false,
@@ -163,7 +167,7 @@ export const trueTrumpTweets = [
   }
 ]
 
-export const falseTrumpTweets = [
+const falseTrumpTweetsRaw = [
   {
     id: 1,
     lie: true,
@@ -221,3 +225,10 @@ export const falseTrumpTweets = [
     source: "https://www.politico.com/news/2021/01/12/trump-border-wall-partially-built-458255"
   },
 ]
+
+// 2/2: constructing types for export
+export const trueTrumpTweets = new Array<TweetArray>();
+trueTrumpTweetsRaw.forEach((tweet, i) => trueTrumpTweets[i] = tweet)
+
+export const falseTrumpTweets = new Array<TweetArray>();
+falseTrumpTweetsRaw.forEach((tweet, i) => falseTrumpTweets[i] = tweet)

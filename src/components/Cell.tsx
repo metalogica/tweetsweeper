@@ -3,7 +3,7 @@ import { useGameContext } from '../contexts'
 import './Cell.scss'
 
 function Cell({ location, clicked, mine, flagged, neighbors, updateBoard, tweet }: CellState) {
-  const { setRightClickHeldDown, gameProgress } = useGameContext()
+  const { setRightClickHeldDown, gameProgress, setCurrentCell } = useGameContext()
   const style: object = setStyle(location, clicked, mine, flagged, neighbors, gameProgress)
 
   function rightClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>, row: number, col: number) {
@@ -23,6 +23,16 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard, tweet 
     }
   }
 
+  // used to set currentCell to the one the user is currently hovering over
+  const cell : CellState = {
+    location: location,
+    clicked: clicked,
+    flagged: flagged,
+    mine: mine,
+    neighbors: neighbors,
+    tweet: tweet
+  }
+
   return(
     <div  className='cell' 
           data-testid={`${location[0]}-${location[1]}`} 
@@ -31,7 +41,7 @@ function Cell({ location, clicked, mine, flagged, neighbors, updateBoard, tweet 
           onClick={() => handleLeftClick() }
           onMouseDown={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(true)}
           onMouseUp={() => gameProgress !== GameProgress.Lost && setRightClickHeldDown(false)}
-          onMouseEnter={() => console.log(tweet) }
+          onMouseEnter={() => setCurrentCell(cell) }
     >
     </div>
   )

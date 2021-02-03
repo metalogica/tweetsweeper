@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameContext, Difficulty, Theme, Opponent, Flags, } from './contexts'
+import { GameContext, Difficulty, Theme, Opponent, Flags } from './contexts'
 import * as Global from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
@@ -19,6 +19,7 @@ function App() {
   const [rightClickHeldDown, setRightClickHeldDown] = React.useState(false)
   const [boardState] = React.useState(Global.easyBoardState)
   const [numberOfMines, setNumberOfMines] = React.useState(Global.NumberOfMines.Easy)
+  const [currentCell, setCurrentCell] = React.useState(Global.emptyCell)
 
   function drawBoard(difficulty: string) {
     switch(difficulty) {
@@ -56,7 +57,8 @@ function App() {
           setGameProgress,
           setFlags,
           setRightClickHeldDown,
-          setNumberOfMines
+          setNumberOfMines,
+          setCurrentCell
         }}>
         {/* <BoardContext.Provider> */}
         <h1>APP: </h1>
@@ -70,7 +72,7 @@ function App() {
         <Board {...drawBoard(difficulty)}/>
         <Toolbar />
         <ModalCompletion/>
-        <Tweet {...trueTrumpTweets[0]}/>
+        <Tweet {...currentCell}/>
       </GameContext.Provider>
     </>
   )

@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react'
 import Board from './components/Board'
+import Cell from './components/Cell'
 import { GameProgress, BoardState, easyBoardState, NumberOfMines, CellState } from './globals'
 
 // contexts for App.tsx
@@ -36,6 +37,8 @@ export interface GameContextType {
   rightClickHeldDown?: boolean;
   boardState?: BoardState;
   numberOfMines?: NumberOfMines;
+  currentCell?: CellState;
+  setCurrentCell?: any;
   setDifficulty: (Difficulty: Difficulty) => void;
   setTheme: (Theme: Theme) => void;
   setOpponent: (Opponent: Opponent) => void;
