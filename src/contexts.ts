@@ -1,6 +1,4 @@
 import { createContext, useContext } from 'react'
-import Board from './components/Board'
-import Cell from './components/Cell'
 import { GameProgress, BoardState, easyBoardState, NumberOfMines, CellState } from './globals'
 
 // contexts for App.tsx

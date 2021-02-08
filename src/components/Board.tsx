@@ -1,4 +1,4 @@
-import _, { sample } from 'lodash'
+import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
@@ -50,7 +50,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
       setGrid(updatedGrid)
       setGameProgress(GameProgress.Won)
     }
-  })
+  },[correctlyFlaggedCells, numberOfMines, grid, setGameProgress, boardSize])
   
   // TODO: rebuild this functionality with useContext and/or useRef()
   // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
