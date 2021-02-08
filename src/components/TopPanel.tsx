@@ -9,12 +9,14 @@ export default function TopPanel() {
 
   // countdown timer logic
   useEffect(() => {
-    if (gameProgress === GameProgress.NewGame || gameProgress === GameProgress.Lost) setTime(0) 
+    if (gameProgress === GameProgress.BeginNewGame) { 
+      setTime(0) 
+    }
     if (gameProgress === GameProgress.InProgress) {
       const interval = setInterval(() => setTime(time + 1), 1000)
       return () => clearInterval(interval)
     }
-  })
+  }, [gameProgress, time])
   
   return (
     <>
@@ -48,10 +50,10 @@ function Avatar({gameProgress} : { gameProgress: GameProgress}) {
     // avatar changes according to game state
     switch(gameProgress) {
       case GameProgress.Won:
-        avatarUrl = "/images/retro/avatar/happy.png"
-        break
-      case GameProgress.Lost:
         avatarUrl = "/images/retro/avatar/sad.png"
+        break
+        case GameProgress.Lost:
+        avatarUrl = "/images/retro/avatar/happy.png"
         break
       default:
         avatarUrl = "/images/retro/avatar/angry.png"
