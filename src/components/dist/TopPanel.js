@@ -7,7 +7,6 @@ require("./TopPanel.scss");
 function TopPanel() {
     var gameProgress = contexts_1.useGameContext().gameProgress;
     var _a = react_1["default"].useState(0), time = _a[0], setTime = _a[1];
-    console.log('timer re rendered');
     // countdown timer logic
     react_1.useEffect(function () {
         if (gameProgress === globals_1.GameProgress.BeginNewGame) {
