@@ -52,7 +52,6 @@ exports.GameOptions = {
         Difficulty.Easy,
         Difficulty.Regular,
         Difficulty.Hard,
-        Difficulty.Test
     ],
     theme: Object.values(Theme),
     opponent: Object.values(Opponent)

@@ -35,10 +35,6 @@ function App() {
     }
   }
 
-  function maxFlags(board: Global.BoardState) {
-    return board.maxFlags
-  }
-
   return (
     <>
       <GameContext.Provider value={{
@@ -60,18 +56,13 @@ function App() {
           setCurrentCell
         }}>
         {/* <BoardContext.Provider> */}
-        <h1>APP: </h1>
-        <p>Difficulty: {difficulty}</p>
-        <p>Progress: {gameProgress}</p>
-        <p>Theme: {theme}</p>
-        <p>Opponent: {opponent}</p>
-        <p>Current Flags: {flags}</p>
-        <p>Max Flags: {maxFlags(drawBoard(difficulty))}</p>
-        <TopPanel/>
-        <Board {...drawBoard(difficulty)}/>
-        <Toolbar />
-        <ModalCompletion/>
-        <Tweet {...currentCell}/>
+        <div className='app-container'>
+          <TopPanel/>
+          <Board {...drawBoard(difficulty)}/>
+          <Toolbar />
+          <ModalCompletion/>
+          <Tweet {...currentCell}/>
+        </div>
       </GameContext.Provider>
     </>
   )

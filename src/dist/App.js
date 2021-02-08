@@ -45,9 +45,6 @@ function App() {
                 throw new Error('Unable to draw board.');
         }
     }
-    function maxFlags(board) {
-        return board.maxFlags;
-    }
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(contexts_1.GameContext.Provider, { value: {
                 difficulty: difficulty,
@@ -67,29 +64,11 @@ function App() {
                 setNumberOfMines: setNumberOfMines,
                 setCurrentCell: setCurrentCell
             } },
-            react_1["default"].createElement("h1", null, "APP: "),
-            react_1["default"].createElement("p", null,
-                "Difficulty: ",
-                difficulty),
-            react_1["default"].createElement("p", null,
-                "Progress: ",
-                gameProgress),
-            react_1["default"].createElement("p", null,
-                "Theme: ",
-                theme),
-            react_1["default"].createElement("p", null,
-                "Opponent: ",
-                opponent),
-            react_1["default"].createElement("p", null,
-                "Current Flags: ",
-                flags),
-            react_1["default"].createElement("p", null,
-                "Max Flags: ",
-                maxFlags(drawBoard(difficulty))),
-            react_1["default"].createElement(TopPanel_1["default"], null),
-            react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
-            react_1["default"].createElement(Toolbar_1["default"], null),
-            react_1["default"].createElement(ModalCompletion_1["default"], null),
-            react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell)))));
+            react_1["default"].createElement("div", { className: 'app-container' },
+                react_1["default"].createElement(TopPanel_1["default"], null),
+                react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
+                react_1["default"].createElement(Toolbar_1["default"], null),
+                react_1["default"].createElement(ModalCompletion_1["default"], null),
+                react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell))))));
 }
 exports["default"] = App;

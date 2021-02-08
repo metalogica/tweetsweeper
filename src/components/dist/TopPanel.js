@@ -53,6 +53,5 @@ function Avatar(_a) {
         }
     }
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
-        react_1["default"].createElement("p", null, "Avatar"),
         react_1["default"].createElement("img", { "data-testid": "avatar", id: "avatar", src: avatarUrl, alt: "" })));
 }
