@@ -28,6 +28,7 @@ var Board = function (_a) {
     react_1.useEffect(function () {
         setFlags(0);
         setCorrectlyFlaggedCells(0);
+        // eslint-disable-next-line
     }, [gameProgress, difficulty]);
     // redraw board after clicking on a cell
     react_1.useEffect(function () {
@@ -38,8 +39,10 @@ var Board = function (_a) {
         if (gameProgress === globals_1.GameProgress.BeginNewGame) {
             setGrid(buildBoard({ boardSize: boardSize, numberOfMines: numberOfMines, mineMap: mineMap }));
         }
+        // eslint-disable-next-line
     }, [gameProgress]);
     // Completion: redraw board after victory
+    // eslint-disable-next-line
     react_1.useEffect(function () {
         if (correctlyFlaggedCells === numberOfMines) {
             var updatedGrid = lodash_1["default"].cloneDeep(grid);

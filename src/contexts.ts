@@ -79,7 +79,7 @@ export const GameOptions: Options = {
     Difficulty.Easy,
     Difficulty.Regular,
     Difficulty.Hard,
-    // Difficulty.Test // add this in dev mode to manually test mine algorithm
+    // Difficulty.Test // add this when manually testing mine algorithm
   ],
   theme: Object.values(Theme),
   opponent: Object.values(Opponent),

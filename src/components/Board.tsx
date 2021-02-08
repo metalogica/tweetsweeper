@@ -22,6 +22,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
   useEffect(() => {
     setFlags(0)
     setCorrectlyFlaggedCells(0) 
+  // eslint-disable-next-line
   }, [gameProgress, difficulty])
 
   // redraw board after clicking on a cell
@@ -34,9 +35,11 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
     if (gameProgress === GameProgress.BeginNewGame) { 
       setGrid(buildBoard({boardSize, numberOfMines, mineMap}))
     }
+  // eslint-disable-next-line
   }, [gameProgress])
 
   // Completion: redraw board after victory
+  // eslint-disable-next-line
   useEffect(() => {
     if (correctlyFlaggedCells === numberOfMines) {
       const updatedGrid: [any[], any[]] = _.cloneDeep(grid)
