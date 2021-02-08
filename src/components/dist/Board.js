@@ -51,7 +51,7 @@ var Board = function (_a) {
             setGrid(updatedGrid);
             setGameProgress(globals_1.GameProgress.Won);
         }
-    }, [correctlyFlaggedCells, numberOfMines, grid, setGameProgress, boardSize]);
+    });
     // TODO: rebuild this functionality with useContext and/or useRef()
     // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
     // assumption was to 'optimize' React.render by doing in-place modification of `grid` rather than re-drawing the 
