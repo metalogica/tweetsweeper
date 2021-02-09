@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
 import { useGameContext } from '../contexts'
+import TopPanel from './TopPanel'
 import { trueTrumpTweets, falseTrumpTweets } from '../data/tweets'
 import { 
   BoardState, 

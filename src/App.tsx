@@ -36,7 +36,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className='app-container'>
       <GameContext.Provider value={{
           difficulty,
           theme,
@@ -56,15 +56,13 @@ function App() {
           setCurrentCell
         }}>
         {/* <BoardContext.Provider> */}
-        <div className='app-container'>
           <TopPanel/>
           <Board {...drawBoard(difficulty)}/>
           <Toolbar />
           <ModalCompletion/>
           <Tweet {...currentCell}/>
-        </div>
       </GameContext.Provider>
-    </>
+      </div>
   )
 }
 

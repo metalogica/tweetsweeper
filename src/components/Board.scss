@@ -12,7 +12,7 @@
       $template: $template $string;
   }
   
-@return $template;
+  @return $template;
 }
 
 .board-container {
@@ -20,7 +20,7 @@
   width: 15rem;
   height: 15rem;
   gap: 0;
-  margin: 0;
+  margin: 0 auto;
 
   &#easy, &#test {
     grid-template-areas: buildGrid(5,5);

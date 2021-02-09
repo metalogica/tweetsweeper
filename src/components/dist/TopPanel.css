@@ -7,7 +7,6 @@
   position: relative;
 }
 
-// used to size <TopPanel/> correctly in relation to <Board/>
 .easy {
   width: 15rem;
 }
@@ -25,14 +24,11 @@
   left: 0;
 }
 
-.avatar-container {
-  #avatar {
-    width: 4rem;
-  }
+.avatar-container #avatar {
+  width: 4rem;
 }
 
 .timer-container {
   position: absolute;
   right: 0;
 }
-

@@ -5,8 +5,8 @@ var globals_1 = require("../globals");
 var contexts_1 = require("../contexts");
 require("./TopPanel.scss");
 function TopPanel() {
-    var gameProgress = contexts_1.useGameContext().gameProgress;
-    var _a = react_1["default"].useState(0), time = _a[0], setTime = _a[1];
+    var _a = contexts_1.useGameContext(), gameProgress = _a.gameProgress, difficulty = _a.difficulty;
+    var _b = react_1["default"].useState(0), time = _b[0], setTime = _b[1];
     // countdown timer logic
     react_1.useEffect(function () {
         if (gameProgress === globals_1.GameProgress.BeginNewGame) {
@@ -17,18 +17,30 @@ function TopPanel() {
             return function () { return clearInterval(interval_1); };
         }
     }, [gameProgress, time]);
+    function handleStyle() {
+        switch (difficulty) {
+            case 'easy':
+                return 'top-panel-container easy';
+            case 'regular':
+                return 'top-panel-container regular';
+            case 'hard':
+                return 'top-panel-container hard';
+        }
+    }
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
-        react_1["default"].createElement("div", { "data-testid": 'topPanel' },
+        react_1["default"].createElement("div", { "data-testid": 'topPanel', className: handleStyle() },
             react_1["default"].createElement(FlagCounter, null),
             react_1["default"].createElement(Avatar, { gameProgress: gameProgress }),
-            react_1["default"].createElement("div", null,
-                "Timer: ",
+            react_1["default"].createElement("div", { className: 'timer-container' },
+                "Time Played: ",
                 react_1["default"].createElement("span", { "data-testid": 'timer' }, time)))));
 }
 exports["default"] = TopPanel;
 function FlagCounter() {
     var _a = contexts_1.useGameContext(), flags = _a.flags, numberOfMines = _a.numberOfMines;
-    return (react_1["default"].createElement(react_1["default"].Fragment, null, numberOfMines && react_1["default"].createElement("span", { "data-testid": "flag-counter" }, numberOfMines - flags)));
+    return (react_1["default"].createElement("div", { className: 'flag-counter-container' },
+        react_1["default"].createElement("span", null, "Mines Left:"),
+        numberOfMines && react_1["default"].createElement("span", { "data-testid": "flag-counter" }, numberOfMines - flags)));
 }
 function Avatar(_a) {
     var gameProgress = _a.gameProgress;
@@ -52,6 +64,6 @@ function Avatar(_a) {
                 break;
         }
     }
-    return (react_1["default"].createElement(react_1["default"].Fragment, null,
+    return (react_1["default"].createElement("div", { className: 'avatar-container' },
         react_1["default"].createElement("img", { "data-testid": "avatar", id: "avatar", src: avatarUrl, alt: "" })));
 }

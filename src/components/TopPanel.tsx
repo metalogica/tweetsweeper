@@ -4,7 +4,7 @@ import { useGameContext } from '../contexts'
 import './TopPanel.scss'
 
 export default function TopPanel() {
-  const { gameProgress } = useGameContext()
+  const { gameProgress, difficulty } = useGameContext()
   const [time, setTime] = React.useState(0)
 
   // countdown timer logic
@@ -17,13 +17,24 @@ export default function TopPanel() {
       return () => clearInterval(interval)
     }
   }, [gameProgress, time])
+
+  function handleStyle() {
+    switch(difficulty) {
+      case 'easy':
+        return 'top-panel-container easy'
+      case 'regular':
+        return 'top-panel-container regular'
+      case 'hard':
+        return 'top-panel-container hard'
+    }
+  }
   
   return (
     <>
-      <div data-testid='topPanel'>
+      <div data-testid='topPanel' className={handleStyle()}>
         <FlagCounter/>
         <Avatar gameProgress={gameProgress}/>
-        <div>Timer: <span data-testid='timer'>{time}</span></div>
+        <div className='timer-container'>Time Played: <span data-testid='timer'>{time}</span></div>
       </div>
     </>
   )
@@ -33,9 +44,10 @@ function FlagCounter() {
   const { flags, numberOfMines } = useGameContext()
 
   return(
-    <>
+    <div className='flag-counter-container'>
+      <span>Mines Left:</span>
       { numberOfMines && <span data-testid="flag-counter">{numberOfMines - flags}</span> }
-    </>
+    </div>
   )
 }
 
@@ -62,8 +74,8 @@ function Avatar({gameProgress} : { gameProgress: GameProgress}) {
   }
 
   return(
-    <>
+    <div className='avatar-container'>
       <img data-testid="avatar" id="avatar" src={avatarUrl} alt=""/>
-    </>
+    </div>
   )
 }

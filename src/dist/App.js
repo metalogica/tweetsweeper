@@ -45,7 +45,7 @@ function App() {
                 throw new Error('Unable to draw board.');
         }
     }
-    return (react_1["default"].createElement(react_1["default"].Fragment, null,
+    return (react_1["default"].createElement("div", { className: 'app-container' },
         react_1["default"].createElement(contexts_1.GameContext.Provider, { value: {
                 difficulty: difficulty,
                 theme: theme,
@@ -64,11 +64,10 @@ function App() {
                 setNumberOfMines: setNumberOfMines,
                 setCurrentCell: setCurrentCell
             } },
-            react_1["default"].createElement("div", { className: 'app-container' },
-                react_1["default"].createElement(TopPanel_1["default"], null),
-                react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
-                react_1["default"].createElement(Toolbar_1["default"], null),
-                react_1["default"].createElement(ModalCompletion_1["default"], null),
-                react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell))))));
+            react_1["default"].createElement(TopPanel_1["default"], null),
+            react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
+            react_1["default"].createElement(Toolbar_1["default"], null),
+            react_1["default"].createElement(ModalCompletion_1["default"], null),
+            react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell)))));
 }
 exports["default"] = App;
