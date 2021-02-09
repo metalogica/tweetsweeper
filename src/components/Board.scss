@@ -26,15 +26,13 @@
     grid-template-areas: buildGrid(5,5);
   }
   
-  &#regular {
+  &#regular, &#hard {
     width: 25rem;
     height: 25rem;
     grid-template-areas: buildGrid(8,8);
   }
   
   &#hard {
-    width: 35rem;
-    height: 35rem;
     grid-template-areas: buildGrid(12,12);
   }
 }

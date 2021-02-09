@@ -4,6 +4,7 @@
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  background-image: url('./images/bg-windows.jpg');
 }
 
 // deal with probelmatic scrollbar overhang
@@ -12,27 +13,24 @@
 }
 
 .app-container {
-  margin: 5.75rem auto 0;
+  margin: 3.7rem auto 0;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border: 0.5rem outset white;
   background-color: #c2c2c2dc;
-  // background-image: url('./images/bg-windows.jpg')
   
   &.easy {
-    height: 23rem;
+    margin: 8rem auto 0;
     width: 18rem;
+    height: 23rem;
   }
   
-  &.regular {
-    height: 32rem;
+  &.regular, &.hard {
+    margin: 5.5rem auto 0;
     width: 27rem;
-  }
-  
-  &.hard {
-    width: 37rem;
+    height: 32rem;
   }
 }
 

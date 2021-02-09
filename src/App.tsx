@@ -36,33 +36,35 @@ function App() {
   } 
 
   return (
-    <div className={`app-container ${difficulty}`}>
-      <div className={`window-ribbon ${difficulty}`}>Trump Sweeper</div>
-      <GameContext.Provider value={{
-          difficulty,
-          theme,
-          opponent,
-          gameProgress,
-          flags,
-          rightClickHeldDown,
-          boardState, //TO DO: remove boardState b/c it is is redundant
-          numberOfMines,
-          setDifficulty,
-          setTheme,
-          setOpponent,
-          setGameProgress,
-          setFlags,
-          setRightClickHeldDown,
-          setNumberOfMines,
-          setCurrentCell
-        }}>
-        <TopPanel/>
-        <Toolbar/>
-        <Board {...drawBoard(difficulty)}/>
-        <ModalCompletion/>
-        <Tweet {...currentCell}/>
-      </GameContext.Provider>
-    </div>
+    <>
+      <div className={`app-container ${difficulty}`}>
+        <div className={`window-ribbon ${difficulty}`}>Trump Sweeper</div>
+        <GameContext.Provider value={{
+            difficulty,
+            theme,
+            opponent,
+            gameProgress,
+            flags,
+            rightClickHeldDown,
+            boardState, //TO DO: remove boardState b/c it is is redundant
+            numberOfMines,
+            setDifficulty,
+            setTheme,
+            setOpponent,
+            setGameProgress,
+            setFlags,
+            setRightClickHeldDown,
+            setNumberOfMines,
+            setCurrentCell
+          }}>
+          <TopPanel/>
+          <Toolbar/>
+          <Board {...drawBoard(difficulty)}/>
+          <ModalCompletion/>
+        </GameContext.Provider>
+      </div>
+      <Tweet {...currentCell}/>
+    </>
   )
 }
 

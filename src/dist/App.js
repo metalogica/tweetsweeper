@@ -45,30 +45,31 @@ function App() {
                 throw new Error('Unable to draw board.');
         }
     }
-    return (react_1["default"].createElement("div", { className: "app-container " + difficulty },
-        react_1["default"].createElement("div", { className: "window-ribbon " + difficulty }, "Trump Sweeper"),
-        react_1["default"].createElement(contexts_1.GameContext.Provider, { value: {
-                difficulty: difficulty,
-                theme: theme,
-                opponent: opponent,
-                gameProgress: gameProgress,
-                flags: flags,
-                rightClickHeldDown: rightClickHeldDown,
-                boardState: boardState,
-                numberOfMines: numberOfMines,
-                setDifficulty: setDifficulty,
-                setTheme: setTheme,
-                setOpponent: setOpponent,
-                setGameProgress: setGameProgress,
-                setFlags: setFlags,
-                setRightClickHeldDown: setRightClickHeldDown,
-                setNumberOfMines: setNumberOfMines,
-                setCurrentCell: setCurrentCell
-            } },
-            react_1["default"].createElement(TopPanel_1["default"], null),
-            react_1["default"].createElement(Toolbar_1["default"], null),
-            react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
-            react_1["default"].createElement(ModalCompletion_1["default"], null),
-            react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell)))));
+    return (react_1["default"].createElement(react_1["default"].Fragment, null,
+        react_1["default"].createElement("div", { className: "app-container " + difficulty },
+            react_1["default"].createElement("div", { className: "window-ribbon " + difficulty }, "Trump Sweeper"),
+            react_1["default"].createElement(contexts_1.GameContext.Provider, { value: {
+                    difficulty: difficulty,
+                    theme: theme,
+                    opponent: opponent,
+                    gameProgress: gameProgress,
+                    flags: flags,
+                    rightClickHeldDown: rightClickHeldDown,
+                    boardState: boardState,
+                    numberOfMines: numberOfMines,
+                    setDifficulty: setDifficulty,
+                    setTheme: setTheme,
+                    setOpponent: setOpponent,
+                    setGameProgress: setGameProgress,
+                    setFlags: setFlags,
+                    setRightClickHeldDown: setRightClickHeldDown,
+                    setNumberOfMines: setNumberOfMines,
+                    setCurrentCell: setCurrentCell
+                } },
+                react_1["default"].createElement(TopPanel_1["default"], null),
+                react_1["default"].createElement(Toolbar_1["default"], null),
+                react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
+                react_1["default"].createElement(ModalCompletion_1["default"], null))),
+        react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell))));
 }
 exports["default"] = App;

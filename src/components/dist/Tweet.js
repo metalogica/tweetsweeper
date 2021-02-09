@@ -1,26 +1,23 @@
 "use strict";
 exports.__esModule = true;
 require("./Tweet.scss");
-function Tweet(_a) {
+var Tweet = function (_a) {
     var clicked = _a.clicked, tweet = _a.tweet;
-    if (tweet) {
-        var date = tweet.date, content = tweet.content, lie = tweet.lie, source = tweet.source;
-        return (React.createElement(React.Fragment, null,
-            React.createElement("div", { "data-testid": 'tweet-panel', className: 'tweet-container' },
-                React.createElement("p", { "data-testid": 'tweet-panel-date', className: 'date' }, date),
-                React.createElement("p", { "data-testid": 'tweet-panel-content', className: 'content' }, content),
-                clicked && (React.createElement(React.Fragment, null,
+    return (React.createElement("div", { className: 'tweet-container', "data-testid": 'tweet-panel' },
+        React.createElement("span", { className: 'tweet-logo' }),
+        React.createElement("div", { className: 'tweet-content' },
+            React.createElement("span", { className: 'tweet-help-dialogue' }, "Help to play here"),
+            tweet && (React.createElement("div", { className: 'tweet-revealed-content' },
+                React.createElement("p", { "data-testid": 'tweet-panel-date', className: 'date' }, tweet.date),
+                React.createElement("p", { "data-testid": 'tweet-panel-content', className: 'content' }, tweet.content),
+                clicked && (React.createElement("div", { className: 'tweet-hidden-content' },
                     React.createElement("p", null,
                         "Status : ",
-                        lie ? 'Lie!' : 'True',
+                        tweet.lie ? 'Lie!' : 'True',
                         " "),
                     React.createElement("p", null,
                         "Source : ",
-                        source,
-                        " "))))));
-    }
-    else {
-        return (React.createElement(React.Fragment, null));
-    }
-}
+                        tweet.source,
+                        " "))))))));
+};
 exports["default"] = Tweet;

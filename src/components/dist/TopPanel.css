@@ -9,11 +9,8 @@
 .top-panel-container.easy {
   width: 16rem;
 }
-.top-panel-container.regular {
+.top-panel-container.regular, .top-panel-container.hard {
   width: 25rem;
-}
-.top-panel-container.hard {
-  width: 35rem;
 }
 
 .flag-counter-container {

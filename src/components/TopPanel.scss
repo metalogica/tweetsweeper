@@ -10,12 +10,8 @@
     width: 16rem;
   }
   
-  &.regular {
+  &.regular, &.hard {
     width: 25rem;
-  }
-  
-  &.hard {
-    width: 35rem;
   }
 }
 

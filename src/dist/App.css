@@ -3,6 +3,7 @@
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  background-image: url("./images/bg-windows.jpg");
 }
 
 *, *:before, *:after {
@@ -10,7 +11,7 @@
 }
 
 .app-container {
-  margin: 5.75rem auto 0;
+  margin: 3.7rem auto 0;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,15 +20,14 @@
   background-color: #c2c2c2dc;
 }
 .app-container.easy {
-  height: 23rem;
+  margin: 8rem auto 0;
   width: 18rem;
+  height: 23rem;
 }
-.app-container.regular {
-  height: 32rem;
+.app-container.regular, .app-container.hard {
+  margin: 5.5rem auto 0;
   width: 27rem;
-}
-.app-container.hard {
-  width: 37rem;
+  height: 32rem;
 }
 
 .window-ribbon {
