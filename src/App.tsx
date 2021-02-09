@@ -38,7 +38,7 @@ function App() {
   return (
     <>
       <div className={`app-container ${difficulty}`}>
-        <div className={`window-ribbon ${difficulty}`}>Trump Sweeper</div>
+        <div className={`window-ribbon ${difficulty}`}>Tweet Sweeper</div>
         <GameContext.Provider value={{
             difficulty,
             theme,

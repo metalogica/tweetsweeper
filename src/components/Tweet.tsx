@@ -1,23 +1,33 @@
 import { CellState } from '../globals'
 import './Tweet.scss'
 
+const helpText = `
+The Trump Era has ended but his Tweets still wreck havoc in a post-truth world.\n
+Be a hero and de-contaminate the falsehoods that pollute contemporary political discourse.\n
+Simply right-click on the cells you think contain explosive lies.\n
+Click on the Start menu below for further options.
+`
+
 const Tweet = ({ clicked, tweet }: CellState) => (
   <div className='tweet-container' data-testid='tweet-panel'>
+    <span className='tweet-ribbon'>{tweet ? 'Tweet Panel' : 'Help'}</span>
     <span className='tweet-logo'></span>
     <div className='tweet-content'>
-      <span className='tweet-help-dialogue'>Help to play here</span>
+      {
+        !tweet && <div className='tweet-help-dialogue'>{helpText}</div>
+      }
       { 
         tweet && (
-          <div className='tweet-revealed-content'>
-            <p data-testid='tweet-panel-date' className='date'>{tweet.date}</p>
-            <p data-testid='tweet-panel-content' className='content'>{tweet.content}</p>  
+          <>
+            <span className='date' data-testid='tweet-panel-date'>{tweet.date}</span>
+            <p className='content' data-testid='tweet-panel-content' >{tweet.content}</p>  
             { clicked && (
-              <div className='tweet-hidden-content'>
-                <p>Status : {tweet.lie ? 'Lie!' : 'True'} </p>
-                <p>Source : {tweet.source} </p>
-              </div>
+              <>
+                <span>Status: <span className={tweet.lie ? 'lie' : 'truth'}>{tweet.lie ? 'Lie!' : 'True'}</span></span>
+                {/* <p className='source' >Source : {tweet.source} </p> */}
+              </>
             )}
-          </div>
+          </>
         )}
     </div>
   </div>

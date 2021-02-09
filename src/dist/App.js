@@ -47,7 +47,7 @@ function App() {
     }
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: "app-container " + difficulty },
-            react_1["default"].createElement("div", { className: "window-ribbon " + difficulty }, "Trump Sweeper"),
+            react_1["default"].createElement("div", { className: "window-ribbon " + difficulty }, "Tweet Sweeper"),
             react_1["default"].createElement(contexts_1.GameContext.Provider, { value: {
                     difficulty: difficulty,
                     theme: theme,

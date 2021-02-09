@@ -1,5 +1,7 @@
 .tweet-container {
-  border: 1px solid black;
+  border: 0.5rem outset white;
+  background-color: #c2c2c2dc;
+
   width: 30rem;
   height: 8rem;
 
@@ -7,7 +9,9 @@
   flex-direction: row;
   justify-content: space-between;
 
-  margin: 3% auto 0;
+  position: relative;
+
+  margin: 5% auto 0;
 
   .tweet-logo {
     width: 4.75rem;
@@ -15,30 +19,44 @@
     padding: 0;
     
     align-self: center;
+    margin-left: 1rem;
   
     background-image: url('../images/twitter.png');
     background-size: 100%;
     background-repeat: no-repeat;
-
-    border: 1px solid red;
   }
 
   .tweet-content {
     width: 80%;
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 .65rem 0 .65rem;
     
     .tweet-help-dialogue {
-      border: 1px solid blue;
+      padding: .65rem 0 0 .65rem;
     }
-  
-    .tweet-revealed-content {
-      border: 1px solid green;
+
+    .lie {
+      color: red;
     }
-  
-    .tweet-hidden-content {
-      border: 1px solid pink;
+
+    .truth {
+      color: green;
     }
   }
-
 }
 
+.tweet-ribbon {
+  position: absolute;
+  top: -2.45rem;
+  left: -0.5rem;
+  width: 103.55%;
+
+  height: 1.95rem;
+  padding: 0.3rem 0 0 0.5rem;
+
+  background-image: linear-gradient(180deg, blue, #0e038c);
+  color: white;
+}

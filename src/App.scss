@@ -36,21 +36,22 @@
 
 .window-ribbon {
   padding: 0.3rem 0 0 0.5rem;
-  top: -2.55rem;
+  top: -2.45rem;
+  left: -0.5rem;
   height: 1.95rem;
   position: absolute;
   background-image: linear-gradient(180deg, blue, #0e038c);
   color: white;
 
   &.easy {
-    width: 102.95%;
+    width: 105.85%;
   }
   
   &.regular {
-    width: 101.75%;
+    width: 103.85%;
   }
   
   &.hard {
-    width: 101.35%;
+    width: 103.85%;
   }
 }
