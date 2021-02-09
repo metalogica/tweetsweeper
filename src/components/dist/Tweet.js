@@ -2,7 +2,7 @@
 exports.__esModule = true;
 require("./Tweet.scss");
 var helpText = "\nThe Trump Era has ended but his Tweets still wreck havoc in a post-truth world.\n\nBe a hero and de-contaminate the falsehoods that pollute contemporary political discourse.\n\nSimply right-click on the cells you think contain explosive lies.\n\nClick on the Start menu below for further options.\n";
-var formatTweetText = function (tweetContent) { return "\n  " + tweetContent.slice(0, 210) + (tweetContent.length > 210 ? '...' : '') + "\n"; };
+var formatTweetText = function (tweetContent) { return "\n  " + tweetContent.slice(0, 200) + (tweetContent.length > 200 ? '...' : '') + "\n"; };
 var Tweet = function (_a) {
     var clicked = _a.clicked, tweet = _a.tweet;
     return (React.createElement("div", { className: 'tweet-container', "data-testid": 'tweet-panel' },
