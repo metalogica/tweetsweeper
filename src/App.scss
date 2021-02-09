@@ -19,20 +19,20 @@
   justify-content: center;
   border: 0.5rem outset white;
   background-color: #c2c2c2dc;
-  
   // background-image: url('./images/bg-windows.jpg')
+  
   &.easy {
-    height: 24rem;
-    width: 19rem;
+    height: 23rem;
+    width: 18rem;
   }
   
   &.regular {
-    height: 37rem;
-    width: 32rem;
+    height: 32rem;
+    width: 27rem;
   }
   
   &.hard {
-    width: 53rem;
+    width: 37rem;
   }
 }
 

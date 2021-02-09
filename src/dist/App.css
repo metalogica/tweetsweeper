@@ -19,13 +19,13 @@
   background-color: #c2c2c2dc;
 }
 .app-container.easy {
-  height: 24rem;
-  width: 19rem;
+  height: 23rem;
+  width: 18rem;
 }
 .app-container.regular {
-  height: 37rem;
-  width: 32rem;
+  height: 32rem;
+  width: 27rem;
 }
 .app-container.hard {
-  width: 53rem;
+  width: 37rem;
 }
