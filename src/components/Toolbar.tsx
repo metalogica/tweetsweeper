@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { GameOptions, useGameContext, Difficulty, Theme, Opponent } from '../contexts'
 import { GameProgress, NumberOfMines } from '../globals'
+import './Toolbar.scss'
 
 function Toolbar(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)

@@ -20,7 +20,7 @@
   width: 16rem;
   height: 16rem;
   margin: 0 auto;
-  border: 0.5rem ridge #DCDCDC;
+  border: 0.5rem inset white;
 
   &#easy, &#test {
     grid-template-areas: buildGrid(5,5);

@@ -1,21 +1,18 @@
 .top-panel-container {
-  margin: 7.5% auto 0;
-  border: 1px solid red;
+  margin: 0 auto;
+  border: 0.5rem inset white;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-
-.easy {
-  width: 15rem;
+.top-panel-container.easy {
+  width: 16rem;
 }
-
-.regular {
+.top-panel-container.regular {
   width: 30rem;
 }
-
-.hard {
+.top-panel-container.hard {
   width: 50rem;
 }
 

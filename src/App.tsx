@@ -19,7 +19,7 @@ function App() {
   const [boardState] = React.useState(Global.easyBoardState)
   const [numberOfMines, setNumberOfMines] = React.useState(Global.NumberOfMines.Easy)
   const [currentCell, setCurrentCell] = React.useState(Global.emptyCell)
-
+  
   function drawBoard(difficulty: string) {
     switch(difficulty) {
       case 'easy':
@@ -28,15 +28,15 @@ function App() {
         return Global.regularBoardState
       case 'hard':
         return Global.hardBoardState
-      case 'test':
+        case 'test':
         return Global.testBoardState
       default:
         throw new Error('Unable to draw board.')
-    }
-  }
+      }
+  } 
 
   return (
-    <div className='app-container'>
+    <div className={`app-container ${difficulty}`}>
       <GameContext.Provider value={{
           difficulty,
           theme,
@@ -55,14 +55,13 @@ function App() {
           setNumberOfMines,
           setCurrentCell
         }}>
-        {/* <BoardContext.Provider> */}
-          <TopPanel/>
-          <Board {...drawBoard(difficulty)}/>
-          <Toolbar />
-          <ModalCompletion/>
-          <Tweet {...currentCell}/>
+        <TopPanel/>
+        <Toolbar/>
+        <Board {...drawBoard(difficulty)}/>
+        <ModalCompletion/>
+        <Tweet {...currentCell}/>
       </GameContext.Provider>
-      </div>
+    </div>
   )
 }
 

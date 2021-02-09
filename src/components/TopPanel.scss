@@ -1,24 +1,24 @@
 .top-panel-container {
-  margin: 7.5% auto 0;
-  border: 1px solid red;
+  margin: 0 auto;
+  border: 0.5rem inset white;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  
+  &.easy {
+    width: 16rem;
+  }
+  
+  &.regular {
+    width: 30rem;
+  }
+  
+  &.hard {
+    width: 50rem;
+  }
 }
 
-// used to size <TopPanel/> correctly in relation to <Board/>
-.easy {
-  width: 15rem;
-}
-
-.regular {
-  width: 30rem;
-}
-
-.hard {
-  width: 50rem;
-}
 
 .flag-counter-container {
   position: absolute;
