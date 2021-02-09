@@ -57,18 +57,18 @@ function Avatar({gameProgress} : { gameProgress: GameProgress}) {
 
   // avatar changes if user holds down left mouse button
   if (rightClickHeldDown) {
-    avatarUrl = "/images/retro/avatar/wow.png"
+    avatarUrl = "/images/retro/avatar/wow-transparent.png"
   } else {
     // avatar changes according to game state
     switch(gameProgress) {
       case GameProgress.Won:
-        avatarUrl = "/images/retro/avatar/sad.png"
+        avatarUrl = "/images/retro/avatar/sad-transparent.png"
         break
         case GameProgress.Lost:
-        avatarUrl = "/images/retro/avatar/happy.png"
+        avatarUrl = "/images/retro/avatar/happy-transparent.png"
         break
       default:
-        avatarUrl = "/images/retro/avatar/angry.png"
+        avatarUrl = "/images/retro/avatar/angry-transparent.png"
         break
     }
   }
