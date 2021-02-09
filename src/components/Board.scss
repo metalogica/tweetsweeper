@@ -17,10 +17,10 @@
 
 .board-container {
   display: grid;
-  width: 15rem;
-  height: 15rem;
-  gap: 0;
+  width: 16rem;
+  height: 16rem;
   margin: 0 auto;
+  border: 0.5rem ridge #DCDCDC;
 
   &#easy, &#test {
     grid-template-areas: buildGrid(5,5);
