@@ -1,5 +1,5 @@
 #root {
-  font-family: --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'w95fa', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   // padding: 0;
   box-sizing: border-box;
   width: 100vw;
@@ -12,7 +12,7 @@
 }
 
 .app-container {
-  margin: 0 auto;
+  margin: 5.75rem auto 0;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -36,5 +36,23 @@
   }
 }
 
+.window-ribbon {
+  padding: 0.3rem 0 0 0.5rem;
+  top: -2.55rem;
+  height: 1.95rem;
+  position: absolute;
+  background-image: linear-gradient(180deg, blue, #0e038c);
+  color: white;
 
-
+  &.easy {
+    width: 102.95%;
+  }
+  
+  &.regular {
+    width: 101.75%;
+  }
+  
+  &.hard {
+    width: 101.35%;
+  }
+}
