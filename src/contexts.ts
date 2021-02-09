@@ -21,8 +21,8 @@ export enum Opponent {
 
 export enum Flags {
   Easy = 3,
-  Regular = 5,
-  Hard = 8,
+  Regular = 12,
+  Hard = 40,
   Test = 2,
 }
 

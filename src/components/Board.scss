@@ -29,13 +29,13 @@
   &#regular {
     width: 30rem;
     height: 30rem;
-    grid-template-areas: buildGrid(10,10);
+    grid-template-areas: buildGrid(8,8);
   }
   
   &#hard {
     width: 50rem;
     height: 50rem;
-    grid-template-areas: buildGrid(20,20);
+    grid-template-areas: buildGrid(12,12);
   }
 }
 

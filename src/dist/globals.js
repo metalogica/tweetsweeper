@@ -35,15 +35,15 @@ var BoardSize;
 (function (BoardSize) {
     BoardSize[BoardSize["Test"] = 5] = "Test";
     BoardSize[BoardSize["Easy"] = 5] = "Easy";
-    BoardSize[BoardSize["Regular"] = 10] = "Regular";
-    BoardSize[BoardSize["Hard"] = 20] = "Hard";
+    BoardSize[BoardSize["Regular"] = 8] = "Regular";
+    BoardSize[BoardSize["Hard"] = 12] = "Hard";
 })(BoardSize = exports.BoardSize || (exports.BoardSize = {}));
 var NumberOfMines;
 (function (NumberOfMines) {
     NumberOfMines[NumberOfMines["Test"] = 2] = "Test";
     NumberOfMines[NumberOfMines["Easy"] = 3] = "Easy";
     NumberOfMines[NumberOfMines["Regular"] = 12] = "Regular";
-    NumberOfMines[NumberOfMines["Hard"] = 188] = "Hard";
+    NumberOfMines[NumberOfMines["Hard"] = 40] = "Hard";
 })(NumberOfMines = exports.NumberOfMines || (exports.NumberOfMines = {}));
 // TODO: Consider refactoring these interface so you have one interface such that:
 // { 

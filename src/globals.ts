@@ -71,15 +71,15 @@ export enum GameProgress {
 export enum BoardSize {
   Test = 5,
   Easy = 5,
-  Regular = 10,
-  Hard = 20,
+  Regular = 8,
+  Hard = 12,
 }
 
 export enum NumberOfMines {
   Test = 2,
   Easy = 3,
   Regular = 12,
-  Hard = 188,
+  Hard = 40,
 }
 
 export interface BoardState {

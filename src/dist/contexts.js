@@ -24,8 +24,8 @@ var Opponent;
 var Flags;
 (function (Flags) {
     Flags[Flags["Easy"] = 3] = "Easy";
-    Flags[Flags["Regular"] = 5] = "Regular";
-    Flags[Flags["Hard"] = 8] = "Hard";
+    Flags[Flags["Regular"] = 12] = "Regular";
+    Flags[Flags["Hard"] = 40] = "Hard";
     Flags[Flags["Test"] = 2] = "Test";
 })(Flags = exports.Flags || (exports.Flags = {}));
 //default game context
