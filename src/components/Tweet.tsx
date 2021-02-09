@@ -8,6 +8,10 @@ Simply right-click on the cells you think contain explosive lies.\n
 Click on the Start menu below for further options.
 `
 
+const formatTweetText = (tweetContent: string) => `
+  ${tweetContent.slice(0,200)}${tweetContent.length > 200 ? '...' : ''}
+`
+
 const Tweet = ({ clicked, tweet }: CellState) => (
   <div className='tweet-container' data-testid='tweet-panel'>
     <span className='tweet-ribbon'>{tweet ? 'Tweet Panel' : 'Help'}</span>
@@ -20,7 +24,7 @@ const Tweet = ({ clicked, tweet }: CellState) => (
         tweet && (
           <>
             <span className='date' data-testid='tweet-panel-date'>{tweet.date}</span>
-            <p className='content' data-testid='tweet-panel-content' >{tweet.content}</p>  
+            <p className='content' data-testid='tweet-panel-content' >{formatTweetText(tweet.content)}</p>  
             { clicked && (
               <>
                 <span>Status: <span className={tweet.lie ? 'lie' : 'truth'}>{tweet.lie ? 'Lie!' : 'True'}</span></span>
