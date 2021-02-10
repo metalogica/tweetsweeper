@@ -16,7 +16,7 @@ var Tweet = function (_a) {
             tweetRibbon(),
             React.createElement("div", { className: 'tweet-content' },
                 // Load help text
-                !tweet && (gameProgress === 'inProgress' || gameProgress === 'newGame') && React.createElement("div", { className: 'tweet-help-dialogue' }, helpText),
+                !tweet && (gameProgress === 'inProgress' || gameProgress === 'newGame' || gameProgress === 'beginNewGame') && React.createElement("div", { className: 'tweet-help-dialogue' }, helpText),
                 // load game completion and restart message
                 !tweet && (gameProgress === 'won' || gameProgress === 'lost') && React.createElement("div", { className: 'tweet-help-dialogue' },
                     React.createElement(ModalCompletion_1["default"], null)),

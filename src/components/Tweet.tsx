@@ -31,7 +31,7 @@ const Tweet = ({ clicked, tweet } : CellState) => {
         <div className='tweet-content'>
           {
             // Load help text
-            !tweet && (gameProgress === 'inProgress' || gameProgress === 'newGame') && <div className='tweet-help-dialogue'>{helpText}</div>
+            !tweet && (gameProgress === 'inProgress' || gameProgress === 'newGame' || gameProgress === 'beginNewGame') && <div className='tweet-help-dialogue'>{helpText}</div>
           }
           {
             // load game completion and restart message
