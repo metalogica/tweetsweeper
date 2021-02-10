@@ -1,0 +1,63 @@
+.tweet-wrapper {
+  width: 100vw;
+  height: 18rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.tweet-container {
+  border: 0.5rem outset white;
+  background-color: #c2c2c2dc;
+  width: 30rem;
+  height: 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  margin: 13% auto 0;
+}
+.tweet-container .tweet-logo, .tweet-container .help-logo {
+  width: 4.75rem;
+  height: 4.75rem;
+  padding: 0;
+  align-self: center;
+  margin-left: 1rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.tweet-container .tweet-logo {
+  background-image: url("../images/twitter.png");
+}
+.tweet-container .help-logo {
+  background-image: url("../images/paperclip-man.png");
+}
+.tweet-container .tweet-content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 0.65rem 0 0.65rem;
+}
+.tweet-container .tweet-content .tweet-help-dialogue {
+  padding: 0.25rem 0 0 0.65rem;
+}
+.tweet-container .tweet-content .lie {
+  color: red;
+}
+.tweet-container .tweet-content .truth {
+  color: green;
+}
+
+.tweet-ribbon {
+  position: absolute;
+  top: -2.45rem;
+  left: -0.5rem;
+  width: 103.55%;
+  height: 1.95rem;
+  padding: 0.3rem 0 0 0.5rem;
+  background-image: linear-gradient(180deg, blue, #0e038c);
+  color: white;
+}
