@@ -1,0 +1,33 @@
+.start-menu-container {
+  width: 100vw;
+  height: 2rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding:0;
+  background-color: #DCDCDC;
+
+  .start-menu-options-container {
+    width: 10rem;
+    height: 15rem;
+    
+    position: fixed;
+    left: 0;
+    bottom: 2rem;
+
+    background-color: #DCDCDC;
+    border-right: 0.25rem ridge white;
+  }
+}
+
+#start-menu-icon {
+  width: 5rem;
+  height: 100%;
+  padding: 0;
+
+  position: absolute;
+  left: 0;
+
+  background-image: url('../images/start-menu.png');
+  background-size: 100%;
+}

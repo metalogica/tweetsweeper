@@ -1,21 +1,28 @@
 import { useState } from 'react'
 import { GameOptions, useGameContext, Difficulty, Theme, Opponent } from '../contexts'
 import { GameProgress, NumberOfMines } from '../globals'
-import './Toolbar.scss'
+// import './Toolbar.scss'
+import './StartMenu.scss'
 
 function Toolbar(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)
+  console.log(revealed)
 
   return (
-    <div className='toolbar-container' id={revealed ? 'revealed' : ''}>
-      <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} 
+    <div className='start-menu-container' id={revealed ? 'revealed' : ''}>
+      <span id='start-menu-icon'
             onClick={() => setRevealed(!revealed)}
             data-testid='toolbar-toggler'
       >
       </span>
+      {/* <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} 
+            onClick={() => setRevealed(!revealed)}
+            data-testid='toolbar-toggler'
+      >
+      </span> */}
       {
         revealed && (
-          <>
+          <div className='start-menu-options-container'>
             <h4>Options</h4>
             <hr/>
             {
@@ -23,7 +30,7 @@ function Toolbar(props: any) {
                 <Toggler key={i} setting={setting} options={options} />
               ))
             }
-          </>
+          </div>
         )
       }
     </div>

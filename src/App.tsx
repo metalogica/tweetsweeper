@@ -5,6 +5,7 @@ import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import TopPanel from './components/TopPanel'
 import Tweet from './components/Tweet'
+import StartMenu from './components/StartMenu'
 import './App.scss';
 
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
@@ -62,6 +63,7 @@ function App() {
           <Tweet {...currentCell}/> 
         </GameContext.Provider>
       </div>
+      {/* <StartMenu/> */}
     </>
   )
 }

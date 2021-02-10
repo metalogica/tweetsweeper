@@ -3,12 +3,14 @@ exports.__esModule = true;
 var react_1 = require("react");
 var contexts_1 = require("../contexts");
 var globals_1 = require("../globals");
-require("./Toolbar.scss");
+// import './Toolbar.scss'
+require("./StartMenu.scss");
 function Toolbar(props) {
     var _a = react_1.useState(false), revealed = _a[0], setRevealed = _a[1];
-    return (React.createElement("div", { className: 'toolbar-container', id: revealed ? 'revealed' : '' },
-        React.createElement("span", { className: revealed ? 'toolbar-icon revealed' : 'toolbar-icon', onClick: function () { return setRevealed(!revealed); }, "data-testid": 'toolbar-toggler' }),
-        revealed && (React.createElement(React.Fragment, null,
+    console.log(revealed);
+    return (React.createElement("div", { className: 'start-menu-container', id: revealed ? 'revealed' : '' },
+        React.createElement("span", { id: 'start-menu-icon', onClick: function () { return setRevealed(!revealed); }, "data-testid": 'toolbar-toggler' }),
+        revealed && (React.createElement("div", { className: 'start-menu-options-container' },
             React.createElement("h4", null, "Options"),
             React.createElement("hr", null),
             contexts_1.GameOptions && Object.entries(contexts_1.GameOptions).map(function (_a, i) {
