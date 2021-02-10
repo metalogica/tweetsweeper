@@ -154,7 +154,7 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
   return (
     <>
       <TopPanel/>
-      <div className={`window-ribbon ${difficulty}`}>Tweet Sweeper</div>
+      <div className={`window-ribbon ${difficulty}`}>Tweet Sweeper (Prototype v.1.0)</div>
       <div data-testid='board' className='board-container' id={difficulty}>
         { 
           grid.map((column: any) => {
