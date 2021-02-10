@@ -6,7 +6,7 @@ var globals_1 = require("../globals");
 require("./Toolbar.scss");
 function Toolbar(props) {
     var _a = react_1.useState(false), revealed = _a[0], setRevealed = _a[1];
-    return (React.createElement("div", { className: 'toolbar-container' },
+    return (React.createElement("div", { className: 'toolbar-container', id: revealed ? 'revealed' : '' },
         React.createElement("span", { className: revealed ? 'toolbar-icon revealed' : 'toolbar-icon', onClick: function () { return setRevealed(!revealed); }, "data-testid": 'toolbar-toggler' }),
         revealed && (React.createElement(React.Fragment, null,
             React.createElement("h4", null, "Options"),

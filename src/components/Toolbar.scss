@@ -1,19 +1,21 @@
 .toolbar-container {
-  border: 1px solid orange;
   position: fixed;
   right: 0;
   top: 0;
   width: 10rem;
   height: 100%;
 
-  .toolbar-icon {
-    border: 1px solid red;
+  &#revealed {
+    background-color: #DCDCDC;
+    border-left: .25rem ridge white;
+  }
 
+  .toolbar-icon {
     position: absolute;
     right: 0;
     top:0;
     display: inline-block;
-    background-image: url('../images/gear-unfilled.svg');
+    background-image: url('../images/gear-filled.svg');
     background-size: cover;
     width: 2rem;
     height: 2rem;
@@ -21,7 +23,6 @@
     transition: transform 0.25s ease-in;
     
     &.revealed {
-      background-image: url('../images/gear-filled.svg');
       transition: opacity 0.25s ease-out;
       transform: rotate(65deg);
       transition: transform 0.25s ease-in;

@@ -7,7 +7,7 @@ function Toolbar(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)
 
   return (
-    <div className='toolbar-container'>
+    <div className='toolbar-container' id={revealed ? 'revealed' : ''}>
       <span className={revealed ? 'toolbar-icon revealed' : 'toolbar-icon'} 
             onClick={() => setRevealed(!revealed)}
             data-testid='toolbar-toggler'
