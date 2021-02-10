@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+var ModalCompletion_1 = require("./ModalCompletion");
 var contexts_1 = require("../contexts");
 require("./Tweet.scss");
 var formatTweetText = function (tweetContent) { return "\n  " + tweetContent.slice(0, 200) + (tweetContent.length > 200 ? '...' : '') + "\n"; };
@@ -14,7 +15,12 @@ var Tweet = function (_a) {
         React.createElement("div", { className: 'tweet-container', "data-testid": 'tweet-panel' },
             tweetRibbon(),
             React.createElement("div", { className: 'tweet-content' },
-                !tweet && React.createElement("div", { className: 'tweet-help-dialogue' }, helpText),
+                // Load help text
+                !tweet && (gameProgress === 'inProgress' || gameProgress === 'newGame') && React.createElement("div", { className: 'tweet-help-dialogue' }, helpText),
+                // load game completion and restart message
+                !tweet && (gameProgress === 'won' || gameProgress === 'lost') && React.createElement("div", { className: 'tweet-help-dialogue' },
+                    React.createElement(ModalCompletion_1["default"], null)),
+                // load tweet content
                 tweet && (React.createElement(React.Fragment, null,
                     React.createElement("span", { className: 'date', "data-testid": 'tweet-panel-date' }, tweet.date),
                     React.createElement("p", { className: 'content', "data-testid": 'tweet-panel-content' }, formatTweetText(tweet.content)),

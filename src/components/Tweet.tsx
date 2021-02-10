@@ -30,9 +30,15 @@ const Tweet = ({ clicked, tweet } : CellState) => {
         {tweetRibbon()}
         <div className='tweet-content'>
           {
-            !tweet && <div className='tweet-help-dialogue'>{helpText}</div>
+            // Load help text
+            !tweet && (gameProgress === 'inProgress' || gameProgress === 'newGame') && <div className='tweet-help-dialogue'>{helpText}</div>
+          }
+          {
+            // load game completion and restart message
+            !tweet && (gameProgress === 'won' || gameProgress === 'lost') && <div className='tweet-help-dialogue'><ModalCompletion/></div>
           }
           { 
+            // load tweet content
             tweet && (
               <>
                 <span className='date' data-testid='tweet-panel-date'>{tweet.date}</span>
