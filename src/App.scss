@@ -1,5 +1,4 @@
 .app-container {
-  margin: 2.5rem auto 0; // dev: 3.7rem
   position: relative;
   display: flex;
   flex-direction: column;
@@ -8,13 +7,13 @@
   background-color: #c2c2c2dc;
   
   &.easy {
-    margin: 8rem auto 0;
+    margin: 4rem auto 0; // dev: 3.7rem
     width: 18rem;
     height: 23rem;
   }
   
   &.regular, &.hard {
-    margin: 5.5rem auto 0;
+    margin: 4rem auto 0; // dev: 3.7rem
     width: 27rem;
     height: 32rem;
   }
