@@ -16,7 +16,7 @@
   flex-direction: row;
   justify-content: space-between;
   position: relative;
-  margin: 13% auto 0;
+  margin: 7.5% auto 0;
 }
 .tweet-container .tweet-logo, .tweet-container .help-logo {
   width: 4.75rem;
