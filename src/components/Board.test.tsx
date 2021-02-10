@@ -44,20 +44,20 @@ describe('buildBoard()', () => {
     expect(renderedBoard.children.length).toEqual(25)
   })
 
-  it('should build a 10x10 grid with 5 mines for an Regular game.', () => {
+  it('should build a 8x8 grid with 5 mines for an Regular game.', () => {
     render(<Board {...regularBoardState}/>)
 
     const renderedBoard = screen.getByTestId('board')
 
-    expect(renderedBoard.children.length).toEqual(100)
+    expect(renderedBoard.children.length).toEqual(64)
   })
 
-  it('should build a 20x20 grid with 10 mines for an Hard game.', () => {
+  it('should build a 12x12 grid with 10 mines for an Hard game.', () => {
     render(<Board {...hardBoardState}/>)
 
     const renderedBoard = screen.getByTestId('board')
 
-    expect(renderedBoard.children.length).toEqual(400)
+    expect(renderedBoard.children.length).toEqual(144)
   })
 })
 

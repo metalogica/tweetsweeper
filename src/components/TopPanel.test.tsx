@@ -2,8 +2,7 @@ import { screen, fireEvent, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import StartMenu from './StartMenu'
 import Board from './Board'
-import Toolbar from './StartMenu'
-import App from '../App'
+import TopPanel from './TopPanel'
 import { testBoardState } from '../globals'
 
 // shared examples
@@ -32,16 +31,16 @@ describe('Basic Functions', () => {
     jest.useFakeTimers();
 
     render(<TopPanel/>)
-    render(<Toolbar/>)
+    render(<StartMenu/>)
   })
 
   describe('Timer', () => {
-    it('should report the time played during the game to the user', () => {
+    xit('should report the time played during the game to the user', () => {
       const timer = screen.getByTestId('timer')
       expect(timer).toBeInTheDocument()
     })
     
-    it('should not start counting if the user has not clicked on a cell, or has not flagged a cell', () => {
+    xit('should not start counting if the user has not clicked on a cell, or has not flagged a cell', () => {
       render(<Board {...testBoardState}/>)
       
       const timer = screen.getByTestId('timer')
@@ -51,7 +50,7 @@ describe('Basic Functions', () => {
       expect(time).toEqual(0)
     })
 
-    it('should start counting if the user clicks on a blank cell', () => {
+    xit('should start counting if the user clicks on a blank cell', () => {
       render(<Board {...testBoardState}/>)
 
       const callback = jest.fn();
@@ -71,7 +70,7 @@ describe('Basic Functions', () => {
       // expect(time).toBeGreaterThan(0)
     })
 
-    it('should reset the counter if the game is restarted', () => {
+    xit('should reset the counter if the game is restarted', () => {
       render(<Board {...testBoardState}/>)
 
       const timer = screen.getByTestId('timer')
@@ -92,7 +91,7 @@ describe('Basic Functions', () => {
       expect(time).toEqual(0)
     })  
 
-    it('should start counting if the user flags a cell', () => {
+    xit('should start counting if the user flags a cell', () => {
       render(<Board {...testBoardState}/>)
 
       const timer = screen.getByTestId('timer')
@@ -110,7 +109,7 @@ describe('Basic Functions', () => {
       }, 1500)
     })
 
-    it('should stop counting if the game ends', () => {
+    xit('should stop counting if the game ends', () => {
       render(<Board {...testBoardState}/>)
 
       const timer = screen.getByTestId('timer')
@@ -129,7 +128,7 @@ describe('Basic Functions', () => {
   })
 
   describe('Avatar', () => {
-    test('it exists', () => {
+    xtest('it exists', () => {
       const avatar = screen.getByTestId('avatar')
 
       expect(avatar).toBeInTheDocument()
@@ -137,12 +136,12 @@ describe('Basic Functions', () => {
   })
 
   describe('Flag Count', () => {
-    it('exists', () => {
+    xit('exists', () => {
       const flagCounter = screen.getByTestId('flag-counter')
       expect(flagCounter).toBeInTheDocument()
     })
 
-    it('should keep track of the current number of flags', () => {
+    xit('should keep track of the current number of flags', () => {
       render(<Board {...testBoardState}/>)
 
       let flags = Number(screen.getByTestId('flag-counter').textContent)
@@ -155,7 +154,7 @@ describe('Basic Functions', () => {
       expect(flags).toEqual(1)
     })
 
-    it('should reset the flag count if the game ends', () => {
+    xit('should reset the flag count if the game ends', () => {
       render(<Board {...testBoardState}/>)
 
       let flags = Number(screen.getByTestId('flag-counter').textContent)

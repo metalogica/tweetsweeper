@@ -5,7 +5,6 @@ import './StartMenu.scss'
 
 export default function StartMenu(props: any) {
   const [revealed, setRevealed] = useState<boolean>(false)
-  console.log(revealed)
 
   return (
     <div className='start-menu-container' id={revealed ? 'revealed' : ''}>

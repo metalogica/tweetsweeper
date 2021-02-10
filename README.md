@@ -3,7 +3,10 @@ Mine Sweeper with a twist. Can you avoid the fake tweets and navigate your way t
 
 Play the prototype here: https://hopeful-jackson-11c0a8.netlify.app
 
+![app-preview](https://res.cloudinary.com/dtmuylvrr/image/upload/v1612988992/Screenshot_2021-02-10_at_15.29.23.png)
+
 ## To-Do
 * Optimize skins to speed up load time.
-* Review test suite.
+* Build clock with skins.
+* Review test suite & build integration test.
 * Port app into Dockerfile with tighter CI.
