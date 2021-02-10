@@ -17,7 +17,6 @@ var Global = require("./globals");
 var Board_1 = require("./components/Board");
 var Toolbar_1 = require("./components/Toolbar");
 var TopPanel_1 = require("./components/TopPanel");
-var ModalCompletion_1 = require("./components/ModalCompletion");
 var Tweet_1 = require("./components/Tweet");
 require("./App.scss");
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
@@ -69,7 +68,6 @@ function App() {
                 react_1["default"].createElement(TopPanel_1["default"], null),
                 react_1["default"].createElement(Toolbar_1["default"], null),
                 react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
-                react_1["default"].createElement(ModalCompletion_1["default"], null))),
-        react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell))));
+                react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell))))));
 }
 exports["default"] = App;

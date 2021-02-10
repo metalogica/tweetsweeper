@@ -4,7 +4,6 @@ import * as Global from './globals'
 import Board from './components/Board'
 import Toolbar from './components/Toolbar'
 import TopPanel from './components/TopPanel'
-import ModalCompletion from './components/ModalCompletion'
 import Tweet from './components/Tweet'
 import './App.scss';
 
@@ -60,10 +59,9 @@ function App() {
           <TopPanel/>
           <Toolbar/>
           <Board {...drawBoard(difficulty)}/>
-          <ModalCompletion/>
+          <Tweet {...currentCell}/> 
         </GameContext.Provider>
       </div>
-      <Tweet {...currentCell}/>
     </>
   )
 }
