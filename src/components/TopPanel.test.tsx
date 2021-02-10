@@ -1,8 +1,8 @@
 import { screen, fireEvent, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import TopPanel from './TopPanel'
+import StartMenu from './StartMenu'
 import Board from './Board'
-import Toolbar from './Toolbar'
+import Toolbar from './StartMenu'
 import App from '../App'
 import { testBoardState } from '../globals'
 

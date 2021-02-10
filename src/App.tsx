@@ -2,7 +2,6 @@ import React from 'react';
 import { GameContext, Difficulty, Theme, Opponent, Flags } from './contexts'
 import * as Global from './globals'
 import Board from './components/Board'
-import Toolbar from './components/Toolbar'
 import TopPanel from './components/TopPanel'
 import Tweet from './components/Tweet'
 import StartMenu from './components/StartMenu'
@@ -58,9 +57,9 @@ function App() {
             setCurrentCell
           }}>
           <TopPanel/>
-          <Toolbar/>
           <Board {...drawBoard(difficulty)}/>
           <Tweet {...currentCell}/> 
+          <StartMenu/>
         </GameContext.Provider>
       </div>
       {/* <StartMenu/> */}

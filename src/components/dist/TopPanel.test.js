@@ -13,9 +13,8 @@ var __assign = (this && this.__assign) || function () {
 exports.__esModule = true;
 var react_1 = require("@testing-library/react");
 require("@testing-library/jest-dom/extend-expect");
-var TopPanel_1 = require("./TopPanel");
 var Board_1 = require("./Board");
-var Toolbar_1 = require("./Toolbar");
+var StartMenu_1 = require("./StartMenu");
 var globals_1 = require("../globals");
 // shared examples
 function toggleNewGameAndDifficulty(difficulty) {
@@ -36,8 +35,8 @@ function assertTimer(callback) {
 describe('Basic Functions', function () {
     beforeEach(function () {
         jest.useFakeTimers();
-        react_1.render(React.createElement(TopPanel_1["default"], null));
-        react_1.render(React.createElement(Toolbar_1["default"], null));
+        react_1.render(React.createElement(TopPanel, null));
+        react_1.render(React.createElement(StartMenu_1["default"], null));
     });
     describe('Timer', function () {
         it('should report the time played during the game to the user', function () {

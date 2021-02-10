@@ -7,7 +7,7 @@ import {
 } from '../globals'
 import Cell from './Cell'
 import Board from './Board'
-import Toolbar from './Toolbar'
+import Toolbar from './StartMenu'
 
 async function flagThreeCellsOnTestBoard() {
   let cell = screen.getByTestId('0-0')
