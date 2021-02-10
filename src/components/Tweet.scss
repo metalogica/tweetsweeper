@@ -4,7 +4,6 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  border: 1px solid red;
 }
 
 .tweet-container {
@@ -21,7 +20,7 @@
   position: relative;
   margin: 5% auto 0;
 
-  .tweet-logo {
+  .tweet-logo, .help-logo {
     width: 4.75rem;
     height: 4.75rem;
     padding: 0;
@@ -29,9 +28,16 @@
     align-self: center;
     margin-left: 1rem;
   
-    background-image: url('../images/twitter.png');
     background-size: 100%;
     background-repeat: no-repeat;
+  }
+  
+  .tweet-logo {
+    background-image: url('../images/twitter.png');
+  }
+
+  .help-logo {
+    background-image: url('../images/paperclip-man.png');
   }
 
   .tweet-content {
