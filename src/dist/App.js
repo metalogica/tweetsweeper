@@ -15,7 +15,6 @@ var react_1 = require("react");
 var contexts_1 = require("./contexts");
 var Global = require("./globals");
 var Board_1 = require("./components/Board");
-var TopPanel_1 = require("./components/TopPanel");
 var Tweet_1 = require("./components/Tweet");
 var StartMenu_1 = require("./components/StartMenu");
 var DesktopIcons_1 = require("./components/DesktopIcons");
@@ -47,7 +46,6 @@ function App() {
     }
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: "app-container " + difficulty },
-            react_1["default"].createElement("div", { className: "window-ribbon " + difficulty }, "Tweet Sweeper"),
             react_1["default"].createElement(DesktopIcons_1["default"], null),
             react_1["default"].createElement(contexts_1.GameContext.Provider, { value: {
                     difficulty: difficulty,
@@ -67,7 +65,6 @@ function App() {
                     setNumberOfMines: setNumberOfMines,
                     setCurrentCell: setCurrentCell
                 } },
-                react_1["default"].createElement(TopPanel_1["default"], null),
                 react_1["default"].createElement(Board_1["default"], __assign({}, drawBoard(difficulty))),
                 react_1["default"].createElement(Tweet_1["default"], __assign({}, currentCell)),
                 react_1["default"].createElement(StartMenu_1["default"], null)))));

@@ -6,7 +6,7 @@ interface IconProps {
 }
 
 const Icon = ({name, url} : IconProps) => (
-  <a href={url} target='_blank' className='icon' id={name}>
+  <a href={url} target='_blank' className='icon' id={name} rel="noreferrer">
     <p className='icon-label'>{name}</p>
   </a>
 )

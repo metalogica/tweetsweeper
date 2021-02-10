@@ -2,14 +2,13 @@ import React from 'react';
 import { GameContext, Difficulty, Theme, Opponent, Flags } from './contexts'
 import * as Global from './globals'
 import Board from './components/Board'
-import TopPanel from './components/TopPanel'
 import Tweet from './components/Tweet'
 import StartMenu from './components/StartMenu'
 import DesktopIcons from './components/DesktopIcons'
 import './App.scss';
 
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
-function App() {
+export default function App() {
   const [difficulty, setDifficulty] = React.useState(Difficulty.Easy)
   const [theme, setTheme] = React.useState(Theme.Retro)
   const [opponent, setOpponent] = React.useState(Opponent.Trump)
@@ -38,7 +37,6 @@ function App() {
   return (
     <>
       <div className={`app-container ${difficulty}`}>
-        <div className={`window-ribbon ${difficulty}`}>Tweet Sweeper</div>
         <DesktopIcons/>
         <GameContext.Provider value={{
             difficulty,
@@ -58,7 +56,6 @@ function App() {
             setNumberOfMines,
             setCurrentCell
           }}>
-          <TopPanel/>
           <Board {...drawBoard(difficulty)}/>
           <Tweet {...currentCell}/> 
           <StartMenu/>
@@ -67,5 +64,3 @@ function App() {
     </>
   )
 }
-
-export default App;

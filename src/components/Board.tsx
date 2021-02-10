@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import './Board.scss'
 import Cell from './Cell'
+import TopPanel from './TopPanel'
 import { useGameContext } from '../contexts'
 import { trueTrumpTweets, falseTrumpTweets } from '../data/tweets'
 import { 
@@ -151,18 +152,22 @@ const Board: React.FC<BoardState> = ({boardSize, numberOfMines, mineMap} : Board
   }
 
   return (
-    <div data-testid='board' className='board-container' id={difficulty}>
-      { 
-        grid.map((column: any) => {
-          return (column.map((cellState: CellState, rowIndex: number) => { 
-            // pass updateBoard() function to each child cell; on game boot up the grid is empty 
-            // and so this function is nil, that is why we assign it here. 
-            cellState.updateBoard = updateBoard
-            return (<Cell key={rowIndex} {...cellState}/>)
-          }))
-        })
-      }
-    </div>
+    <>
+      <TopPanel/>
+      <div className={`window-ribbon ${difficulty}`}>Tweet Sweeper</div>
+      <div data-testid='board' className='board-container' id={difficulty}>
+        { 
+          grid.map((column: any) => {
+            return (column.map((cellState: CellState, rowIndex: number) => { 
+              // pass updateBoard() function to each child cell; on game boot up the grid is empty 
+              // and so this function is nil, that is why we assign it here. 
+              cellState.updateBoard = updateBoard
+              return (<Cell key={rowIndex} {...cellState}/>)
+            }))
+          })
+        }
+      </div>
+    </>
   )
 }
 

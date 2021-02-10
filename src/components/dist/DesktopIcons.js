@@ -3,7 +3,7 @@ exports.__esModule = true;
 require("./DesktopIcons.scss");
 var Icon = function (_a) {
     var name = _a.name, url = _a.url;
-    return (React.createElement("a", { href: url, target: '_blank', className: 'icon', id: name },
+    return (React.createElement("a", { href: url, target: '_blank', className: 'icon', id: name, rel: "noreferrer" },
         React.createElement("p", { className: 'icon-label' }, name)));
 };
 function DesktopIcons() {

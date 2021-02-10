@@ -15,6 +15,7 @@ var lodash_1 = require("lodash");
 var react_1 = require("react");
 require("./Board.scss");
 var Cell_1 = require("./Cell");
+var TopPanel_1 = require("./TopPanel");
 var contexts_1 = require("../contexts");
 var tweets_1 = require("../data/tweets");
 var globals_1 = require("../globals");
@@ -147,14 +148,17 @@ var Board = function (_a) {
         setGameProgress(globals_1.GameProgress.InProgress);
         setGrid(updatedGrid);
     }
-    return (React.createElement("div", { "data-testid": 'board', className: 'board-container', id: difficulty }, grid.map(function (column) {
-        return (column.map(function (cellState, rowIndex) {
-            // pass updateBoard() function to each child cell; on game boot up the grid is empty 
-            // and so this function is nil, that is why we assign it here. 
-            cellState.updateBoard = updateBoard;
-            return (React.createElement(Cell_1["default"], __assign({ key: rowIndex }, cellState)));
-        }));
-    })));
+    return (React.createElement(React.Fragment, null,
+        React.createElement(TopPanel_1["default"], null),
+        React.createElement("div", { className: "window-ribbon " + difficulty }, "Tweet Sweeper"),
+        React.createElement("div", { "data-testid": 'board', className: 'board-container', id: difficulty }, grid.map(function (column) {
+            return (column.map(function (cellState, rowIndex) {
+                // pass updateBoard() function to each child cell; on game boot up the grid is empty 
+                // and so this function is nil, that is why we assign it here. 
+                cellState.updateBoard = updateBoard;
+                return (React.createElement(Cell_1["default"], __assign({ key: rowIndex }, cellState)));
+            }));
+        }))));
 };
 function buildBoard(_a) {
     // const userDesiresRandomMineGeneration = numberOfMines > 0
