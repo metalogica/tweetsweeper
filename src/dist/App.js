@@ -18,6 +18,7 @@ var Board_1 = require("./components/Board");
 var TopPanel_1 = require("./components/TopPanel");
 var Tweet_1 = require("./components/Tweet");
 var StartMenu_1 = require("./components/StartMenu");
+var DesktopIcons_1 = require("./components/DesktopIcons");
 require("./App.scss");
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
 function App() {
@@ -47,6 +48,7 @@ function App() {
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: "app-container " + difficulty },
             react_1["default"].createElement("div", { className: "window-ribbon " + difficulty }, "Tweet Sweeper"),
+            react_1["default"].createElement(DesktopIcons_1["default"], null),
             react_1["default"].createElement(contexts_1.GameContext.Provider, { value: {
                     difficulty: difficulty,
                     theme: theme,

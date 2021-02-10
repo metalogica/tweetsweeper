@@ -5,6 +5,7 @@ import Board from './components/Board'
 import TopPanel from './components/TopPanel'
 import Tweet from './components/Tweet'
 import StartMenu from './components/StartMenu'
+import DesktopIcons from './components/DesktopIcons'
 import './App.scss';
 
 // TODO: Add error boundaries to app: https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
@@ -38,6 +39,7 @@ function App() {
     <>
       <div className={`app-container ${difficulty}`}>
         <div className={`window-ribbon ${difficulty}`}>Tweet Sweeper</div>
+        <DesktopIcons/>
         <GameContext.Provider value={{
             difficulty,
             theme,
@@ -62,7 +64,6 @@ function App() {
           <StartMenu/>
         </GameContext.Provider>
       </div>
-      {/* <StartMenu/> */}
     </>
   )
 }

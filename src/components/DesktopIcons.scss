@@ -1,0 +1,59 @@
+.desktop-icons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  max-width: 15%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-left: 0.5rem;
+
+  a, a:visited {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .icon {
+    width: 6rem;
+    height: 7rem;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    position: relative;
+
+    margin: 0 0 1rem 0;
+
+    &:hover {
+      background-color: rgba(63, 166, 244, 0.75);
+    }
+  }
+
+  .icon-label {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: -0.45rem;
+  }
+}
+
+
+#github {
+  background-image: url('../images/desktop-icons/github.png');
+}
+
+#linkedin {
+  background-image: url('../images/desktop-icons/linkedin.png');
+}
+
+#stack-overflow {
+  background-image: url('../images/desktop-icons/stack-overflow.png');
+}
+
+#twitter {
+  background-image: url('../images/desktop-icons/twitter.png');
+}
